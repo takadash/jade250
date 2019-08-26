@@ -32,14 +32,14 @@ function initMap() {
         function success(position) {
         // var latitude  = position.coords.latitude;//緯度
         // var longitude = position.coords.longitude;//経度
-        var latitude  = 35.693944        
+        var latitude  = 35.693944
         var longitude = 139.753611
         //output.innerHTML = '<p>緯度 ' + latitude + '° <br>経度 ' + longitude + '°</p>';
-         
+
         // 位置情報
         var latlng = new google.maps.LatLng( latitude , longitude ) ;
         // マーカーの新規出力
-        
+
         if(marker_g){
           marker_g.setMap(null);
         }
@@ -48,12 +48,12 @@ function initMap() {
           position: latlng ,
           icon: {
             url: 'human_pictures/human_black.png',//アイコンのURL
-              anchor: new google.maps.Point(25,25),      
+              anchor: new google.maps.Point(25,25),
               scaledSize: new google.maps.Size(50, 50) //サイズ
           }
- 
-         
-   
+
+
+
         });
 
         if(circle){
@@ -70,8 +70,8 @@ function initMap() {
          strokeWeight: 5  // 外周太さ
         });
         circle.bindTo("center", marker_g, "position");
-        
-        
+
+
       };
       function error() {
        //エラーの場合
@@ -79,4 +79,3 @@ function initMap() {
       };
       navigator.geolocation.getCurrentPosition(success, error);//成功と失敗を判断
       }
-      
