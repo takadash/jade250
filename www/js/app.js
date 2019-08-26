@@ -11,7 +11,7 @@ var circle;
 
 function onload(){
 	//前回の値を読み込み
-
+// localStorage.setItem("isOpen", "0");
 	var isOpen = localStorage.getItem("isOpen");
 	//値が保存されていない、もしくはフラグがオフだった場合
 	if(null == isOpen || 0 == isOpen){
@@ -24,7 +24,7 @@ function onload(){
 		//初回ではないのでトップを開く
 		//トップのスコープからオンロード取得時にスプラッシュ削除
     console.log("log2");
-		document.querySelector('#navigator').pushPage("page2.html");
+		document.querySelector('#navigator').pushPage("page2.html",{ animation: "none" });
 	}
 }
 
