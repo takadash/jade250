@@ -51,9 +51,14 @@
   <title>お問い合わせフォーム</title>
 </head>
 
-<body>
+<body onload="onload()" ng-controller="initController" ng-init="init()">
 
-  <ons-navigator id="navigator" page="page1.html"></ons-navigator>
+  <ons-navigator var="MyNavi" id="navigator" page="page1.html"></ons-navigator>
+
+  <ons-modal var="modal" class="modal type3" id="modal">
+  	    <ons-icon icon="ion-load-d" spin="true" style="font-size:32px;"></ons-icon>
+  	    <div class="txt">読み込み中</div>
+  	</ons-modal>
 
   <ons-template id="page1.html">
     <ons-page id="first-page">
@@ -100,7 +105,7 @@
       <script src="js/kabuki.js"></script>
       <script src="js/kiyochika.js"></script>
       <script src="js/kyoden.js"></script>
-      
+
       <p>近世</p>
       <label><input type="checkbox" name="scb3" id="cb1" onclick="kabuki()">南北歌舞伎</label><img src="https://maps.google.com/mapfiles/ms/icons/green-dot.png" width="20" height="20" border="0" /><br>
       <label><input type="checkbox" name="scb3" id="cb2" onclick="kyoden()">京伝黄表紙</label><img src="https://maps.google.com/mapfiles/ms/icons/yellow-dot.png" width="20" height="20" border="0" /><br>

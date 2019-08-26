@@ -9,6 +9,25 @@ var stampclick = [];
 var marker_g;
 var circle;
 
+function onload(){
+	//前回の値を読み込み
+
+	var isOpen = localStorage.getItem("isOpen");
+	//値が保存されていない、もしくはフラグがオフだった場合
+	if(null == isOpen || 0 == isOpen){
+		//スプラッシュ削除
+		navigator.splashscreen.hide();
+		//初回起動終了フラグをオンにする。
+    localStorage.setItem("isOpen", "1");
+    console.log("log1");
+	}else{
+		//初回ではないのでトップを開く
+		//トップのスコープからオンロード取得時にスプラッシュ削除
+    console.log("log2");
+		document.querySelector('#navigator').pushPage("page2.html");
+	}
+}
+
 //GoogleMapの表示
 function initMap() {
   // #mapに地図を埋め込む
