@@ -8,6 +8,8 @@
   <!--<meta name="viewport" content="width=device-width, user-scalable=no">-->
   <!--<meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">-->
   <script src="components/loader.js"></script>
+
+  <!-- 下の二つ入れる必要あるのか？-->
   <link rel="stylesheet" href="components/loader.css">
   <link rel="stylesheet" href="css/style.css">
   <!-- <script src="js/cssua.min.js"></script> -->
@@ -19,34 +21,14 @@
     <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
     <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css"> -->
 
+  <!-- onsenUI -->
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
   <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
-  <script>
-    // Page init event
-    document.addEventListener('init', function(event) {
-      var page = event.target;
 
-      if (page.matches('#first-page')) {
+  <!-- 利用規約の画面-->
+  <script src="js/page_init_event.js"></script>
 
-        page.querySelector('#push-button').onclick = function() {
-          document.querySelector('#navigator').pushPage('page2.html');
-        };
-
-      } else if (page.matches('#second-page')) {
-
-        // page.querySelector('#pop-button').onclick = function() {
-        //   document.querySelector('#navigator').popPage();
-        // };
-
-      }
-    });
-
-    if (ons.platform.isIPhoneX()) {
-      document.documentElement.setAttribute('onsflag-iphonex-portrait', '');
-      document.documentElement.setAttribute('onsflag-iphonex-landscape', '');
-    }
-  </script>
 
   <title>お問い合わせフォーム</title>
 </head>
@@ -62,6 +44,7 @@
 
   <ons-template id="page1.html">
     <ons-page id="first-page">
+
       <ons-toolbar>
         <div class="center">利用規約</div>
       </ons-toolbar>
@@ -74,8 +57,11 @@
           第1条（適用）
           本規約は，ユーザーと当大学との間の本アプリの利用に関わる一切の関係に適用される</p>
         <p>〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜</p>
+
         <ons-button id="push-button">同意する</ons-button>
+
       </div>
+  
     </ons-page>
   </ons-template>
 
@@ -124,11 +110,32 @@
       <label><input type="checkbox" name="scb3" id="cb8"
               onclick="pintate()">東京落語</label><br>
 -->
+      <br>
+      <ons-button id="status-button">ステータス</ons-button>
 
       <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXueT8O-UOJmfh2M-1Xh1IbfKWNXv-coU&callback=initMap">
       </script>
+
+      <script>
+
+ 
+
+      </script>
+
     </ons-page>
   </template>
+
+  <template id="status.html">
+    <ons-page id="third-page">
+
+      <ons-toolbar>
+        <div class="center">ステータス</div>
+      </ons-toolbar>
+
+    </ons-page>
+  </template>
+
+
 
 </body>
 </html>
