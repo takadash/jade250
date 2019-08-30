@@ -46,7 +46,7 @@ for (var i = 0; i < results.length; i++,cnt1++) {
 
     stamplat1[i] = lat1[i];
     stamplng1[i] = lng1[i];
-    stampclick1[i] =  '<div id="stamp"><button onmouseup ="stamp_push1(' + i + ')">スタンプ</button></div>' + '<div id="btn">'
+    stampclick1[i] =  '<div id="stamp"><ons-button onclick ="stamp_push1(' + i + ')">スタンプ</ons-button></div>' + '<div id="btn">'
 //ピンたて
     markerLatLng = {lat:lat1[i], lng:lng1[i]};
         marker1[i] = new google.maps.Marker({
