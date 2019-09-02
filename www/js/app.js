@@ -16,14 +16,14 @@ function onload(){
 	//値が保存されていない、もしくはフラグがオフだった場合
 	if(null == isOpen || 0 == isOpen){
 		//スプラッシュ削除
-		navigator.splashscreen.hide();
+		// navigator.splashscreen.hide();
 		//初回起動終了フラグをオンにする。
     localStorage.setItem("isOpen", "1");
-    console.log("log1");
+    console.log("log1" + "%s", isOpen);
 	}else{
 		//初回ではないのでトップを開く
 		//トップのスコープからオンロード取得時にスプラッシュ削除
-    console.log("log2");
+    console.log("log2" +  "%s", isOpen);
 		document.querySelector('#navigator').pushPage("page2.html",{ animation: "none" });
 	}
 }

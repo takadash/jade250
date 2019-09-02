@@ -13,7 +13,7 @@
     var raw_values = window.location.search.substring(1).split('&');
     var values = {};
     var device = { platform: "" };
-    
+
     if (raw_values) {
       for (var key in raw_values) {
         var tmp = raw_values[key].split('=');
@@ -21,23 +21,23 @@
       }
       device.platform = values.platform;
     }
-    
+
     return device;
   }
-    
+
   if (/^https:\/\/preview-.+monaca\.(local||mobi)/.test(location.href)) {
     window.device = getDeviceObjectForPreview();
   }
- 
+
   if ((navigator.userAgent.match(/Android/i)) || (navigator.userAgent.match(/iPhone|iPad|iPod/i))) {
     if (typeof location.href === "string") {
       var relativePath = location.href.split("/www")[1];
       var paths = relativePath.split("/");
-      var cordovaJsUrl = ""; 
+      var cordovaJsUrl = "";
       for (var i = 0; i < paths.length - 2; i++) {
         cordovaJsUrl += "../";
       }
-      document.write("<script src=\"" + cordovaJsUrl+ "cordova.js" + "\"></script>");
+      // document.write("<script src=\"" + cordovaJsUrl+ "cordova.js" + "\"></script>");
     }
   } else if ( ((navigator.userAgent.match(/MSIE\s10.0/)) && (navigator.userAgent.match(/Windows\sNT\s6.2/)) ) || navigator.userAgent.match(/MSAppHost/) ) {
     var elm = document.createElement('script');
@@ -1486,375 +1486,375 @@ window.monaca.cloud = window.monaca.cloud || {};
 /**
  * Modules in this bundle
  * @license
- * 
+ *
  * ncmb:
  *   license: Apache License Version 2.0
  *   maintainers: NIFCloud mobile backend Team
  *   homepage: https://mbaas.nifcloud.com/
  *   version: 3.0.0
- * 
+ *
  * asn1.js:
  *   license: MIT
  *   author: Fedor Indutny
  *   homepage: https://github.com/indutny/asn1.js
  *   version: 4.10.1
- * 
+ *
  * babel:
  *   license: MIT
  *   author: Sebastian McKenzie <sebmck@gmail.com>
  *   homepage: https://babeljs.io/
  *   version: 5.8.38
- * 
+ *
  * babel-core:
  *   license: MIT
  *   author: Sebastian McKenzie <sebmck@gmail.com>
  *   homepage: https://babeljs.io/
  *   version: 5.8.38
- * 
+ *
  * base64-js:
  *   license: MIT
  *   author: T. Jameson Little <t.jameson.little@gmail.com>
  *   homepage: https://github.com/beatgammit/base64-js
  *   version: 1.3.0
- * 
+ *
  * bn.js:
  *   license: MIT
  *   author: Fedor Indutny <fedor@indutny.com>
  *   homepage: https://github.com/indutny/bn.js
  *   version: 4.11.8
- * 
+ *
  * brorand:
  *   license: MIT
  *   author: Fedor Indutny <fedor@indutny.com>
  *   homepage: https://github.com/indutny/brorand
  *   version: 1.1.0
- * 
+ *
  * browserify-aes:
  *   license: MIT
  *   homepage: https://github.com/crypto-browserify/browserify-aes
  *   version: 1.2.0
- * 
+ *
  * browserify-cipher:
  *   license: MIT
  *   author: Calvin Metcalf <calvin.metcalf@gmail.com>
  *   homepage: https://github.com/crypto-browserify/browserify-cipher#readme
  *   version: 1.0.1
- * 
+ *
  * browserify-des:
  *   license: MIT
  *   author: Calvin Metcalf <calvin.metcalf@gmail.com>
  *   homepage: https://github.com/crypto-browserify/browserify-des#readme
  *   version: 1.0.1
- * 
+ *
  * browserify-rsa:
  *   license: MIT
  *   homepage: https://github.com/crypto-browserify/browserify-rsa#readme
  *   version: 4.0.1
- * 
+ *
  * browserify-sign:
  *   license: ISC
  *   homepage: https://github.com/crypto-browserify/browserify-sign#readme
  *   version: 4.0.4
- * 
+ *
  * buffer:
  *   license: MIT
  *   author: Feross Aboukhadijeh <feross@feross.org>
  *   contributors: Romain Beauxis <toots@rastageeks.org>, James Halliday <mail@substack.net>
  *   homepage: https://github.com/feross/buffer
  *   version: 4.9.1
- * 
+ *
  * buffer-xor:
  *   license: MIT
  *   author: Daniel Cousens
  *   homepage: https://github.com/crypto-browserify/buffer-xor
  *   version: 1.0.3
- * 
+ *
  * cipher-base:
  *   license: MIT
  *   author: Calvin Metcalf <calvin.metcalf@gmail.com>
  *   homepage: https://github.com/crypto-browserify/cipher-base#readme
  *   version: 1.0.4
- * 
+ *
  * component-emitter:
  *   license: MIT
  *   homepage: https://github.com/component/emitter#readme
  *   version: 1.2.1
- * 
+ *
  * core-js:
  *   license: MIT
  *   homepage: https://github.com/zloirock/core-js#readme
  *   version: 1.2.7
- * 
+ *
  * core-util-is:
  *   license: MIT
  *   author: Isaac Z. Schlueter <i@izs.me>
  *   homepage: https://github.com/isaacs/core-util-is#readme
  *   version: 1.0.2
- * 
+ *
  * create-ecdh:
  *   license: MIT
  *   author: Calvin Metcalf
  *   homepage: https://github.com/crypto-browserify/createECDH
  *   version: 4.0.3
- * 
+ *
  * create-error:
  *   license: MIT
  *   author: Tim Griesser
  *   homepage: https://github.com/tgriesser/create-error#readme
  *   version: 0.3.1
- * 
+ *
  * create-hash:
  *   license: MIT
  *   homepage: https://github.com/crypto-browserify/createHash
  *   version: 1.2.0
- * 
+ *
  * create-hmac:
  *   license: MIT
  *   homepage: https://github.com/crypto-browserify/createHmac
  *   version: 1.1.7
- * 
+ *
  * crypto-browserify:
  *   license: MIT
  *   author: Dominic Tarr <dominic.tarr@gmail.com>
  *   homepage: https://github.com/crypto-browserify/crypto-browserify
  *   version: 3.12.0
- * 
+ *
  * des.js:
  *   license: MIT
  *   author: Fedor Indutny <fedor@indutny.com>
  *   homepage: https://github.com/indutny/des.js#readme
  *   version: 1.0.0
- * 
+ *
  * diffie-hellman:
  *   license: MIT
  *   author: Calvin Metcalf
  *   homepage: https://github.com/crypto-browserify/diffie-hellman
  *   version: 5.0.3
- * 
+ *
  * elliptic:
  *   license: MIT
  *   author: Fedor Indutny <fedor@indutny.com>
  *   homepage: https://github.com/indutny/elliptic
  *   version: 6.4.0
- * 
+ *
  * events:
  *   license: MIT
  *   author: Irakli Gozalishvili <rfobic@gmail.com>
  *   homepage: https://github.com/Gozala/events#readme
  *   version: 1.1.1
- * 
+ *
  * evp_bytestokey:
  *   license: MIT
  *   author: Calvin Metcalf <calvin.metcalf@gmail.com>
  *   contributors: Kirill Fomichev <fanatid@ya.ru>
  *   homepage: https://github.com/crypto-browserify/EVP_BytesToKey
  *   version: 1.0.3
- * 
+ *
  * hash-base:
  *   license: MIT
  *   author: Kirill Fomichev <fanatid@ya.ru>
  *   homepage: https://github.com/crypto-browserify/hash-base
  *   version: 3.0.4
- * 
+ *
  * hash.js:
  *   license: MIT
  *   author: Fedor Indutny <fedor@indutny.com>
  *   homepage: https://github.com/indutny/hash.js
  *   version: 1.1.3
- * 
+ *
  * hmac-drbg:
  *   license: MIT
  *   author: Fedor Indutny <fedor@indutny.com>
  *   homepage: https://github.com/indutny/hmac-drbg#readme
  *   version: 1.0.1
- * 
+ *
  * ieee754:
  *   license: BSD-3-Clause
  *   author: Feross Aboukhadijeh <feross@feross.org>
  *   contributors: Romain Beauxis <toots@rastageeks.org>
  *   homepage: https://github.com/feross/ieee754#readme
  *   version: 1.1.11
- * 
+ *
  * indexof:
  *   version: 0.0.1
- * 
+ *
  * inherits:
  *   license: ISC
  *   homepage: https://github.com/isaacs/inherits#readme
  *   version: 2.0.3
- * 
+ *
  * isarray:
  *   license: MIT
  *   author: Julian Gruber <mail@juliangruber.com>
  *   homepage: https://github.com/juliangruber/isarray
  *   version: 1.0.0
- * 
+ *
  * localforage:
  *   license: Apache-2.0
  *   author: Mozilla
  *   homepage: https://github.com/localForage/localForage
  *   version: 1.7.1
- * 
+ *
  * lodash.flatten:
  *   license: MIT
  *   author: John-David Dalton <john.david.dalton@gmail.com>
  *   contributors: John-David Dalton <john.david.dalton@gmail.com>, Blaine Bublitz <blaine.bublitz@gmail.com>, Mathias Bynens <mathias@qiwi.be>
  *   homepage: https://lodash.com/
  *   version: 4.4.0
- * 
+ *
  * md5.js:
  *   license: MIT
  *   author: Kirill Fomichev <fanatid@ya.ru>
  *   homepage: https://github.com/crypto-browserify/md5.js
  *   version: 1.3.4
- * 
+ *
  * miller-rabin:
  *   license: MIT
  *   author: Fedor Indutny <fedor@indutny.com>
  *   homepage: https://github.com/indutny/miller-rabin
  *   version: 4.0.1
- * 
+ *
  * minimalistic-assert:
  *   license: ISC
  *   homepage: https://github.com/calvinmetcalf/minimalistic-assert
  *   version: 1.0.1
- * 
+ *
  * minimalistic-crypto-utils:
  *   license: MIT
  *   author: Fedor Indutny <fedor@indutny.com>
  *   homepage: https://github.com/indutny/minimalistic-crypto-utils#readme
  *   version: 1.0.1
- * 
+ *
  * object-assign:
  *   license: MIT
  *   author: Sindre Sorhus <sindresorhus@gmail.com>
  *   homepage: https://github.com/sindresorhus/object-assign#readme
  *   version: 3.0.0
- * 
+ *
  * parse-asn1:
  *   license: ISC
  *   homepage: https://github.com/crypto-browserify/parse-asn1#readme
  *   version: 5.1.1
- * 
+ *
  * pbkdf2:
  *   license: MIT
  *   author: Daniel Cousens
  *   homepage: https://github.com/crypto-browserify/pbkdf2
  *   version: 3.0.16
- * 
+ *
  * process:
  *   license: MIT
  *   author: Roman Shtylman <shtylman@gmail.com>
  *   homepage: https://github.com/shtylman/node-process#readme
  *   version: 0.11.10
- * 
+ *
  * process-nextick-args:
  *   license: MIT
  *   homepage: https://github.com/calvinmetcalf/process-nextick-args
  *   version: 2.0.0
- * 
+ *
  * public-encrypt:
  *   license: MIT
  *   author: Calvin Metcalf
  *   homepage: https://github.com/crypto-browserify/publicEncrypt
  *   version: 4.0.2
- * 
+ *
  * punycode:
  *   license: MIT
  *   author: Mathias Bynens
  *   contributors: Mathias Bynens, John-David Dalton
  *   homepage: https://mths.be/punycode
  *   version: 1.3.2
- * 
+ *
  * qs:
  *   licenses: BSD
  *   homepage: https://github.com/hapijs/qs
  *   version: 2.4.2
- * 
+ *
  * querystring-es3:
  *   licenses: MIT
  *   author: Irakli Gozalishvili <rfobic@gmail.com>
  *   homepage: https://github.com/mike-spainhower/querystring#readme
  *   version: 0.2.1
- * 
+ *
  * randombytes:
  *   license: MIT
  *   homepage: https://github.com/crypto-browserify/randombytes
  *   version: 2.0.6
- * 
+ *
  * randomfill:
  *   license: MIT
  *   homepage: https://github.com/crypto-browserify/randomfill
  *   version: 1.0.4
- * 
+ *
  * readable-stream:
  *   license: MIT
  *   homepage: https://github.com/nodejs/readable-stream#readme
  *   version: 2.3.6
- * 
+ *
  * reduce-component:
  *   license: Apache, Version 2.0
  *   homepage: https://github.com/redventures/reduce#readme
  *   version: 1.0.1
- * 
+ *
  * regenerator:
  *   license: BSD
  *   author: Ben Newman <bn@cs.stanford.edu>
  *   homepage: http://github.com/facebook/regenerator
  *   version: 0.8.40
- * 
+ *
  * ripemd160:
  *   license: MIT
  *   homepage: https://github.com/crypto-browserify/ripemd160#readme
  *   version: 2.0.2
- * 
+ *
  * safe-buffer:
  *   license: MIT
  *   author: Feross Aboukhadijeh <feross@feross.org>
  *   homepage: https://github.com/feross/safe-buffer
  *   version: 5.1.2
- * 
+ *
  * sha.js:
  *   license: (MIT AND BSD-3-Clause)
  *   author: Dominic Tarr <dominic.tarr@gmail.com>
  *   homepage: https://github.com/crypto-browserify/sha.js
  *   version: 2.4.11
- * 
+ *
  * stream-browserify:
  *   license: MIT
  *   author: James Halliday <mail@substack.net>
  *   homepage: https://github.com/substack/stream-browserify
  *   version: 2.0.1
- * 
+ *
  * string_decoder:
  *   license: MIT
  *   homepage: https://github.com/rvagg/string_decoder
  *   version: 0.10.31
- * 
+ *
  * superagent:
  *   license: MIT
  *   author: TJ Holowaychuk <tj@vision-media.ca>
  *   contributors: Kornel Lesiński <kornel@geekhood.net>, Peter Lyons <pete@peterlyons.com>, Hunter Loftis <hunter@hunterloftis.com>
  *   homepage: https://github.com/visionmedia/superagent#readme
  *   version: 1.8.5
- * 
+ *
  * url:
  *   license: MIT
  *   homepage: https://github.com/defunctzombie/node-url#readme
  *   version: 0.11.0
- * 
+ *
  * util-deprecate:
  *   license: MIT
  *   author: Nathan Rajlich <nathan@tootallnate.net>
  *   homepage: https://github.com/TooTallNate/util-deprecate
  *   version: 1.0.2
- * 
+ *
  * vm-browserify:
  *   license: MIT
  *   author: James Halliday <mail@substack.net>
  *   homepage: https://github.com/substack/vm-browserify#readme
  *   version: 0.0.4
- * 
+ *
  * This header is generated by licensify (https://github.com/twada/licensify)
  */
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
@@ -12666,7 +12666,7 @@ module.exports = function(NAME, wrapper, methods, common, IS_MAP, IS_WEAK){
       , ACCEPT_ITERABLES     = $iterDetect(function(iter){ new C(iter); }) // eslint-disable-line no-new
       // for early implementations -0 and +0 not the same
       , BUGGY_ZERO;
-    if(!ACCEPT_ITERABLES){ 
+    if(!ACCEPT_ITERABLES){
       C = wrapper(function(target, iterable){
         strictNew(target, C, NAME);
         var that = new Base;
@@ -27889,7 +27889,7 @@ module.exports = function privateDecrypt(private_key, enc, reverse) {
   } else {
     padding = 4;
   }
-  
+
   var key = parseKeys(private_key);
   var k = key.modulus.byteLength();
   if (enc.length > k || new bn(enc).cmp(key.modulus) >= 0) {
@@ -31679,7 +31679,7 @@ module.exports = require('./lib/_stream_writable.js');
  * TODO: combatible error handling?
  */
 
-module.exports = function(arr, fn, initial){  
+module.exports = function(arr, fn, initial){
   var idx = 0;
   var len = arr.length;
   var curr = arguments.length == 3
@@ -31689,7 +31689,7 @@ module.exports = function(arr, fn, initial){
   while (idx < len) {
     curr = fn.call(null, curr, arr[idx], ++idx, arr);
   }
-  
+
   return curr;
 };
 },{}],366:[function(require,module,exports){
@@ -34401,7 +34401,7 @@ Request.prototype.type = function(type){
 };
 
 /**
- * Set responseType to `val`. Presently valid responseTypes are 'blob' and 
+ * Set responseType to `val`. Presently valid responseTypes are 'blob' and
  * 'arraybuffer'.
  *
  * Examples:
@@ -35239,13 +35239,13 @@ Script.prototype.runInContext = function (context) {
     if (!(context instanceof Context)) {
         throw new TypeError("needs a 'context' argument.");
     }
-    
+
     var iframe = document.createElement('iframe');
     if (!iframe.style) iframe.style = {};
     iframe.style.display = 'none';
-    
+
     document.body.appendChild(iframe);
-    
+
     var win = iframe.contentWindow;
     var wEval = win.eval, wExecScript = win.execScript;
 
@@ -35254,7 +35254,7 @@ Script.prototype.runInContext = function (context) {
         wExecScript.call(win, 'null');
         wEval = win.eval;
     }
-    
+
     forEach(Object_keys(context), function (key) {
         win[key] = context[key];
     });
@@ -35263,11 +35263,11 @@ Script.prototype.runInContext = function (context) {
             win[key] = context[key];
         }
     });
-    
+
     var winKeys = Object_keys(win);
 
     var res = wEval.call(win, this.code);
-    
+
     forEach(Object_keys(win), function (key) {
         // Avoid copying circular objects like `top` and `window` by only
         // updating existing context properties or new properties in the `win`
@@ -35282,9 +35282,9 @@ Script.prototype.runInContext = function (context) {
             defineProp(context, key, win[key]);
         }
     });
-    
+
     document.body.removeChild(iframe);
-    
+
     return res;
 };
 

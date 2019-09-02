@@ -15,6 +15,8 @@ var stamplng1 = [];
 //var lng2;
 var maker_is_displayed = 0;
 var cnt1=0;
+var cnt_stamp = 0;
+document.getElementById('cnt_stamp').textContent = cnt_stamp ;
 
 kabukiData.order("createData",true)
   .fetchAll()
@@ -44,7 +46,7 @@ for (var i = 0; i < results.length; i++,cnt1++) {
 
     stamplat1[i] = lat1[i];
     stamplng1[i] = lng1[i];
-    stampclick1[i] =  '<div id="stamp"><button onmouseup ="stamp_push1(' + i + ')">スタンプ</button></div>' + '<div id="btn">'
+    stampclick1[i] =  '<div id="stamp"><ons-button onclick ="stamp_push1(' + i + ')">スタンプ</ons-button></div>' + '<div id="btn">'
 //ピンたて
     markerLatLng = {lat:lat1[i], lng:lng1[i]};
         marker1[i] = new google.maps.Marker({
@@ -55,7 +57,7 @@ for (var i = 0; i < results.length; i++,cnt1++) {
 		        url:'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
           }
         });
-    
+
     infoWindow1[i] = new google.maps.InfoWindow({ // 吹き出しの追加
          content: '<div class="map">' + title[i] + '</div>' + '地名　　　　　　' + name[i] + '<br>参考文献　　　　' + bibliography[i] + volume[i] + page[i] + '<br>' + title[i] + text[i] + '<br>' + stampclick1[i]// 吹き出しに表示する内容
        });
@@ -73,7 +75,7 @@ function markerEvent1(i) {
       currentInfoWindow = infoWindow1[i];
   });
 }
-  
+
 })
 .catch(function(error){
 //全件検索に失敗した場合の処理
@@ -86,8 +88,8 @@ function stamp_push1(i){
   var btn_display = document.getElementById("btn");
    stamp_lat = stamplat1[i];
    stamp_lng = stamplng1[i];
-   
- 
+
+
    // 現在位置プログラム
         if (!navigator.geolocation){//Geolocation apiがサポートされていない場合
           hyouzi.innerHTML = "<p>Geolocationはあなたのブラウザーでサポートされておりません</p>";
@@ -96,25 +98,25 @@ function stamp_push1(i){
         function Success(pos) {
         var now_lat  = pos.coords.latitude;//緯度
         var now_lng = pos.coords.longitude;//経度
-         
+
         // 位置情報
         var latlng1 = new google.maps.LatLng( now_lat , now_lng ) ;
-        
+
         //距離の計算//
      function getDistance(now_lat, now_lng, stamp_lat, stamp_lng) {
- 
+
         function radians(deg){
            return deg * Math.PI / 180;
         }
- 
-        var result = 6378.14 * Math.acos(Math.cos(radians(now_lat))* 
+
+        var result = 6378.14 * Math.acos(Math.cos(radians(now_lat))*
          Math.cos(radians(stamp_lat))*
          Math.cos(radians(stamp_lng)-radians(now_lng))+
          Math.sin(radians(now_lat))*
          Math.sin(radians(stamp_lat)));
- 
+
          result = result / 0.62137;
-         
+
          if(result <= 1.0){
            return true;
          }
@@ -122,13 +124,15 @@ function stamp_push1(i){
      }
      //結果
      var now_success = getDistance(now_lat,now_lng,stamp_lat,stamp_lng);
- 
-     if(now_success == true){
+
+     if(1){
        //hyouzi.innerHTML('<img src="human_pictures/human_red.png">');
        hyouzi.style.display ="none";
 
        btn_display.insertAdjacentHTML('afterbegin','<img src="human_pictures/human_red.png">');
-       
+       cnt_stamp++;
+       console.log(cnt_stamp);
+       document.getElementById('cnt_stamp').textContent = cnt_stamp ;
      }else{
        //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
        alert('遠くてスタンプが押せませんでした');
@@ -142,7 +146,7 @@ function stamp_push1(i){
 
 }
 
-    
+
 
 // チェックボックスがクリックされると呼び出されるfunction
     function kabuki() {
@@ -154,7 +158,7 @@ function stamp_push1(i){
         //alert('true');
         for(var i=0; i<cnt1; i++){
           marker1[i].setVisible(true);
-          
+
         }
       } else {
         // チェックボックスがチェックされていなければ非表示
@@ -164,4 +168,3 @@ function stamp_push1(i){
         }
       }
     }
-
