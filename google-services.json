@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "721931164844",
+    "firebase_url": "https://tiyo-75159.firebaseio.com",
+    "project_id": "tiyo-75159",
+    "storage_bucket": "tiyo-75159.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:721931164844:android:d3e93fdfe81a1ca3",
+        "android_client_info": {
+          "package_name": "jp.ncmb.monaca.push.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "721931164844-tij96fejtqt1aa8atdpeutnpq00un8qf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3FQE-ArZ_lv9D_Dw8354Zgkwb-E8E8PU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "721931164844-tij96fejtqt1aa8atdpeutnpq00un8qf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

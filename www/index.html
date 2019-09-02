@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
   <meta charset="utf-8">
   <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
@@ -22,6 +23,32 @@
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
   <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+
+  <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+
+  <script>
+      function onDeviceReady () {
+       alert("Calling onDeviceReady()");
+       window.NCMB.monaca.setDeviceToken(
+           "26cec09426087ef56de1ba79b2291caccf7990b7165dac6910465d5334355ab5",
+           "0ee8fb824e95468f1d7cff3d933ae7373c462f6f523d4bfdee63c7861856be23"
+       );
+      }
+
+      setTimeout(function () {
+              document.addEventListener('deviceready', onDeviceReady, false);
+      }, 9000);
+  </script>
+  <!-- <script>
+    document.addEventListener("deviceready", function(){
+            // デバイストークンを取得してinstallationに登録する
+            window.NCMB.monaca.setDeviceToken(
+                "26cec09426087ef56de1ba79b2291caccf7990b7165dac6910465d5334355ab5",
+                "0ee8fb824e95468f1d7cff3d933ae7373c462f6f523d4bfdee63c7861856be23"
+            );
+        },false);
+    </script> -->
+
   <script>
     // Page init event
     document.addEventListener('init', function(event) {
@@ -51,14 +78,15 @@
   <title>お問い合わせフォーム</title>
 </head>
 
+
 <body onload="onload()" ng-controller="initController" ng-init="init()">
 
   <ons-navigator var="MyNavi" id="navigator" page="page1.html"></ons-navigator>
 
   <ons-modal var="modal" class="modal type3" id="modal">
-  	    <ons-icon icon="ion-load-d" spin="true" style="font-size:32px;"></ons-icon>
-  	    <div class="txt">読み込み中</div>
-  	</ons-modal>
+    <ons-icon icon="ion-load-d" spin="true" style="font-size:32px;"></ons-icon>
+    <div class="txt">読み込み中</div>
+  </ons-modal>
 
   <ons-template id="page1.html">
     <ons-page id="first-page">
@@ -133,4 +161,5 @@
   </template>
 
 </body>
+
 </html>
