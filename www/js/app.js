@@ -9,7 +9,17 @@ var stampclick = [];
 var marker_g;
 var circle;
 
+document.addEventListener("deviceready", function(){
+				// デバイストークンを取得してinstallationに登録する
+				window.NCMB.monaca.setDeviceToken(
+						"26cec09426087ef56de1ba79b2291caccf7990b7165dac6910465d5334355ab5",
+						"0ee8fb824e95468f1d7cff3d933ae7373c462f6f523d4bfdee63c7861856be23"
+				);
+				console.log("installation");
+		},false);
+
 function onload(){
+	console.log("installation");
 	//前回の値を読み込み
 // localStorage.setItem("isOpen", "0");
 	var isOpen = localStorage.getItem("isOpen");
