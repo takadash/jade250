@@ -13,6 +13,7 @@
   <!-- <script src="js/cssua.min.js"></script> -->
 
   <script src="js/app.js"></script>
+  <script src="js/splitter.js"></script>
 
 
   <!-- <script src="lib/onsenui/js/onsenui.min.js"></script>
@@ -82,53 +83,120 @@
   <template id="page2.html">
     <ons-page id="second-page">
 
-      <ons-toolbar>
+      <!-- <ons-toolbar>
         <div class="center">アプリ画面</div>
-      </ons-toolbar>
+      </ons-toolbar> -->
 
-      <style>
-        /* Set the size of the div element that contains the map */
-        #map {
-          height: 500px;
-          /* The height is 400 pixels */
-          width: 100%;
-          /* The width is the width of the web page */
-        }
-      </style>
-      <div id="map"></div>
-      <button onclick="getMyPlace()">現在位置を取得</button>
-      <div id="result"></div>
-      <!--
-      <button onclick="getstamp()">スタンプ</button>
-      -->
-      <script src="js/taihei.js"></script>
-      <script src="js/kabuki.js"></script>
-      <script src="js/kiyochika.js"></script>
-      <script src="js/kyoden.js"></script>
+      <ons-splitter>
+        <ons-splitter-side id="menu" side="left" width="220px" collapse swipeable>
+          <ons-page>
+            <ons-list>
+              <ons-list-item onclick="fn.load('home.html')" tappable>
+                Home
+              </ons-list-item>
+              <ons-list-item onclick="fn.load('settings.html')" tappable>
+                Settings
+              </ons-list-item>
+              <ons-list-item onclick="fn.load('about.html')" tappable>
+                About
+              </ons-list-item>
+            </ons-list>
+          </ons-page>
+        </ons-splitter-side>
+        <ons-splitter-content id="content" page="home.html"></ons-splitter-content>
+      </ons-splitter>
 
-      <p>近世</p>
-      <label><input type="checkbox" name="scb3" id="cb1" onclick="kabuki()">南北歌舞伎</label><img src="https://maps.google.com/mapfiles/ms/icons/green-dot.png" width="20" height="20" border="0" /><br>
-      <label><input type="checkbox" name="scb3" id="cb2" onclick="kyoden()">京伝黄表紙</label><img src="https://maps.google.com/mapfiles/ms/icons/yellow-dot.png" width="20" height="20" border="0" /><br>
-      <!-- <label><input type="checkbox" name="scb3" id="cb3"
-              onclick="edo()">江戸名所図会</label><br> -->
-      <label><input type="checkbox" name="scb3" id="cb4" onclick="taihei()">泰平纏一覧</label><img src="https://maps.google.com/mapfiles/ms/icons/red-dot.png" width="20" height="20" border="0" /><br>
+      <template id="home.html">
+        <ons-page>
+          <ons-toolbar>
+            <div class="left">
+              <ons-toolbar-button onclick="fn.open()">
+                <ons-icon icon="md-menu"></ons-icon>
+              </ons-toolbar-button>
+            </div>
+            <div class="center">
+              Main
+            </div>
+          </ons-toolbar>
+          <!-- <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
+            Swipe right to open the menu!
+          </p> -->
+          <style>
+            /* Set the size of the div element that contains the map */
+            #map {
+              height: 500px;
+              /* The height is 400 pixels */
+              width: 100%;
+              /* The width is the width of the web page */
+            }
+          </style>
+          <div id="map"></div>
+          <button onclick="getMyPlace()">現在位置を取得</button>
+          <div id="result"></div>
 
-      <p>近代</p>
-      <label><input type="checkbox" name="scb3" id="cb5" onclick="kiyochika()">小林清親版画</label><img src="https://maps.google.com/mapfiles/ms/icons/blue-dot.png" width="20" height="20" border="0" /><br>
-      <!--
-      <p>現代</p>
-      <label><input type="checkbox" name="scb3" id="cb6"
-              onclick="pintate()">銀座写真</label><br>
-      <label><input type="checkbox" name="scb3" id="cb7"
-              onclick="pintate()">秋葉原調査</label><br>
-      <label><input type="checkbox" name="scb3" id="cb8"
-              onclick="pintate()">東京落語</label><br>
--->
 
-      <p>ステータス</p>
-      <div id="cnt_stamp"></div>
-      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXueT8O-UOJmfh2M-1Xh1IbfKWNXv-coU&callback=initMap">
-      </script>
+          <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXueT8O-UOJmfh2M-1Xh1IbfKWNXv-coU&callback=initMap">
+          </script>
+        </ons-page>
+      </template>
+
+      <template id="settings.html">
+        <ons-page>
+          <ons-toolbar>
+            <div class="left">
+              <ons-toolbar-button onclick="fn.open()">
+                <ons-icon icon="md-menu"></ons-icon>
+              </ons-toolbar-button>
+            </div>
+            <div class="center">
+              Settings
+            </div>
+          </ons-toolbar>
+          <script src="js/taihei.js"></script>
+          <script src="js/kabuki.js"></script>
+          <script src="js/kiyochika.js"></script>
+          <script src="js/kyoden.js"></script>
+
+          <p>近世</p>
+          <label><input type="checkbox" name="scb3" id="cb1" onclick="kabuki()">南北歌舞伎</label><img src="https://maps.google.com/mapfiles/ms/icons/green-dot.png" width="20" height="20" border="0" /><br>
+          <label><input type="checkbox" name="scb3" id="cb2" onclick="kyoden()">京伝黄表紙</label><img src="https://maps.google.com/mapfiles/ms/icons/yellow-dot.png" width="20" height="20" border="0" /><br>
+          <!-- <label><input type="checkbox" name="scb3" id="cb3"
+                  onclick="edo()">江戸名所図会</label><br> -->
+          <label><input type="checkbox" name="scb3" id="cb4" onclick="taihei()">泰平纏一覧</label><img src="https://maps.google.com/mapfiles/ms/icons/red-dot.png" width="20" height="20" border="0" /><br>
+
+          <p>近代</p>
+          <label><input type="checkbox" name="scb3" id="cb5" onclick="kiyochika()">小林清親版画</label><img src="https://maps.google.com/mapfiles/ms/icons/blue-dot.png" width="20" height="20" border="0" /><br>
+          <!--
+          <p>現代</p>
+          <label><input type="checkbox" name="scb3" id="cb6"
+                  onclick="pintate()">銀座写真</label><br>
+          <label><input type="checkbox" name="scb3" id="cb7"
+                  onclick="pintate()">秋葉原調査</label><br>
+          <label><input type="checkbox" name="scb3" id="cb8"
+                  onclick="pintate()">東京落語</label><br>
+    -->
+
+        </ons-page>
+      </template>
+
+      <template id="about.html">
+        <ons-page>
+          <ons-toolbar>
+            <div class="left">
+              <ons-toolbar-button onclick="fn.open()">
+                <ons-icon icon="md-menu"></ons-icon>
+              </ons-toolbar-button>
+            </div>
+            <div class="center">
+              About
+            </div>
+          </ons-toolbar>
+          <p>ステータス</p>
+          <div id="cnt_stamp"></div>
+        </ons-page>
+      </template>
+
+
     </ons-page>
   </template>
 
