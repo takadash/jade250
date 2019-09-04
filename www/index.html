@@ -80,7 +80,7 @@
     <input type="checkbox" id="label1"/>
     <div class="hidden_show">
       <!--非表示ここから-->
-        <ons-button id="push-button">SART</ons-button>
+        <ons-button id="push-button">START</ons-button>
       <!--ここまで-->
     </div>
 </div>
@@ -117,7 +117,13 @@
             onclick="edo()">江戸名所図会</label><br> -->
             <label><input type="checkbox" name="scb3" id="cb4" onclick="taihei()">泰平纏一覧</label><img src="https://maps.google.com/mapfiles/ms/icons/red-dot.png" width="20" height="20" border="0" /><br>
 
-            <label><input type="checkbox" name="scb3" id="cb5" onclick="kiyochika()">小林清親版画</label><img src="https://maps.google.com/mapfiles/ms/icons/blue-dot.png" width="20" height="20" border="0" /><br>                
+            <label><input type="checkbox" name="scb3" id="cb5" onclick="kiyochika()">小林清親版画</label><img src="https://maps.google.com/mapfiles/ms/icons/blue-dot.png" width="20" height="20" border="0" /><br>
+
+          </ons-list-item>
+          <ons-list-item>
+
+            <p>ステータス</p>
+            <div id="cnt_stamp"></div>
 
           </ons-list-item>
         </ons-list>
@@ -126,7 +132,7 @@
 
         <ons-splitter-content id="content" page="home.html"></ons-splitter-content>
       </ons-splitter>
-    
+
       <template id="home.html">
         <ons-page>
           <ons-toolbar>
@@ -138,7 +144,7 @@
 
             <div class="center">
               Main
-            </div>           
+            </div>
           </ons-toolbar>
 
           <!-- <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
@@ -218,8 +224,7 @@
               About
             </div>
           </ons-toolbar>
-          <p>ステータス</p>
-          <div id="cnt_stamp"></div>
+
         </ons-page>
       </template>
 
