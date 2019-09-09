@@ -37,3 +37,7 @@
     height: auto;
     opacity: 1;
 }
+
+ol {
+  list-style-type: none;
+}

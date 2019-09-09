@@ -16,7 +16,7 @@ var stamplng1 = [];
 var maker_is_displayed = 0;
 var cnt1=0;
 var cnt_stamp = 0;
-document.getElementById('cnt_stamp').textContent = cnt_stamp ;
+document.getElementById('cnt_stamp').textContent = cnt_stamp;
 
 kabukiData.order("createData",true)
   .fetchAll()
@@ -125,14 +125,14 @@ function stamp_push1(i){
      //結果
      var now_success = getDistance(now_lat,now_lng,stamp_lat,stamp_lng);
 
-     if(1){
+     if(true){
        //hyouzi.innerHTML('<img src="human_pictures/human_red.png">');
        hyouzi.style.display ="none";
 
        btn_display.insertAdjacentHTML('afterbegin','<img src="human_pictures/human_red.png">');
        cnt_stamp++;
        console.log(cnt_stamp);
-       document.getElementById('cnt_stamp').textContent = cnt_stamp ;
+       document.getElementById('cnt_stamp').textContent = cnt_stamp;
      }else{
        //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
        alert('遠くてスタンプが押せませんでした');
