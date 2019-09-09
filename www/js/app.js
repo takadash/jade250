@@ -90,6 +90,10 @@ function initMap() {
         });
         circle.bindTo("center", marker_g, "position");
 
+        if(output.innerHTML){
+          output.innerHTML = "";
+        }
+
 
       };
       function error() {
