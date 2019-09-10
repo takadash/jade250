@@ -50,7 +50,9 @@ for (var i = 0; i < results.length; i++,cnt++) {
 
     stamplat[i] = lat[i];
     stamplng[i] = lng[i];
-    stampclick4[i] =  '<button onclick="stamp_push4(' + i + ')">スタンプ' + '</button><div id="stamp"></div>'
+    // stampclick4[i] =  '<button onclick="stamp_push4(' + i + ')">スタンプ' + '</button><div id="stamp"></div>'
+    stampclick4[i] =  '<div id="stamp"><ons-button onclick ="stamp_push4(' + i + ')">スタンプ</ons-button></div>' + '<div id="btn">'
+
 
 
 //ピンたて
@@ -138,9 +140,12 @@ function stamp_push4(i){
 
      if(true){
        hyouzi.style.display ="none";
+       console.log("cnt_stamp1");
 
        btn_display.insertAdjacentHTML('afterbegin','<img src="human_pictures/human_red.png">');
        cnt_taihei++;
+       console.log("cnt_stamp2");
+
        document.getElementById('cnt_taihei').textContent = cnt_taihei;
      }else{
        //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
