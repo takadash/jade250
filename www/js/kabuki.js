@@ -150,18 +150,20 @@ function stamp_push1(i){
 // チェックボックスがクリックされると呼び出されるfunction
     function kabuki() {
       // checkboxのElementを取得
-      var cb = document.getElementById("cb1");
+      // var cb = document.getElementById("check-1");
+      var cb = document.form1.check_1.checked;
+      console.log(cb);
 
-      if (cb.checked == true) {
+      if (cb == false) {
         // チェックボックスがチェックされていればマーカ表示
-        //alert('true');
+        alert('true');
         for(var i=0; i<cnt1; i++){
           marker1[i].setVisible(true);
 
         }
       } else {
         // チェックボックスがチェックされていなければ非表示
-        //alert('false');
+        alert('false');
         for(var i=0; i<cnt1; i++){
           marker1[i].setVisible(false);
         }
