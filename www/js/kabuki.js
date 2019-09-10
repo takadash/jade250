@@ -154,7 +154,7 @@ function stamp_push1(i){
       var cb = document.form1.check_1.checked;
       console.log(cb);
 
-      if (cb == false) {
+      if (cb == true) {
         // チェックボックスがチェックされていればマーカ表示
         alert('true');
         for(var i=0; i<cnt1; i++){
