@@ -150,9 +150,10 @@ function markerEvent2(i) {
 // チェックボックスがクリックされると呼び出されるfunction
     function kyoden() {
       // checkboxのElementを取得
-      var cb2 = document.getElementById("cb2");
+      //var cb2 = document.getElementById("cb2");
+      var cb2 = document.form2.check_2.checked;      
 
-      if (cb2.checked == true) {
+      if (cb2 == true) {
         // チェックボックスがチェックされていればマーカ表示
         //alert('true');
         for(var i=0; i<cnt2; i++){

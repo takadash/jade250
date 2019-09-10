@@ -164,9 +164,9 @@ function stamp_push4(i){
 // チェックボックスがクリックされると呼び出されるfunction
     function taihei() {
       // checkboxのElementを取得
-      var cb = document.getElementById("cb4");
-
-      if (cb.checked == true) {
+      //var cb = document.getElementById("cb4");
+      var cb = document.form4.check_4.checked;
+      if (cb == true) {
         // チェックボックスがチェックされていればマーカ表示
         // alert('true');
         for(var i=0; i<cnt; i++){

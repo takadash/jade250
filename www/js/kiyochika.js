@@ -149,9 +149,10 @@ function stamp_push5(i){
 // チェックボックスがクリックされると呼び出されるfunction
     function kiyochika() {
       // checkboxのElementを取得
-      var cb5 = document.getElementById("cb5");
+      //var cb5 = document.getElementById("cb5");
+      var cb5 = document.form5.check_5.checked;
 
-      if (cb5.checked == true) {
+      if (cb5 == true) {
         // チェックボックスがチェックされていればマーカ表示
         //alert('true');
         for(var i=0; i<cnt5; i++){

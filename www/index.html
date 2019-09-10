@@ -118,30 +118,56 @@
           <script src="js/kabuki.js"></script>
           <script src="js/kiyochika.js"></script>
           <script src="js/kyoden.js"></script>
+
           <form name="form1" action="">
-          <ons-list-item>
+          <ons-list-item onclick="kabuki()">
           <label class="left">
-          <ons-checkbox input-id="check_1" onclick="kabuki()"></ons-checkbox>
+          <ons-checkbox input-id="check_1" ></ons-checkbox>
           </label>
             <label for="check_1" class="center" name="scb3" id="cb1">南北歌舞伎<img src="https://maps.google.com/mapfiles/ms/icons/green-dot.png" width="20" height="20" border="0" /></label>
-
           </ons-list-item>
         </form>
-          <ons-list-item tappable>
-          <label class="left">
-          <ons-checkbox input-id="check-2"></ons-checkbox>
-          </label>
-            <label for="check-2" class="center" name="scb3" id="cb2" onclick="kyoden()">京伝黄表紙<img src="https://maps.google.com/mapfiles/ms/icons/yellow-dot.png" width="20" height="20" border="0" /></label>
 
+          <form name="form2" action="">
+          <ons-list-item onclick="kyoden()">
+          <label class="left">
+          <ons-checkbox input-id="check_2" ></ons-checkbox>
+          </label>
+            <label for="check_2" class="center" name="scb3" id="cb2">京伝黄表紙<img src="https://maps.google.com/mapfiles/ms/icons/yellow-dot.png" width="20" height="20" border="0" /></label>
           </ons-list-item>
-          <!-- <label><input type="checkbox" name="scb3" id="cb1" onclick="kabuki()">南北歌舞伎</label><img src="https://maps.google.com/mapfiles/ms/icons/green-dot.png" width="20" height="20" border="0" /><br> -->
+        </form>
+
+          <form name="form4" action="">
+          <ons-list-item onclick="taihei()">
+          <label class="left">
+          <ons-checkbox input-id="check_4" ></ons-checkbox>
+          </label>
+            <label for="check_4" class="center" name="scb3" id="cb4">泰平纏一覧<img src="https://maps.google.com/mapfiles/ms/icons/red-dot.png" width="20" height="20" border="0" /></label>
+          </ons-list-item>
+        </form>
+
+          <form name="form5" action="">
+          <ons-list-item onclick="kiyochika()">
+          <label class="left">
+          <ons-checkbox input-id="check_5" ></ons-checkbox>
+          </label>
+            <label for="check_5" class="center" name="scb3" id="cb5">小林清親版画<img src="https://maps.google.com/mapfiles/ms/icons/blue-dot.png" width="20" height="20" border="0" /></label>
+          </ons-list-item>
+        </form>
+
+          <!-- <label><input type="checkbox" name="scb3" id="cb1" onclick="kabuki()">南北歌舞伎</label><img src="https://maps.google.com/mapfiles/ms/icons/green-dot.png" width="20" height="20" border="0" /><br> 
 
                 <label><input type="checkbox" name="scb3" id="cb2" onclick="kyoden()">京伝黄表紙</label><img src="https://maps.google.com/mapfiles/ms/icons/yellow-dot.png" width="20" height="20" border="0" /><br>
+              -->
+
           <!-- <label><input type="checkbox" name="scb3" id="cb3"
             onclick="edo()">江戸名所図会</label><br> -->
+
+            <!--
             <label><input type="checkbox" name="scb3" id="cb4" onclick="taihei()">泰平纏一覧</label><img src="https://maps.google.com/mapfiles/ms/icons/red-dot.png" width="20" height="20" border="0" /><br>
 
             <label><input type="checkbox" name="scb3" id="cb5" onclick="kiyochika()">小林清親版画</label><img src="https://maps.google.com/mapfiles/ms/icons/blue-dot.png" width="20" height="20" border="0" /><br>
+          -->
 
 
 
