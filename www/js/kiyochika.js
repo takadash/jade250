@@ -15,12 +15,14 @@ var stamplng5 = [];
 //var lng2;
 var maker_is_displayed = 0;
 var cnt5=0;
+var cnt_kiyochika = 0;
+document.getElementById('cnt_kiyochika').textContent = cnt_kiyochika ;
 
 kiyochikaData.order("createData",true)
   .fetchAll()
   .then(function(results){
 //全件検索に成功した場合の処理
-//alert('取得に成功');
+// alert('取得に成功');
 
 var lat5 = [];
 var lng5 = [];
@@ -54,7 +56,7 @@ for (var i = 0; i < results.length; i++,cnt5++) {
 		        url:'https://maps.google.com/mapfiles/ms/icons/blue-dot.png'
           }
         });
-    
+
     infoWindow5[i] = new google.maps.InfoWindow({ // 吹き出しの追加
          content: '<div class="map">' + kiyotitle[i] + '</div>' + '地域　　　　　　' + city[i] + kiyo_area1[i] + ' ' + kiyo_area2[i] +  '<br>景物　　　　　　' + obj[i] + '<br>' + stampclick[i]// 吹き出しに表示する内容
        });
@@ -72,7 +74,7 @@ function markerEvent5(i) {
       currentInfoWindow = infoWindow5[i];
   });
 }
-  
+
 })
 .catch(function(error){
 //全件検索に失敗した場合の処理
@@ -85,8 +87,8 @@ function stamp_push5(i){
   var btn_display = document.getElementById("btn");
    stamp_lat = stamplat5[i];
    stamp_lng = stamplng5[i];
-   
- 
+
+
    // 現在位置プログラム
         if (!navigator.geolocation){//Geolocation apiがサポートされていない場合
           hyouzi.innerHTML = "<p>Geolocationはあなたのブラウザーでサポートされておりません</p>";
@@ -95,25 +97,25 @@ function stamp_push5(i){
         function Success(pos) {
         var now_lat  = pos.coords.latitude;//緯度
         var now_lng = pos.coords.longitude;//経度
-         
+
         // 位置情報
         var latlng1 = new google.maps.LatLng( now_lat , now_lng ) ;
-        
+
         //距離の計算//
      function getDistance(now_lat, now_lng, stamp_lat, stamp_lng) {
- 
+
         function radians(deg){
            return deg * Math.PI / 180;
         }
- 
-        var result = 6378.14 * Math.acos(Math.cos(radians(now_lat))* 
+
+        var result = 6378.14 * Math.acos(Math.cos(radians(now_lat))*
          Math.cos(radians(stamp_lat))*
          Math.cos(radians(stamp_lng)-radians(now_lng))+
          Math.sin(radians(now_lat))*
          Math.sin(radians(stamp_lat)));
- 
+
          result = result / 0.62137;
-         
+
          if(result <= 1.0){
            return true;
          }
@@ -121,13 +123,15 @@ function stamp_push5(i){
      }
      //結果
      var now_success = getDistance(now_lat,now_lng,stamp_lat,stamp_lng);
- 
-     if(now_success == true){
+
+     if(true){
        //hyouzi.innerHTML('<img src="human_pictures/human_red.png">');
        hyouzi.style.display ="none";
 
        btn_display.insertAdjacentHTML('afterbegin','<img src="human_pictures/human_red.png">');
-       
+
+       cnt_kiyochika++;
+       document.getElementById('cnt_kiyochika').textContent = cnt_kiyochika;
      }else{
        //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
        alert('遠くてスタンプが押せませんでした');
@@ -140,19 +144,20 @@ function stamp_push5(i){
       navigator.geolocation.getCurrentPosition(Success, error);//成功と失敗を判断
 
 }
-    
+
 
 // チェックボックスがクリックされると呼び出されるfunction
     function kiyochika() {
       // checkboxのElementを取得
-      var cb5 = document.getElementById("cb5");
+      //var cb5 = document.getElementById("cb5");
+      var cb5 = document.form5.check_5.checked;
 
-      if (cb5.checked == true) {
+      if (cb5 == true) {
         // チェックボックスがチェックされていればマーカ表示
         //alert('true');
         for(var i=0; i<cnt5; i++){
           marker5[i].setVisible(true);
-          
+
         }
       } else {
         // チェックボックスがチェックされていなければ非表示

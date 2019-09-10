@@ -16,6 +16,9 @@ var stamp_lat;
 var stamp_lng;
 var maker_is_displayed = 0;
 var cnt=0;
+var cnt_taihei = 0;
+document.getElementById('cnt_taihei').textContent = cnt_taihei;
+
 
 TestData.order("createData",true)
   .fetchAll()
@@ -47,7 +50,9 @@ for (var i = 0; i < results.length; i++,cnt++) {
 
     stamplat[i] = lat[i];
     stamplng[i] = lng[i];
-    stampclick4[i] =  '<button onclick="stamp_push4(' + i + ')">スタンプ' + '</button><div id="stamp"></div>'
+    // stampclick4[i] =  '<button onclick="stamp_push4(' + i + ')">スタンプ' + '</button><div id="stamp"></div>'
+    stampclick4[i] =  '<div id="stamp"><ons-button onclick ="stamp_push4(' + i + ')">スタンプ</ons-button></div>' + '<div id="btn">'
+
 
 
 //ピンたて
@@ -133,10 +138,15 @@ function stamp_push4(i){
      //結果
      var now_success = getDistance(now_lat,now_lng,stamp_lat,stamp_lng);
 
-     if(now_success == true){
+     if(true){
        hyouzi.style.display ="none";
+       console.log("cnt_stamp1");
 
        btn_display.insertAdjacentHTML('afterbegin','<img src="human_pictures/human_red.png">');
+       cnt_taihei++;
+       console.log("cnt_stamp2");
+
+       document.getElementById('cnt_taihei').textContent = cnt_taihei;
      }else{
        //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
        alert('遠くてスタンプが押せませんでした');
@@ -154,9 +164,9 @@ function stamp_push4(i){
 // チェックボックスがクリックされると呼び出されるfunction
     function taihei() {
       // checkboxのElementを取得
-      var cb = document.getElementById("cb4");
-
-      if (cb.checked == true) {
+      //var cb = document.getElementById("cb4");
+      var cb = document.form4.check_4.checked;
+      if (cb == true) {
         // チェックボックスがチェックされていればマーカ表示
         // alert('true');
         for(var i=0; i<cnt; i++){

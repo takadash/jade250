@@ -11,14 +11,14 @@ var circle;
 
 function onload(){
 	//前回の値を読み込み
-// localStorage.setItem("isOpen", "0");
+localStorage.setItem("isOpen", "0");
 	var isOpen = localStorage.getItem("isOpen");
 	//値が保存されていない、もしくはフラグがオフだった場合
 	if(null == isOpen || 0 == isOpen){
 		//スプラッシュ削除
 		// navigator.splashscreen.hide();
 		//初回起動終了フラグをオンにする。
-    localStorage.setItem("isOpen", "1");
+    localStorage.setItem("isOpen", "0");
     console.log("log1" + "%s", isOpen);
 	}else{
 		//初回ではないのでトップを開く
@@ -89,6 +89,10 @@ function initMap() {
          strokeWeight: 5  // 外周太さ
         });
         circle.bindTo("center", marker_g, "position");
+
+        if(output.innerHTML){
+          output.innerHTML = "";
+        }
 
 
       };
