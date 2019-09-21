@@ -46,7 +46,7 @@ for (var i = 0; i < results.length; i++,cnt5++) {
 
     stamplat5[i] = lat5[i];
     stamplng5[i] = lng5[i];
-    stampclick[i] =  '<div id="stamp"><button onclick="stamp_push5(' + i + ')">スタンプ</button></div>' + '<div id="btn">'
+    stampclick[i] =  '<div id="stamp"><ons-button onclick="stamp_push5(' + i + ')">スタンプ</button></div>' + '<div id="btn">'
 //ピンたて
     markerLatLng = {lat:lat5[i], lng:lng5[i]};
         marker5[i] = new google.maps.Marker({
@@ -130,10 +130,10 @@ function stamp_push5(i){
        hyouzi.style.display ="none";
 
        btn_display.insertAdjacentHTML('afterbegin','<img src="human_pictures/human_red.png">');
-       cnt_kiyochika++;       
+       cnt_kiyochika++;
        document.getElementById('cnt_kiyochika').textContent = cnt_kiyochika;
        document.getElementById('bar5').style.width = cnt_kiyochika + 'px';
-       
+
      }else{
        //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
        alert('遠くてスタンプが押せませんでした');

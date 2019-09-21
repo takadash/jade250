@@ -47,7 +47,7 @@ for (var i = 0; i < results.length; i++,cnt2++) {
 
     stamplat2[i] = lat2[i];
     stamplng2[i] = lng2[i];
-    stampclick2[i] =  '<div id="stamp"><button onclick="stamp_push2(' + i + ')">スタンプ</button></div>' + '<div id="btn">'
+    stampclick2[i] =  '<div id="stamp"><ons-button onclick="stamp_push2(' + i + ')">スタンプ</button></div>' + '<div id="btn">'
 //ピンたて
     markerLatLng = {lat:lat2[i], lng:lng2[i]};
         marker2[i] = new google.maps.Marker({
@@ -135,7 +135,7 @@ function markerEvent2(i) {
        cnt_kyoden++;
        document.getElementById('cnt_kyoden').textContent = cnt_kyoden;
        document.getElementById('bar2').style.width = cnt_kyoden + 'px';
-       
+
      }else{
        alert('遠くてスタンプが押せませんでした');
        //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
@@ -153,7 +153,7 @@ function markerEvent2(i) {
     function kyoden() {
       // checkboxのElementを取得
       //var cb2 = document.getElementById("cb2");
-      var cb2 = document.form2.check_2.checked;      
+      var cb2 = document.form2.check_2.checked;
 
       if (cb2 == true) {
         // チェックボックスがチェックされていればマーカ表示
