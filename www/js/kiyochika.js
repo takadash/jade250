@@ -17,6 +17,7 @@ var maker_is_displayed = 0;
 var cnt5=0;
 var cnt_kiyochika = 0;
 document.getElementById('cnt_kiyochika').textContent = cnt_kiyochika ;
+document.getElementById('bar5').style.width = "0px";
 
 kiyochikaData.order("createData",true)
   .fetchAll()
@@ -129,9 +130,10 @@ function stamp_push5(i){
        hyouzi.style.display ="none";
 
        btn_display.insertAdjacentHTML('afterbegin','<img src="human_pictures/human_red.png">');
-
-       cnt_kiyochika++;
+       cnt_kiyochika++;       
        document.getElementById('cnt_kiyochika').textContent = cnt_kiyochika;
+       document.getElementById('bar5').style.width = cnt_kiyochika + 'px';
+       
      }else{
        //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
        alert('遠くてスタンプが押せませんでした');

@@ -17,6 +17,7 @@ var maker_is_displayed = 0;
 var cnt2=0;
 var cnt_kyoden = 0;
 document.getElementById('cnt_kyoden').textContent = cnt_kyoden;
+document.getElementById('bar2').style.width = "0px";
 
 kyodenData.order("createData",true)
   .fetchAll()
@@ -131,9 +132,10 @@ function markerEvent2(i) {
        hyouzi.style.display ="none";
 
        btn_display.insertAdjacentHTML('afterbegin','<img src="human_pictures/human_red.png">');
-
        cnt_kyoden++;
        document.getElementById('cnt_kyoden').textContent = cnt_kyoden;
+       document.getElementById('bar2').style.width = cnt_kyoden + 'px';
+       
      }else{
        alert('遠くてスタンプが押せませんでした');
        //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');

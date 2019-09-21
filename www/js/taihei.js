@@ -18,6 +18,7 @@ var maker_is_displayed = 0;
 var cnt=0;
 var cnt_taihei = 0;
 document.getElementById('cnt_taihei').textContent = cnt_taihei;
+document.getElementById('bar4').style.width = "0px";
 
 
 TestData.order("createData",true)
@@ -140,13 +141,14 @@ function stamp_push4(i){
 
      if(true){
        hyouzi.style.display ="none";
-       console.log("cnt_stamp1");
+       //console.log("cnt_stamp1");
 
        btn_display.insertAdjacentHTML('afterbegin','<img src="human_pictures/human_red.png">');
        cnt_taihei++;
-       console.log("cnt_stamp2");
-
+       //console.log("cnt_stamp2");
        document.getElementById('cnt_taihei').textContent = cnt_taihei;
+       document.getElementById('bar4').style.width = cnt_taihei + 'px';
+       
      }else{
        //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
        alert('遠くてスタンプが押せませんでした');
