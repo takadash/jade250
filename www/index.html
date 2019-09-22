@@ -16,13 +16,18 @@
     document.addEventListener('init', function(event) {
       var page = event.target;
 
-      if (page.matches('#first-page')) {
+      if (page.matches('#zero-page')) {
+
+        page.querySelector('#push-button0').onclick = function() {
+          document.querySelector('#navigator').pushPage('page1.html');
+        };
+
+      } else if (page.matches('#first-page')) {
 
         page.querySelector('#push-button').onclick = function() {
           document.querySelector('#navigator').pushPage('page2.html');
-        };
-
-      } else if (page.matches('#second-page')) {}
+        };        
+      }
     });
 
     if (ons.platform.isIPhoneX()) {
@@ -37,14 +42,23 @@
 
 <body onload="onload()" ng-controller="initController" ng-init="init()">
 
-  <ons-navigator var="MyNavi" id="navigator" page="page1.html"></ons-navigator>
+  <ons-navigator var="MyNavi" id="navigator" page="page0.html"></ons-navigator>
 
   <ons-modal var="modal" class="modal type3" id="modal">
     <ons-icon icon="ion-load-d" spin="true" style="font-size:32px;"></ons-icon>
     <div class="txt">読み込み中</div>
   </ons-modal>
 
-  <ons-template id="page1.html">
+  <ons-template id="page0.html">
+    <ons-page id="zero-page">
+      <ons-toolbar>
+        <div class="center">テスト画面</div>
+      </ons-toolbar>
+      <ons-button id="push-button0">テスト</ons-button>
+    </ons-page>
+  </ons-template>
+
+  <template id="page1.html">
     <ons-page id="first-page">
       <ons-toolbar>
         <div class="center">利用規約</div>
@@ -69,7 +83,7 @@
         </div>
       </div>
     </ons-page>
-  </ons-template>
+  </template>
 
   <template id="page2.html">
     <ons-page id="second-page">
