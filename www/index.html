@@ -17,17 +17,17 @@
     document.addEventListener('init', function(event) {
       var page = event.target;
 
-      if (page.matches('#zero-page')) {
+      if (page.matches('#start-page')) {
 
-        page.querySelector('#push-button0').onclick = function() {
-          document.querySelector('#navigator').pushPage('page1.html');
+        page.querySelector('#push-start').onclick = function() {
+          document.querySelector('#navigator').pushPage('agree.html');
         };
 
-      } else if (page.matches('#first-page')) {
+      } else if (page.matches('#agree-page')) {
 
-        page.querySelector('#push-button').onclick = function() {
-          document.querySelector('#navigator').pushPage('page2.html');
-        };        
+        page.querySelector('#push-agree').onclick = function() {
+          document.querySelector('#navigator').pushPage('tiyo.html');
+        };
       }
     });
 
@@ -44,24 +44,24 @@
 
 <body onload="onload()" ng-controller="initController" ng-init="init()">
 
-  <ons-navigator var="MyNavi" id="navigator" page="page0.html"></ons-navigator>
+  <ons-navigator var="MyNavi" id="navigator" page="start.html"></ons-navigator>
 
   <ons-modal var="modal" class="modal type3" id="modal">
     <ons-icon icon="ion-load-d" spin="true" style="font-size:32px;"></ons-icon>
     <div class="txt">読み込み中</div>
   </ons-modal>
 
-  <ons-template id="page0.html">
-    <ons-page id="zero-page">
+  <ons-template id="start.html">
+    <ons-page id="start-page">
       <ons-toolbar>
         <div class="center">テスト画面</div>
       </ons-toolbar>
-      <ons-button id="push-button0">テスト</ons-button>
+      <ons-button id="push-start">テスト</ons-button>
     </ons-page>
   </ons-template>
 
-  <template id="page1.html">
-    <ons-page id="first-page">
+  <template id="agree.html">
+    <ons-page id="agree-page">
       <ons-toolbar>
         <div class="center">利用規約</div>
       </ons-toolbar>
@@ -80,14 +80,14 @@
           <label for="label1">同意する</label>
           <input type="checkbox" id="label1" />
           <div class="hidden_show">
-            <ons-button id="push-button">START</ons-button>
+            <ons-button id="push-agree">START</ons-button>
           </div>
         </div>
       </div>
     </ons-page>
   </template>
 
-  <template id="page2.html">
+  <template id="tiyo.html">
     <ons-page id="second-page">
       <ons-splitter>
         <ons-splitter-side id="menu" side="left" width="220px" collapse>
