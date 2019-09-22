@@ -27,7 +27,7 @@
 
         page.querySelector('#push-button').onclick = function() {
           document.querySelector('#navigator').pushPage('page2.html');
-        };        
+        };
       }
     });
 
@@ -147,10 +147,18 @@
               </ons-list-item>
 
               <ons-list-item modifier="nodivider">
-                <div id="cnt_kyoden"></div>/64<span class="item_label">京伝黄表紙</span>
+                <!-- <div id="cnt_kyoden"></div>/64<span class="item_label">京伝黄表紙</span> -->
+                <span class="item_label">京伝黄表紙</span><img src="https://maps.google.com/mapfiles/ms/icons/yellow-dot.png" width="20" height="20" border="0" />（<div id="cnt_kyoden"></div>/64）
               </ons-list-item>
               <ons-list-item>
-                <div id="bar2" style="background-color: yellow; font-size: 10px;">&nbsp;</div>
+                <!-- <div id="bar2" style="background-color: yellow; font-size: 10px;">&nbsp;</div> -->
+                <table style="width: 100%; height: 10px; border:1px solid #4f4f48;">
+                  <tr>
+                    <td align="left">
+                      <div id="bar2" style="background-color: yellow; font-size: 11px;">&nbsp;</div>
+                    </td>
+                  </tr>
+                </table>
               </ons-list-item>
 
               <ons-list-item modifier="nodivider">
@@ -159,7 +167,8 @@
                 <span class="item_label">泰平纏一覧</span>
               </ons-list-item>
               <ons-list-item>
-                <div id="bar4" style="background-color: red; font-size: 10px;">&nbsp;</div>
+                <!-- <div id="bar4" style="background-color: red; font-size: 10px;">&nbsp;</div> -->
+                <meter min="200" max="500" value="350" style="width: 100%; height: 30px;"></meter>
               </ons-list-item>
 
               <ons-list-item modifier="nodivider">
