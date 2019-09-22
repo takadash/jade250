@@ -151,7 +151,7 @@ function stamp_push4(i) {
       cnt_taihei++;
       //console.log("cnt_stamp2");
       document.getElementById('cnt_taihei').textContent = cnt_taihei;
-      document.getElementById('bar4').style.width = cnt_taihei + 'px';
+      document.getElementById('bar4').style.width = (cnt_taihei/64.0*100) + '%';
 
     } else {
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');

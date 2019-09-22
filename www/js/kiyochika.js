@@ -136,6 +136,7 @@ function stamp_push5(i) {
       btn_display.insertAdjacentHTML('afterbegin', '<img src="human_pictures/human_red.png">');
       cnt_kiyochika++;
       document.getElementById('cnt_kiyochika').textContent = cnt_kiyochika;
+      document.getElementById('bar5').style.width = (cnt_kiyochika/64.0*100) + '%';
 
     } else {
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');

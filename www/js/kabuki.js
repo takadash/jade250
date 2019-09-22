@@ -137,7 +137,7 @@ function stamp_push1(i) {
       btn_display.insertAdjacentHTML('afterbegin', '<img src="human_pictures/human_red.png">');
       cnt_stamp++;
       document.getElementById('cnt_stamp').textContent = cnt_stamp;
-      document.getElementById('bar').style.width = cnt_stamp + 'px';
+      document.getElementById('bar').style.width = (cnt_stamp/64.0*100) + '%';
 
     } else {
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
