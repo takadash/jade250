@@ -1,25 +1,14 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
   <meta charset="utf-8">
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-        <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'"> -->
-
-  <!--<meta name="viewport" content="width=device-width, user-scalable=no">-->
-  <!--<meta http-equiv="Content-Security-Policy" content="default-src * data:; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">-->
   <script src="components/loader.js"></script>
   <link rel="stylesheet" href="components/loader.css">
   <link rel="stylesheet" href="css/style.css">
-  <!-- <script src="js/cssua.min.js"></script> -->
-
+  <link rel="stylesheet" href="css/gurahu.css">
   <script src="js/app.js"></script>
   <script src="js/splitter.js"></script>
-
-
-  <!-- <script src="lib/onsenui/js/onsenui.min.js"></script>
-    <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
-    <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css"> -->
-
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
   <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
@@ -28,18 +17,17 @@
     document.addEventListener('init', function(event) {
       var page = event.target;
 
-      if (page.matches('#first-page')) {
+      if (page.matches('#zero-page')) {
+
+        page.querySelector('#push-button0').onclick = function() {
+          document.querySelector('#navigator').pushPage('page1.html');
+        };
+
+      } else if (page.matches('#first-page')) {
 
         page.querySelector('#push-button').onclick = function() {
           document.querySelector('#navigator').pushPage('page2.html');
-        };
-
-      } else if (page.matches('#second-page')) {
-
-        // page.querySelector('#pop-button').onclick = function() {
-        //   document.querySelector('#navigator').popPage();
-        // };
-
+        };        
       }
     });
 
@@ -51,23 +39,35 @@
 
   <title>ちよダッシュ</title>
 </head>
+
 
+
 <body onload="onload()" ng-controller="initController" ng-init="init()">
 
-  <ons-navigator var="MyNavi" id="navigator" page="page1.html"></ons-navigator>
+  <ons-navigator var="MyNavi" id="navigator" page="page0.html"></ons-navigator>
 
   <ons-modal var="modal" class="modal type3" id="modal">
-  	    <ons-icon icon="ion-load-d" spin="true" style="font-size:32px;"></ons-icon>
-  	    <div class="txt">読み込み中</div>
-  	</ons-modal>
+    <ons-icon icon="ion-load-d" spin="true" style="font-size:32px;"></ons-icon>
+    <div class="txt">読み込み中</div>
+  </ons-modal>
 
-  <ons-template id="page1.html">
+  <ons-template id="page0.html">
+    <ons-page id="zero-page">
+      <ons-toolbar>
+        <div class="center">テスト画面</div>
+      </ons-toolbar>
+      <ons-button id="push-button0">テスト</ons-button>
+    </ons-page>
+  </ons-template>
+
+  <template id="page1.html">
     <ons-page id="first-page">
       <ons-toolbar>
         <div class="center">利用規約</div>
       </ons-toolbar>
 
       <div class="content" style="text-align: center">
+
         <p>この利用規約（以下，「本規約」といいます。）は，日本大学文理学部（以下，「当大
           学」といいます。）が提供する江戸・東京ものがたり（以下，「本アプリ」といいます
           。）の利用条件を定めるものです。どなたでも本アプリの利用は可能ですが、利用者（以
@@ -75,123 +75,111 @@
           第1条（適用）
           本規約は，ユーザーと当大学との間の本アプリの利用に関わる一切の関係に適用される</p>
         <p>〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜</p>
+
         <div class="hidden_box">
-    <label for="label1">同意する</label>
-    <input type="checkbox" id="label1"/>
-    <div class="hidden_show">
-      <!--非表示ここから-->
-        <ons-button id="push-button">START</ons-button>
-      <!--ここまで-->
-    </div>
-</div>
+          <label for="label1">同意する</label>
+          <input type="checkbox" id="label1" />
+          <div class="hidden_show">
+            <ons-button id="push-button">START</ons-button>
+          </div>
+        </div>
       </div>
     </ons-page>
-  </ons-template>
+  </template>
 
   <template id="page2.html">
     <ons-page id="second-page">
-
-      <!-- <ons-toolbar>
-        <div class="center">アプリ画面</div>
-      </ons-toolbar> -->
-
       <ons-splitter>
-        <ons-splitter-side id="menu" side="left" width="220px" collapse >
+        <ons-splitter-side id="menu" side="left" width="220px" collapse>
           <ons-page>
             <ons-toolbar>
               <div class="center">ちよダッシュ！</div>
             </ons-toolbar>
             <ons-list>
-              <!--
-              <ons-list-item onclick="fn.load('home.html')" tappable>
-                Home
+              <script src="js/taihei.js"></script>
+              <script src="js/kabuki.js"></script>
+              <script src="js/kiyochika.js"></script>
+              <script src="js/kyoden.js"></script>
+
+              <ons-list-header>ピン選択</ons-list-header>
+              <form name="form1" action="">
+                <ons-list-item onclick="kabuki()">
+                  <label class="left">
+                    <ons-checkbox input-id="check_1"></ons-checkbox>
+                  </label>
+                  <label for="check_1" class="center" name="scb3" id="cb1">南北歌舞伎<img src="https://maps.google.com/mapfiles/ms/icons/green-dot.png" width="20" height="20" border="0" /></label>
+                </ons-list-item>
+              </form>
+
+              <form name="form2" action="">
+                <ons-list-item onclick="kyoden()">
+                  <label class="left">
+                    <ons-checkbox input-id="check_2"></ons-checkbox>
+                  </label>
+                  <label for="check_2" class="center" name="scb3" id="cb2">京伝黄表紙<img src="https://maps.google.com/mapfiles/ms/icons/yellow-dot.png" width="20" height="20" border="0" /></label>
+                </ons-list-item>
+              </form>
+
+              <form name="form4" action="">
+                <ons-list-item onclick="taihei()">
+                  <label class="left">
+                    <ons-checkbox input-id="check_4"></ons-checkbox>
+                  </label>
+                  <label for="check_4" class="center" name="scb3" id="cb4">泰平纏一覧<img src="https://maps.google.com/mapfiles/ms/icons/red-dot.png" width="20" height="20" border="0" /></label>
+                </ons-list-item>
+              </form>
+
+              <form name="form5" action="">
+                <ons-list-item onclick="kiyochika()">
+                  <label class="left">
+                    <ons-checkbox input-id="check_5"></ons-checkbox>
+                  </label>
+                  <label for="check_5" class="center" name="scb3" id="cb5">小林清親版画<img src="https://maps.google.com/mapfiles/ms/icons/blue-dot.png" width="20" height="20" border="0" /></label>
+                </ons-list-item>
+              </form>
+
+              <ons-list-header>ステータス</ons-list-header>
+              <ons-list-item modifier="nodivider">
+                <div id="cnt_stamp"></div>/23南北歌舞伎
               </ons-list-item>
-              <ons-list-item onclick="fn.load('settings.html')" tappable>
-                Settings
+              <ons-list-item>
+                <div id="bar" style="background-color: green; font-size: 10px;">&nbsp;</div>
               </ons-list-item>
-              <ons-list-item onclick="fn.load('about.html')" tappable>
-                About
+
+              <ons-list-item modifier="nodivider">
+                <div id="cnt_kyoden"></div>/64<span class="item_label">京伝黄表紙</span>
               </ons-list-item>
-            -->
+              <ons-list-item>
+                <div id="bar2" style="background-color: yellow; font-size: 10px;">&nbsp;</div>
+              </ons-list-item>
 
-          <script src="js/taihei.js"></script>
-          <script src="js/kabuki.js"></script>
-          <script src="js/kiyochika.js"></script>
-          <script src="js/kyoden.js"></script>
+              <ons-list-item modifier="nodivider">
+                <div id="cnt_taihei"></div>
+                /64
+                <span class="item_label">泰平纏一覧</span>
+              </ons-list-item>
+              <ons-list-item>
+                <div id="bar4" style="background-color: red; font-size: 10px;">&nbsp;</div>
+              </ons-list-item>
 
-          <form name="form1" action="">
-          <ons-list-item onclick="kabuki()">
-          <label class="left">
-          <ons-checkbox input-id="check_1" ></ons-checkbox>
-          </label>
-            <label for="check_1" class="center" name="scb3" id="cb1">南北歌舞伎<img src="https://maps.google.com/mapfiles/ms/icons/green-dot.png" width="20" height="20" border="0" /></label>
-          </ons-list-item>
-        </form>
+              <ons-list-item modifier="nodivider">
+                <div id="cnt_kiyochika"></div>
+                /56
+                <span class="item_label">小林清親版画</span>
+              </ons-list-item>
+              <ons-list-item>
+                <div id="bar5" style="background-color: blue; font-size: 10px;">&nbsp;</div>
+              </ons-list-item>
 
-          <form name="form2" action="">
-          <ons-list-item onclick="kyoden()">
-          <label class="left">
-          <ons-checkbox input-id="check_2" ></ons-checkbox>
-          </label>
-            <label for="check_2" class="center" name="scb3" id="cb2">京伝黄表紙<img src="https://maps.google.com/mapfiles/ms/icons/yellow-dot.png" width="20" height="20" border="0" /></label>
-          </ons-list-item>
-        </form>
+              <ons-list-header>現在地の更新</ons-list-header>
+              <ons-list-item onclick="getMyPlace()" tappeble>
+                <ons-button>更新</ons-button>
+                <div id="result"></div>
+              </ons-list-item>
 
-          <form name="form4" action="">
-          <ons-list-item onclick="taihei()">
-          <label class="left">
-          <ons-checkbox input-id="check_4" ></ons-checkbox>
-          </label>
-            <label for="check_4" class="center" name="scb3" id="cb4">泰平纏一覧<img src="https://maps.google.com/mapfiles/ms/icons/red-dot.png" width="20" height="20" border="0" /></label>
-          </ons-list-item>
-        </form>
-
-          <form name="form5" action="">
-          <ons-list-item onclick="kiyochika()">
-          <label class="left">
-          <ons-checkbox input-id="check_5" ></ons-checkbox>
-          </label>
-            <label for="check_5" class="center" name="scb3" id="cb5">小林清親版画<img src="https://maps.google.com/mapfiles/ms/icons/blue-dot.png" width="20" height="20" border="0" /></label>
-          </ons-list-item>
-        </form>
-
-          <!-- <label><input type="checkbox" name="scb3" id="cb1" onclick="kabuki()">南北歌舞伎</label><img src="https://maps.google.com/mapfiles/ms/icons/green-dot.png" width="20" height="20" border="0" /><br> 
-
-                <label><input type="checkbox" name="scb3" id="cb2" onclick="kyoden()">京伝黄表紙</label><img src="https://maps.google.com/mapfiles/ms/icons/yellow-dot.png" width="20" height="20" border="0" /><br>
-              -->
-
-          <!-- <label><input type="checkbox" name="scb3" id="cb3"
-            onclick="edo()">江戸名所図会</label><br> -->
-
-            <!--
-            <label><input type="checkbox" name="scb3" id="cb4" onclick="taihei()">泰平纏一覧</label><img src="https://maps.google.com/mapfiles/ms/icons/red-dot.png" width="20" height="20" border="0" /><br>
-
-            <label><input type="checkbox" name="scb3" id="cb5" onclick="kiyochika()">小林清親版画</label><img src="https://maps.google.com/mapfiles/ms/icons/blue-dot.png" width="20" height="20" border="0" /><br>
-          -->
-
-
-
-
-            <ons-list-header>ステータス</ons-list-header>
-            <ons-list-item><div id="cnt_stamp"></div></ons-list-item>
-            <ons-list-item><div id="cnt_kyoden"></div></ons-list-item>
-            <ons-list-item><div id="cnt_taihei"></div></ons-list-item>
-            <ons-list-item><div id="cnt_kiyochika"></div></ons-list-item>
-          <!-- <ol>
-            <li><div id="cnt_stamp"></div></li>
-            <li><div id="cnt_kyoden"></div></li>
-            <li><div id="cnt_taihei"></div></li>
-            <li><div id="cnt_kiyochika"></div></li>
-          </ol> -->
-
-          <ons-list-header>現在地の更新</ons-list-header>
-          <ons-list-item onclick="getMyPlace()" tappeble>
-            <ons-button>位置情報の取得</ons-button>
-          <div id="result"></div>
-          </ons-list-item>
-        </ons-list>
-      </ons-page>
-    </ons-splitter-side>
+            </ons-list>
+          </ons-page>
+        </ons-splitter-side>
 
         <ons-splitter-content id="content" page="home.html"></ons-splitter-content>
       </ons-splitter>
@@ -205,14 +193,8 @@
               </ons-toolbar-button>
             </div>
 
-            <div class="center">
-              Main
-            </div>
+            <div class="center">Main</div>
           </ons-toolbar>
-
-          <!-- <p style="text-align: center; opacity: 0.6; padding-top: 20px;">
-            Swipe right to open the menu!
-          </p> -->
           <style>
             /* Set the size of the div element that contains the map */
             #map {
@@ -224,51 +206,13 @@
           </style>
           <div id="map"></div>
 
-          <!--
-          <button onclick="getMyPlace()">現在位置を取得</button>
-          <div id="result"></div>
-          -->
-
-
           <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXueT8O-UOJmfh2M-1Xh1IbfKWNXv-coU&callback=initMap">
           </script>
         </ons-page>
       </template>
 
-      <template id="settings.html">
-        <ons-page>
-          <ons-toolbar>
-            <div class="left">
-              <ons-toolbar-button onclick="fn.open()">
-                <ons-icon icon="md-menu"></ons-icon>
-              </ons-toolbar-button>
-            </div>
-            <div class="center">
-              Settings
-            </div>
-          </ons-toolbar>
-        </ons-page>
-      </template>
-
-      <template id="about.html">
-        <ons-page>
-          <ons-toolbar>
-            <div class="left">
-              <ons-toolbar-button onclick="fn.open()">
-                <ons-icon icon="md-menu"></ons-icon>
-              </ons-toolbar-button>
-            </div>
-            <div class="center">
-              About
-            </div>
-          </ons-toolbar>
-
-        </ons-page>
-      </template>
-
-
     </ons-page>
   </template>
-
 </body>
+
 </html>

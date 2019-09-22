@@ -9,96 +9,100 @@ var stampclick = [];
 var marker_g;
 var circle;
 
-function onload(){
-	//前回の値を読み込み
-localStorage.setItem("isOpen", "0");
-	var isOpen = localStorage.getItem("isOpen");
-	//値が保存されていない、もしくはフラグがオフだった場合
-	if(null == isOpen || 0 == isOpen){
-		//スプラッシュ削除
-		// navigator.splashscreen.hide();
-		//初回起動終了フラグをオンにする。
+function onload() {
+  //前回の値を読み込み
+  localStorage.setItem("isOpen", "0");
+  var isOpen = localStorage.getItem("isOpen");
+  //値が保存されていない、もしくはフラグがオフだった場合
+  if (null == isOpen || 0 == isOpen) {
+    //スプラッシュ削除
+    // navigator.splashscreen.hide();
+    //初回起動終了フラグをオンにする。
     localStorage.setItem("isOpen", "0");
     console.log("log1" + "%s", isOpen);
-	}else{
-		//初回ではないのでトップを開く
-		//トップのスコープからオンロード取得時にスプラッシュ削除
-    console.log("log2" +  "%s", isOpen);
-		document.querySelector('#navigator').pushPage("page2.html",{ animation: "none" });
-	}
+  } else {
+    //初回ではないのでトップを開く
+    //トップのスコープからオンロード取得時にスプラッシュ削除
+    console.log("log2" + "%s", isOpen);
+    document.querySelector('#navigator').pushPage("page2.html", {
+      animation: "none"
+    });
+  }
 }
 
 //GoogleMapの表示
 function initMap() {
   // #mapに地図を埋め込む
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: { // 地図の中心を指定 (初期:千代田区)
-            lat: 35.693944, // 緯度
-            lng: 139.753611 // 経度
-          },
-          zoom: 15 // 地図のズームを指定
-        });
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: { // 地図の中心を指定 (初期:千代田区)
+      lat: 35.693944, // 緯度
+      lng: 139.753611 // 経度
+    },
+    zoom: 15 // 地図のズームを指定
+  });
 };
 
 
 // 現在位置プログラム
-        function getMyPlace() {
-        var output = document.getElementById("result");
-        if (!navigator.geolocation){//Geolocation apiがサポートされていない場合
-          output.innerHTML = "<p>Geolocationはあなたのブラウザーでサポートされておりません</p>";
-        return;
+function getMyPlace() {
+  var output = document.getElementById("result");
+  if (!navigator.geolocation) { //Geolocation apiがサポートされていない場合
+    output.innerHTML = "<p>Geolocationはあなたのブラウザーでサポートされておりません</p>";
+    return;
+  }
+
+  function success(position) {
+    // var latitude  = position.coords.latitude;//緯度
+    // var longitude = position.coords.longitude;//経度
+    var latitude = 35.693944
+    var longitude = 139.753611
+    //output.innerHTML = '<p>緯度 ' + latitude + '° <br>経度 ' + longitude + '°</p>';
+
+    // 位置情報
+    var latlng = new google.maps.LatLng(latitude, longitude);
+    // マーカーの新規出力
+
+    if (marker_g) {
+      marker_g.setMap(null);
+    }
+    marker_g = new google.maps.Marker({
+      map: map,
+      position: latlng,
+      icon: {
+        url: 'human_pictures/human_black.png', //アイコンのURL
+        anchor: new google.maps.Point(25, 25),
+        scaledSize: new google.maps.Size(50, 50) //サイズ
       }
-        function success(position) {
-        // var latitude  = position.coords.latitude;//緯度
-        // var longitude = position.coords.longitude;//経度
-        var latitude  = 35.693944
-        var longitude = 139.753611
-        //output.innerHTML = '<p>緯度 ' + latitude + '° <br>経度 ' + longitude + '°</p>';
-
-        // 位置情報
-        var latlng = new google.maps.LatLng( latitude , longitude ) ;
-        // マーカーの新規出力
-
-        if(marker_g){
-          marker_g.setMap(null);
-        }
-         marker_g = new google.maps.Marker( {
-          map: map ,
-          position: latlng ,
-          icon: {
-            url: 'human_pictures/human_black.png',//アイコンのURL
-              anchor: new google.maps.Point(25,25),
-              scaledSize: new google.maps.Size(50, 50) //サイズ
-          }
 
 
 
-        });
+    });
 
-        if(circle){
-          circle.setMap(null);
-        }
-         circle = new google.maps.Circle({
-         center: latlng,
-         map: map ,
-         radius: 100 , // 半径（m）
-         fillColor: '#AFDFE7',   // 塗りつぶし色
-         fillOpacity: 0.2,  // 塗りつぶし透過度（0: 透明 ⇔ 1:不透明）
-         strokeColor: '#3333FF',  // 外周色
-         strokeOpacity: 1, // 外周透過度（0: 透明 ⇔ 1:不透明）
-         strokeWeight: 5  // 外周太さ
-        });
-        circle.bindTo("center", marker_g, "position");
+    if (circle) {
+      circle.setMap(null);
+    }
+    circle = new google.maps.Circle({
+      center: latlng,
+      map: map,
+      radius: 100, // 半径（m）
+      fillColor: '#AFDFE7', // 塗りつぶし色
+      fillOpacity: 0.2, // 塗りつぶし透過度（0: 透明 ⇔ 1:不透明）
+      strokeColor: '#3333FF', // 外周色
+      strokeOpacity: 1, // 外周透過度（0: 透明 ⇔ 1:不透明）
+      strokeWeight: 5 // 外周太さ
+    });
+    circle.bindTo("center", marker_g, "position");
 
-        if(output.innerHTML){
-          output.innerHTML = "";
-        }
+    if (output.innerHTML) {
+      output.innerHTML = "";
+    }
 
 
-      };
-      function error() {
-       //エラーの場合
-        output.innerHTML = "座標位置を取得できません";
-      };
-      navigator.geolocation.getCurrentPosition(success, error);//成功と失敗を判断
-      }
+  };
+
+  function error() {
+    //エラーの場合
+    output.innerHTML = "座標位置を取得できません";
+  };
+  navigator.geolocation.getCurrentPosition(success, error); //成功と失敗を判断
+}
