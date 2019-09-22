@@ -140,7 +140,7 @@ function stamp_push2(i) {
       document.getElementById('cnt_kyoden').textContent = cnt_kyoden;
       document.getElementById('bar2').style.width = (cnt_kyoden/64.0*100) + '%';
 
-      if(cnt_kyoden == 64) {
+      if(true) {
         var comp = document.getElementById("comp");
         comp.innerHTML = "C O M P L E T E ！";
       }
