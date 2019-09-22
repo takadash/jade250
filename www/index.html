@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
   <meta charset="utf-8">
   <script src="components/loader.js"></script>
@@ -40,6 +41,7 @@
 </head>
 
 
+
 <body onload="onload()" ng-controller="initController" ng-init="init()">
 
   <ons-navigator var="MyNavi" id="navigator" page="page0.html"></ons-navigator>
@@ -71,12 +73,12 @@
           。）の利用条件を定めるものです。どなたでも本アプリの利用は可能ですが、利用者（以
           下，「ユーザー」といいます。）は、本規約に定める事項を承諾の上ご利用ください。
           第1条（適用）
-        本規約は，ユーザーと当大学との間の本アプリの利用に関わる一切の関係に適用される</p>
+          本規約は，ユーザーと当大学との間の本アプリの利用に関わる一切の関係に適用される</p>
         <p>〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜</p>
 
         <div class="hidden_box">
           <label for="label1">同意する</label>
-          <input type="checkbox" id="label1"/>
+          <input type="checkbox" id="label1" />
           <div class="hidden_show">
             <ons-button id="push-button">START</ons-button>
           </div>
@@ -88,7 +90,7 @@
   <template id="page2.html">
     <ons-page id="second-page">
       <ons-splitter>
-        <ons-splitter-side id="menu" side="left" width="220px" collapse >
+        <ons-splitter-side id="menu" side="left" width="220px" collapse>
           <ons-page>
             <ons-toolbar>
               <div class="center">ちよダッシュ！</div>
@@ -103,7 +105,7 @@
               <form name="form1" action="">
                 <ons-list-item onclick="kabuki()">
                   <label class="left">
-                    <ons-checkbox input-id="check_1" ></ons-checkbox>
+                    <ons-checkbox input-id="check_1"></ons-checkbox>
                   </label>
                   <label for="check_1" class="center" name="scb3" id="cb1">南北歌舞伎<img src="https://maps.google.com/mapfiles/ms/icons/green-dot.png" width="20" height="20" border="0" /></label>
                 </ons-list-item>
@@ -112,7 +114,7 @@
               <form name="form2" action="">
                 <ons-list-item onclick="kyoden()">
                   <label class="left">
-                    <ons-checkbox input-id="check_2" ></ons-checkbox>
+                    <ons-checkbox input-id="check_2"></ons-checkbox>
                   </label>
                   <label for="check_2" class="center" name="scb3" id="cb2">京伝黄表紙<img src="https://maps.google.com/mapfiles/ms/icons/yellow-dot.png" width="20" height="20" border="0" /></label>
                 </ons-list-item>
@@ -121,7 +123,7 @@
               <form name="form4" action="">
                 <ons-list-item onclick="taihei()">
                   <label class="left">
-                    <ons-checkbox input-id="check_4" ></ons-checkbox>
+                    <ons-checkbox input-id="check_4"></ons-checkbox>
                   </label>
                   <label for="check_4" class="center" name="scb3" id="cb4">泰平纏一覧<img src="https://maps.google.com/mapfiles/ms/icons/red-dot.png" width="20" height="20" border="0" /></label>
                 </ons-list-item>
@@ -130,38 +132,42 @@
               <form name="form5" action="">
                 <ons-list-item onclick="kiyochika()">
                   <label class="left">
-                    <ons-checkbox input-id="check_5" ></ons-checkbox>
+                    <ons-checkbox input-id="check_5"></ons-checkbox>
                   </label>
                   <label for="check_5" class="center" name="scb3" id="cb5">小林清親版画<img src="https://maps.google.com/mapfiles/ms/icons/blue-dot.png" width="20" height="20" border="0" /></label>
                 </ons-list-item>
               </form>
 
               <ons-list-header>ステータス</ons-list-header>
+              <ons-list-item modifier="nodivider">
+                <div id="cnt_stamp"></div>/23南北歌舞伎
+              </ons-list-item>
               <ons-list-item>
-                <div id="cnt_stamp"></div>
-                /23
-                <span class="item_label">南北歌舞伎</span>
                 <div id="bar" style="background-color: green; font-size: 10px;">&nbsp;</div>
               </ons-list-item>
 
+              <ons-list-item modifier="nodivider">
+                <div id="cnt_kyoden"></div>/64<span class="item_label">京伝黄表紙</span>
+              </ons-list-item>
               <ons-list-item>
-                <div id="cnt_kyoden"></div>
-                /64
-                <span class="item_label">京伝黄表紙</span>
                 <div id="bar2" style="background-color: yellow; font-size: 10px;">&nbsp;</div>
               </ons-list-item>
 
-              <ons-list-item>
+              <ons-list-item modifier="nodivider">
                 <div id="cnt_taihei"></div>
                 /64
                 <span class="item_label">泰平纏一覧</span>
+              </ons-list-item>
+              <ons-list-item>
                 <div id="bar4" style="background-color: red; font-size: 10px;">&nbsp;</div>
               </ons-list-item>
 
-              <ons-list-item>
+              <ons-list-item modifier="nodivider">
                 <div id="cnt_kiyochika"></div>
                 /56
                 <span class="item_label">小林清親版画</span>
+              </ons-list-item>
+              <ons-list-item>
                 <div id="bar5" style="background-color: blue; font-size: 10px;">&nbsp;</div>
               </ons-list-item>
 
@@ -187,18 +193,16 @@
               </ons-toolbar-button>
             </div>
 
-            <div class="center">
-              Main
-            </div>
+            <div class="center">Main</div>
           </ons-toolbar>
           <style>
-          /* Set the size of the div element that contains the map */
-          #map {
-            height: 100%;
-            /* The height is 400 pixels */
-            width: 100%;
-            /* The width is the width of the web page */
-          }
+            /* Set the size of the div element that contains the map */
+            #map {
+              height: 100%;
+              /* The height is 400 pixels */
+              width: 100%;
+              /* The width is the width of the web page */
+            }
           </style>
           <div id="map"></div>
 
@@ -210,4 +214,5 @@
     </ons-page>
   </template>
 </body>
+
 </html>
