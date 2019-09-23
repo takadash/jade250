@@ -17,7 +17,7 @@ var maker_is_displayed = 0;
 var cnt1 = 0;
 var cnt_stamp = 0;
 document.getElementById('cnt_stamp').textContent = cnt_stamp;
-document.getElementById('bar').style.width = "0px";
+document.getElementById('bar').value = 0;
 
 kabukiData.order("createData", true)
   .fetchAll()
@@ -137,7 +137,7 @@ function stamp_push1(i) {
       btn_display.insertAdjacentHTML('afterbegin', '<img src="human_pictures/human_red.png">');
       cnt_stamp++;
       document.getElementById('cnt_stamp').textContent = cnt_stamp;
-      document.getElementById('bar').style.width = (cnt_stamp/64.0*100) + '%';
+      document.getElementById('bar').value = cnt_stamp;
 
     } else {
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');

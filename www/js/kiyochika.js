@@ -17,7 +17,7 @@ var maker_is_displayed = 0;
 var cnt5 = 0;
 var cnt_kiyochika = 0;
 document.getElementById('cnt_kiyochika').textContent = cnt_kiyochika;
-document.getElementById('bar5').style.width = "0px";
+document.getElementById('bar5').value = 0;
 
 kiyochikaData.order("createData", true)
   .fetchAll()
@@ -136,7 +136,7 @@ function stamp_push5(i) {
       btn_display.insertAdjacentHTML('afterbegin', '<img src="human_pictures/human_red.png">');
       cnt_kiyochika++;
       document.getElementById('cnt_kiyochika').textContent = cnt_kiyochika;
-      document.getElementById('bar5').style.width = (cnt_kiyochika/64.0*100) + '%';
+      document.getElementById('bar5').value = cnt_kiyochika;
 
     } else {
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
