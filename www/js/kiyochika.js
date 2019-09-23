@@ -138,6 +138,10 @@ function stamp_push5(i) {
       document.getElementById('cnt_kiyochika').textContent = cnt_kiyochika;
       document.getElementById('bar5').style.width = cnt_kiyochika + 'px';
 
+      marker5[i].setIcon({
+                url: 'http://maps.google.co.jp/mapfiles/ms/icons/blue.png'
+            });
+
     } else {
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
       alert('遠くてスタンプが押せませんでした');
