@@ -45,7 +45,9 @@ function initMap() {
 
 // 現在位置プログラム
 function getMyPlace() {
+
   var output = document.getElementById("result");
+
   if (!navigator.geolocation) { //Geolocation apiがサポートされていない場合
     output.innerHTML = "<p>Geolocationはあなたのブラウザーでサポートされておりません</p>";
     return;
@@ -65,6 +67,7 @@ function getMyPlace() {
     if (marker_g) {
       marker_g.setMap(null);
     }
+
     marker_g = new google.maps.Marker({
       map: map,
       position: latlng,
@@ -73,14 +76,12 @@ function getMyPlace() {
         anchor: new google.maps.Point(25, 25),
         scaledSize: new google.maps.Size(50, 50) //サイズ
       }
-
-
-
     });
 
     if (circle) {
       circle.setMap(null);
     }
+
     circle = new google.maps.Circle({
       center: latlng,
       map: map,
@@ -91,13 +92,15 @@ function getMyPlace() {
       strokeOpacity: 1, // 外周透過度（0: 透明 ⇔ 1:不透明）
       strokeWeight: 5 // 外周太さ
     });
+    
     circle.bindTo("center", marker_g, "position");
 
     if (output.innerHTML) {
       output.innerHTML = "";
     }
 
-
+    map.setZoom(15);
+    map.panTo(latlng);
   };
 
   function error() {
