@@ -140,6 +140,10 @@ function stamp_push2(i) {
       document.getElementById('cnt_kyoden').textContent = cnt_kyoden;
       document.getElementById('bar2').style.width = cnt_kyoden + 'px';
 
+      marker2[i].setIcon({
+                url: 'http://maps.google.co.jp/mapfiles/ms/icons/yellow.png'
+            });
+
     } else {
       alert('遠くてスタンプが押せませんでした');
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
