@@ -172,13 +172,13 @@
               <ons-list-item>
                 <div id="bar5" style="background-color: blue; font-size: 10px;">&nbsp;</div>
               </ons-list-item>
-
+<!--
               <ons-list-header>現在地の更新</ons-list-header>
               <ons-list-item onclick="getMyPlace()" tappeble>
                 <ons-button>更新</ons-button>
                 <div id="result"></div>
               </ons-list-item>
-
+-->
             </ons-list>
           </ons-page>
         </ons-splitter-side>
@@ -208,9 +208,9 @@
           </style>
           <div id="map"></div>
 
-          <ons-fab position="left bottom" (click)="onClick()">
+          <ons-fab position="left bottom" onclick="getMyPlace()">
         <!-- <ons-icon icon="locate"></ons-icon> -->
-        <ion-icon name="locate"></ion-icon>
+        <ion-icon name="locate" id="result"></ion-icon>
       </ons-fab>
 
           <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXueT8O-UOJmfh2M-1Xh1IbfKWNXv-coU&callback=initMap">
