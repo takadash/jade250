@@ -17,18 +17,19 @@
     document.addEventListener('init', function(event) {
       var page = event.target;
 
-      if (page.matches('#zero-page')) {
-
-        page.querySelector('#push-button0').onclick = function() {
-          document.querySelector('#navigator').pushPage('page1.html');
-        };
-
-      } else if (page.matches('#first-page')) {
+      if (page.matches('#first-page')) {
 
         page.querySelector('#push-button').onclick = function() {
           document.querySelector('#navigator').pushPage('page2.html');
         };
+
       }
+      // else if (page.matches('#first-page')) {
+
+        // page.querySelector('#push-button').onclick = function() {
+        //   document.querySelector('#navigator').pushPage('page2.html');
+        // };
+      // }
     });
 
     if (ons.platform.isIPhoneX()) {
@@ -44,7 +45,7 @@
 
 <body onload="onload()" ng-controller="initController" ng-init="init()">
 
-  <ons-navigator var="MyNavi" id="navigator" page="page0.html"></ons-navigator>
+  <ons-navigator var="MyNavi" id="navigator" page="page1.html"></ons-navigator>
 
   <ons-modal var="modal" class="modal type3" id="modal">
     <ons-icon icon="ion-load-d" spin="true" style="font-size:32px;"></ons-icon>
@@ -146,7 +147,7 @@
 
               <ons-list-item>
                 <meter id="bar" min="0" max="23"  style="width: 100%; height: 30px;"></meter>
-              </ons-list-item>              
+              </ons-list-item>
 
               <ons-list-item modifier="nodivider">
                 <!-- <div id="cnt_kyoden"></div>/64<span class="item_label">京伝黄表紙</span> -->
@@ -179,7 +180,7 @@
               </ons-list-item>
               <ons-list-item>
                 <meter id="bar5" min="0" max="56"  style="width: 100%; height: 30px;"></meter>
-              </ons-list-item> 
+              </ons-list-item>
 
               <ons-list-header>現在地の更新</ons-list-header>
               <ons-list-item onclick="getMyPlace()" tappeble>
