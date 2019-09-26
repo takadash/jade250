@@ -139,6 +139,10 @@ function stamp_push1(i) {
       document.getElementById('cnt_stamp').textContent = cnt_stamp;
       document.getElementById('bar').value = cnt_stamp;
 
+      marker1[i].setIcon({
+                url: 'http://maps.google.co.jp/mapfiles/ms/icons/green.png'
+            });
+
     } else {
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
       alert('遠くてスタンプが押せませんでした');

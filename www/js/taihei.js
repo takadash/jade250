@@ -153,6 +153,10 @@ function stamp_push4(i) {
       document.getElementById('cnt_taihei').textContent = cnt_taihei;
       document.getElementById('bar4').value = cnt_taihei;
 
+      marker4[i].setIcon({
+                url: 'http://maps.google.co.jp/mapfiles/ms/icons/red.png'
+            });
+
     } else {
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
       alert('遠くてスタンプが押せませんでした');

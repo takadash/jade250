@@ -145,6 +145,10 @@ function stamp_push2(i) {
         comp.innerHTML = "C O M P L E T E ！";
       }
 
+      marker2[i].setIcon({
+                url: 'http://maps.google.co.jp/mapfiles/ms/icons/yellow.png'
+            });
+
     } else {
       alert('遠くてスタンプが押せませんでした');
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');

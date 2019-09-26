@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
   <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+  <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+
   <script>
     // Page init event
     document.addEventListener('init', function(event) {
@@ -41,7 +43,6 @@
   <title>ちよダッシュ</title>
 </head>
 
-
 
 <body onload="onload()" ng-controller="initController" ng-init="init()">
 
@@ -216,6 +217,11 @@
             }
           </style>
           <div id="map"></div>
+
+          <ons-fab position="left bottom" (click)="onClick()">
+        <!-- <ons-icon icon="locate"></ons-icon> -->
+        <ion-icon name="locate"></ion-icon>
+      </ons-fab>
 
           <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXueT8O-UOJmfh2M-1Xh1IbfKWNXv-coU&callback=initMap">
           </script>
