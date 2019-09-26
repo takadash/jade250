@@ -19,18 +19,19 @@
     document.addEventListener('init', function(event) {
       var page = event.target;
 
-      if (page.matches('#zero-page')) {
-
-        page.querySelector('#push-button0').onclick = function() {
-          document.querySelector('#navigator').pushPage('page1.html');
-        };
-
-      } else if (page.matches('#first-page')) {
+      if (page.matches('#first-page')) {
 
         page.querySelector('#push-button').onclick = function() {
           document.querySelector('#navigator').pushPage('page2.html');
         };
+
       }
+      // else if (page.matches('#first-page')) {
+
+        // page.querySelector('#push-button').onclick = function() {
+        //   document.querySelector('#navigator').pushPage('page2.html');
+        // };
+      // }
     });
 
     if (ons.platform.isIPhoneX()) {
@@ -42,11 +43,10 @@
   <title>ちよダッシュ</title>
 </head>
 
-
 
 <body onload="onload()" ng-controller="initController" ng-init="init()">
 
-  <ons-navigator var="MyNavi" id="navigator" page="page0.html"></ons-navigator>
+  <ons-navigator var="MyNavi" id="navigator" page="page1.html"></ons-navigator>
 
   <ons-modal var="modal" class="modal type3" id="modal">
     <ons-icon icon="ion-load-d" spin="true" style="font-size:32px;"></ons-icon>
@@ -141,36 +141,46 @@
               </form>
 
               <ons-list-header>ステータス</ons-list-header>
+
               <ons-list-item modifier="nodivider">
-                <div id="cnt_stamp"></div>/23南北歌舞伎
+                南北歌舞伎<img src="https://maps.google.com/mapfiles/ms/icons/green-dot.png" width="20" height="20" border="0" />（<div id="cnt_stamp"></div>/23）
               </ons-list-item>
+
               <ons-list-item>
-                <div id="bar" style="background-color: green; font-size: 10px;">&nbsp;</div>
+                <meter id="bar" min="0" max="23"  style="width: 100%; height: 30px;"></meter>
               </ons-list-item>
 
               <ons-list-item modifier="nodivider">
-                <div id="cnt_kyoden"></div>/64<span class="item_label">京伝黄表紙</span>
+                <!-- <div id="cnt_kyoden"></div>/64<span class="item_label">京伝黄表紙</span> -->
+                <span class="item_label">京伝黄表紙</span><img src="https://maps.google.com/mapfiles/ms/icons/yellow-dot.png" width="20" height="20" border="0" />（<div id="cnt_kyoden"></div>/64）
               </ons-list-item>
               <ons-list-item>
-                <div id="bar2" style="background-color: yellow; font-size: 10px;">&nbsp;</div>
+                <!-- <div id="bar2" style="background-color: yellow; font-size: 10px;">&nbsp;</div> -->
+                <table style="width: 100%; height: 13px; border:1px solid #4f4f48; z-index: 0;">
+                  <tr>
+                    <td align="left">
+                      <div id="bar2" style="background-color: yellow; font-size: 13px; z-index: 1;">&nbsp;</div>
+                    </td>
+                    <td align="center" id="comp" style="z-index: 2;"></td>
+                  </tr>
+                </table>
+              </ons-list-item>
+
+
+
+              <ons-list-item modifier="nodivider">
+                <span class="item_label">泰平纏一覧</span><img src="https://maps.google.com/mapfiles/ms/icons/red-dot.png" width="20" height="20" border="0" />（<div id="cnt_taihei"></div>/64）
+              </ons-list-item>
+
+              <ons-list-item>
+                <meter id="bar4" min="0" max="64"  style="width: 100%; height: 30px;"></meter>
               </ons-list-item>
 
               <ons-list-item modifier="nodivider">
-                <div id="cnt_taihei"></div>
-                /64
-                <span class="item_label">泰平纏一覧</span>
+                <span class="item_label">小林清親版画</span><img src="https://maps.google.com/mapfiles/ms/icons/blue-dot.png" width="20" height="20" border="0" />（<div id="cnt_kiyochika"></div>/56）
               </ons-list-item>
               <ons-list-item>
-                <div id="bar4" style="background-color: red; font-size: 10px;">&nbsp;</div>
-              </ons-list-item>
-
-              <ons-list-item modifier="nodivider">
-                <div id="cnt_kiyochika"></div>
-                /56
-                <span class="item_label">小林清親版画</span>
-              </ons-list-item>
-              <ons-list-item>
-                <div id="bar5" style="background-color: blue; font-size: 10px;">&nbsp;</div>
+                <meter id="bar5" min="0" max="56"  style="width: 100%; height: 30px;"></meter>
               </ons-list-item>
 
               <ons-list-header>現在地の更新</ons-list-header>

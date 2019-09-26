@@ -18,7 +18,7 @@ var maker_is_displayed = 0;
 var cnt = 0;
 var cnt_taihei = 0;
 document.getElementById('cnt_taihei').textContent = cnt_taihei;
-document.getElementById('bar4').style.width = "0px";
+document.getElementById('bar4').value = 0;
 
 
 TestData.order("createData", true)
@@ -151,7 +151,7 @@ function stamp_push4(i) {
       cnt_taihei++;
       //console.log("cnt_stamp2");
       document.getElementById('cnt_taihei').textContent = cnt_taihei;
-      document.getElementById('bar4').style.width = cnt_taihei + 'px';
+      document.getElementById('bar4').value = cnt_taihei;
 
       marker4[i].setIcon({
                 url: 'http://maps.google.co.jp/mapfiles/ms/icons/red.png'
