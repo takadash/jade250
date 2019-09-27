@@ -19,7 +19,7 @@ var cnt_stamp = 0;
 document.getElementById('cnt_stamp').textContent = cnt_stamp;
 document.getElementById('bar').value = 0;
 
-localStorage.clear();
+// localStorage.clear();
 var status = localStorage.getItem('cnt_stamp');
 console.log(status);
 if (status == "null" || status=="undefined") {
