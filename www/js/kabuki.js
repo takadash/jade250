@@ -19,6 +19,17 @@ var cnt_stamp = 0;
 document.getElementById('cnt_stamp').textContent = cnt_stamp;
 document.getElementById('bar').value = 0;
 
+localStorage.clear();
+var status = localStorage.getItem('cnt_stamp');
+console.log(status);
+if (status == "null" || status=="undefined") {
+  document.getElementById('cnt_stamp').textContent = cnt_stamp;
+} else {
+  document.getElementById('cnt_stamp').textContent = status;
+  document.getElementById('bar').value = status;
+  cnt_stamp = status;
+}
+
 kabukiData.order("createData", true)
   .fetchAll()
   .then(function(results) {
@@ -140,8 +151,13 @@ function stamp_push1(i) {
       document.getElementById('bar').value = cnt_stamp;
 
       marker1[i].setIcon({
-                url: 'http://maps.google.co.jp/mapfiles/ms/icons/green.png'
-            });
+        url: 'http://maps.google.co.jp/mapfiles/ms/icons/green.png'
+      });
+
+      var savedate = cnt_stamp;
+        localStorage.setItem('cnt_stamp', savedate);
+        // console.log(savedate);
+
 
     } else {
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
