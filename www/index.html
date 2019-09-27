@@ -143,10 +143,11 @@
               <ons-list-header>ステータス</ons-list-header>
 
               <ons-list-item modifier="nodivider">
-                南北歌舞伎<img src="https://maps.google.com/mapfiles/ms/icons/green-dot.png" width="20" height="20" border="0" />（<div id="cnt_stamp"></div>/23）
-              </ons-list-item>
+                南北歌舞伎<img src="https://maps.google.com/mapfiles/ms/icons/green-dot.png" width="20" height="20" border="0" />（<div id="cnt_stamp"></div>/23）                
+              </ons-list-item>                
 
               <ons-list-item>
+               <li  align="center" id="comp" style="z-index: 2;"></li>
                 <meter id="bar" min="0" max="23"  style="width: 100%; height: 30px;"></meter>
               </ons-list-item>
 
@@ -154,16 +155,11 @@
                 <!-- <div id="cnt_kyoden"></div>/64<span class="item_label">京伝黄表紙</span> -->
                 <span class="item_label">京伝黄表紙</span><img src="https://maps.google.com/mapfiles/ms/icons/yellow-dot.png" width="20" height="20" border="0" />（<div id="cnt_kyoden"></div>/64）
               </ons-list-item>
+
               <ons-list-item>
                 <!-- <div id="bar2" style="background-color: yellow; font-size: 10px;">&nbsp;</div> -->
-                <table style="width: 100%; height: 13px; border:1px solid #4f4f48; z-index: 0;">
-                  <tr>
-                    <td align="left">
-                      <div id="bar2" style="background-color: yellow; font-size: 13px; z-index: 1;">&nbsp;</div>
-                    </td>
-                    <td align="center" id="comp" style="z-index: 2;"></td>
-                  </tr>
-                </table>
+                <li align="center" id="comp2" style="z-index: 2;"></li>           
+                <meter id="bar2" min="0" max="64"  style="width: 100%; height: 30px;"></meter>
               </ons-list-item>
 
 
@@ -173,6 +169,7 @@
               </ons-list-item>
 
               <ons-list-item>
+                <li align="center" id="comp4" style="z-index: 2;"></li>
                 <meter id="bar4" min="0" max="64"  style="width: 100%; height: 30px;"></meter>
               </ons-list-item>
 
@@ -180,6 +177,7 @@
                 <span class="item_label">小林清親版画</span><img src="https://maps.google.com/mapfiles/ms/icons/blue-dot.png" width="20" height="20" border="0" />（<div id="cnt_kiyochika"></div>/56）
               </ons-list-item>
               <ons-list-item>
+                <li align="center" id="comp5" style="z-index: 2;"></li>
                 <meter id="bar5" min="0" max="56"  style="width: 100%; height: 30px;"></meter>
               </ons-list-item>
 

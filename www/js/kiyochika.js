@@ -142,6 +142,11 @@ function stamp_push5(i) {
                 url: 'http://maps.google.co.jp/mapfiles/ms/icons/blue.png'
             });
 
+      if(cnt_kiyochika == 56) {
+        var comp = document.getElementById("comp5");
+        comp.innerHTML = "C O M P L E T E ！";
+      }
+
     } else {
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
       alert('遠くてスタンプが押せませんでした');
