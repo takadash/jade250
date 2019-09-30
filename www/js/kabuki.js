@@ -93,6 +93,7 @@ function stamp_push1(i) {
   stamp_lat = stamplat1[i];
   stamp_lng = stamplng1[i];
 
+  var toast = document.getElementById("map");
 
   // 現在位置プログラム
   if (!navigator.geolocation) { //Geolocation apiがサポートされていない場合
@@ -153,7 +154,9 @@ function stamp_push1(i) {
     //エラーの場合
     // hyouzi.innerHTML = "座標位置を取得できません";
     alert('座標位置を取得できません');
-
+    // '<ons-toast id="myToast" animation="ascend">FABs up!<button onclick="myToast.hide()">ok</button></ons-toast>'
+    // toast.insertAdjacentHTML('afterbegin',"ons.notification.toast('Hi there!', { timeout: 1000, animation: 'fall' })");
+    toast.insertAdjacentHTML('afterbegin','<div class="toast"><div class="toast__message">Message Message Message Message Message Message</div><button class="toast__button">ACTION</button></div>');
   };
   navigator.geolocation.getCurrentPosition(Success, error); //成功と失敗を判断
 
