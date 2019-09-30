@@ -151,7 +151,9 @@ function stamp_push1(i) {
 
   function error() {
     //エラーの場合
-    hyouzi.innerHTML = "座標位置を取得できません";
+    // hyouzi.innerHTML = "座標位置を取得できません";
+    alert('座標位置を取得できません');
+
   };
   navigator.geolocation.getCurrentPosition(Success, error); //成功と失敗を判断
 
