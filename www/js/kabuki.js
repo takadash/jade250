@@ -158,6 +158,7 @@ function stamp_push1(i) {
         localStorage.setItem('cnt_stamp', savedate);
         // console.log(savedate);
 
+      localStorage.setItem('judge' + i, true);
 
     } else {
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
