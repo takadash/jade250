@@ -86,6 +86,7 @@ kabukiData.order("createData", true)
     //alert('取得に失敗しました');
   });
 
+//スランプを押した時の関数
 function stamp_push1(i) {
   //alert('true');
   var hyouzi = document.getElementById("stamp");
@@ -93,6 +94,8 @@ function stamp_push1(i) {
   stamp_lat = stamplat1[i];
   stamp_lng = stamplng1[i];
 
+  //app.jsのclick_sound関数
+  click_sound();
 
   // 現在位置プログラム
   if (!navigator.geolocation) { //Geolocation apiがサポートされていない場合
@@ -136,6 +139,8 @@ function stamp_push1(i) {
 
       btn_display.insertAdjacentHTML('afterbegin', '<img src="human_pictures/human_red.png">');
       cnt_stamp++;
+      //スタンプ獲得音
+      get_stamp_sound();
       document.getElementById('cnt_stamp').textContent = cnt_stamp;
       document.getElementById('bar').value = cnt_stamp;
 
@@ -172,6 +177,8 @@ function kabuki() {
     for (var i = 0; i < cnt1; i++) {
       marker1[i].setVisible(true);
     }
+    //app.jsのclick_sound関数
+    click_sound();
 
   } else {
     // チェックボックスがチェックされていなければ非表示

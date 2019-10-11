@@ -109,3 +109,22 @@ function getMyPlace() {
   };
   navigator.geolocation.getCurrentPosition(success, error); //成功と失敗を判断
 }
+
+function click_sound() {
+  var my_media;
+
+  my_media = new Audio();
+  my_media.src = "components/decision22.mp3";
+  my_media.play();
+
+  console.log("ok");
+
+};
+
+function get_stamp_sound(){
+  var get_stamp;
+
+  get_stamp = new Audio();
+  get_stamp.src = "components/decision4.mp3";
+  get_stamp.play();
+};
