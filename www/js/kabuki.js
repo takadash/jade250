@@ -77,6 +77,8 @@ kabukiData.order("createData", true)
         }
         infoWindow1[i].open(map, marker1[i]); // 吹き出しの表示
         currentInfoWindow = infoWindow1[i];
+        //ピンを押した時の音
+        pin_choice_sound();
       });
     }
 
@@ -151,12 +153,15 @@ function stamp_push1(i) {
     } else {
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
       alert('遠くてスタンプが押せませんでした');
+      //スタンプ獲得失敗音
+      stamp_failed_sound();
     }
   };
 
   function error() {
     //エラーの場合
     hyouzi.innerHTML = "座標位置を取得できません";
+    stamp_failed_sound();
   };
   navigator.geolocation.getCurrentPosition(Success, error); //成功と失敗を判断
 
@@ -169,7 +174,7 @@ function kabuki() {
   // checkboxのElementを取得
   // var cb = document.getElementById("check-1");
   var cb = document.form1.check_1.checked;
-  //console.log(cb);
+  //console.log("cb = "+cb);
 
   if (cb == true) {
     // チェックボックスがチェックされていればマーカ表示
@@ -177,6 +182,7 @@ function kabuki() {
     for (var i = 0; i < cnt1; i++) {
       marker1[i].setVisible(true);
     }
+
     //app.jsのclick_sound関数
     click_sound();
 

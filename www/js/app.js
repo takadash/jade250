@@ -110,6 +110,7 @@ function getMyPlace() {
   navigator.geolocation.getCurrentPosition(success, error); //成功と失敗を判断
 }
 
+//音源
 function click_sound() {
   var my_media;
 
@@ -117,7 +118,7 @@ function click_sound() {
   my_media.src = "components/decision22.mp3";
   my_media.play();
 
-  console.log("ok");
+  //console.log("ok");
 
 };
 
@@ -127,4 +128,36 @@ function get_stamp_sound(){
   get_stamp = new Audio();
   get_stamp.src = "components/decision4.mp3";
   get_stamp.play();
+
+  //console.log("ok");
 };
+
+function pin_choice_sound(){
+  var pin_choice;
+
+  pin_choice = new Audio();
+  pin_choice.src = "components/cursor1.mp3"
+  pin_choice.play();
+};
+
+function stamp_failed_sound(){
+  var stamp_failed;
+
+  stamp_failed = new Audio();
+  stamp_failed.src = "components/blip02.mp3"
+  stamp_failed.play();
+};
+
+function menu_open_sound(){
+  var menu_open;
+
+  menu_open = new Audio();
+  menu_open.src = "components/decision29.mp3"
+  menu_open.play();
+};
+
+//関数の呼び出し回数などを調べるのに
+// function log(){
+//   console.log("test");
+// };
+

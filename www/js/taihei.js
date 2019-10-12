@@ -90,6 +90,8 @@ TestData.order("createData", true)
         }
         infoWindow4[i].open(map, marker4[i]); // 吹き出しの表示
         currentInfoWindow = infoWindow4[i];
+        //ピンを押した時の音
+        pin_choice_sound();
       });
     }
 
@@ -106,6 +108,8 @@ function stamp_push4(i) {
   stamp_lat = stamplat[i];
   stamp_lng = stamplng[i];
 
+  //app.jsのclick_sound関数
+  click_sound();
 
   // 現在位置プログラム
   if (!navigator.geolocation) { //Geolocation apiがサポートされていない場合
@@ -150,6 +154,8 @@ function stamp_push4(i) {
       btn_display.insertAdjacentHTML('afterbegin', '<img src="human_pictures/human_red.png">');
       cnt_taihei++;
       //console.log("cnt_stamp2");
+      //スタンプ獲得音
+      get_stamp_sound();
       document.getElementById('cnt_taihei').textContent = cnt_taihei;
       document.getElementById('bar4').value = cnt_taihei;
 
@@ -160,12 +166,14 @@ function stamp_push4(i) {
     } else {
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
       alert('遠くてスタンプが押せませんでした');
+      stamp_failed_sound();
     }
   };
 
   function error() {
     //エラーの場合
     hyouzi.innerHTML = "座標位置を取得できません";
+    stamp_failed_sound();
   };
   navigator.geolocation.getCurrentPosition(Success, error); //成功と失敗を判断
 
@@ -182,8 +190,10 @@ function taihei() {
     // alert('true');
     for (var i = 0; i < cnt; i++) {
       marker4[i].setVisible(true);
-
     }
+    //app.jsのclick_sound関数
+    click_sound();
+
   } else {
     // チェックボックスがチェックされていなければ非表示
     // alert('false');

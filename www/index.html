@@ -22,6 +22,7 @@
       if (page.matches('#first-page')) {
 
         page.querySelector('#push-button').onclick = function() {
+          click_sound();
           document.querySelector('#navigator').pushPage('page2.html');
         };
 
@@ -80,7 +81,7 @@
 
         <div class="hidden_box">
           <label for="label1">同意する</label>
-          <input type="checkbox" id="label1" />
+          <input type="checkbox" id="label1" onclick="click_sound()"/>
           <div class="hidden_show">
             <ons-button id="push-button">START</ons-button>
           </div>
@@ -200,7 +201,7 @@
         <ons-page>
           <ons-toolbar>
             <div class="left">
-              <ons-toolbar-button onclick="fn.open()">
+              <ons-toolbar-button onclick="fn.open();menu_open_sound()">
                 <ons-icon icon="md-menu"></ons-icon>
               </ons-toolbar-button>
             </div>
