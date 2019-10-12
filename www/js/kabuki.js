@@ -60,6 +60,7 @@ kabukiData.order("createData", true)
         icon: {
           url: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
         }
+        //animation: google.maps.Animation.DROP
       });
 
       infoWindow1[i] = new google.maps.InfoWindow({ // 吹き出しの追加
@@ -81,6 +82,7 @@ kabukiData.order("createData", true)
     }
 
   })
+
   .catch(function(error) {
     //全件検索に失敗した場合の処理
     //alert('取得に失敗しました');
@@ -178,6 +180,7 @@ function kabuki() {
     // チェックボックスがチェックされていればマーカ表示
     //alert('true');
     for (var i = 0; i < cnt1; i++) {
+      marker1[i].setAnimation(google.maps.Animation.DROP);
       marker1[i].setVisible(true);
     }
 
