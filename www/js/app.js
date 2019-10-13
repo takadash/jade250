@@ -111,50 +111,51 @@ function getMyPlace() {
 }
 
 //音源
+var sound = new Audio();
+sound.volume = 0.1;
 function click_sound() {
-  var my_media;
-
-  my_media = new Audio();
-  my_media.src = "components/decision22.mp3";
-  my_media.play();
-
-  //console.log("ok");
-
+  sound.src = "components/decision22.mp3";
+  sound.play();
 };
 
 function get_stamp_sound(){
-  var get_stamp;
-
-  get_stamp = new Audio();
-  get_stamp.src = "components/decision4.mp3";
-  get_stamp.play();
-
-  //console.log("ok");
+  sound.src = "components/decision4.mp3";
+  sound.play();
 };
 
-function pin_choice_sound(){
-  var pin_choice;
 
-  pin_choice = new Audio();
-  pin_choice.src = "components/cursor1.mp3"
-  pin_choice.play();
+function pin_choice_sound(){
+  sound.src = "components/cursor1.mp3";
+  sound.play();
+
 };
 
 function stamp_failed_sound(){
-  var stamp_failed;
-
-  stamp_failed = new Audio();
-  stamp_failed.src = "components/blip02.mp3"
-  stamp_failed.play();
+  sound.src = "components/blip02.mp3";
+  sound.play();
 };
 
 function menu_open_sound(){
-  var menu_open;
-
-  menu_open = new Audio();
-  menu_open.src = "components/decision29.mp3"
-  menu_open.play();
+  sound.src = "components/decision29.mp3";
+  sound.play();
 };
+
+function sound_plus(){
+  if(sound.volume <= 0.9){
+    sound.volume = sound.volume + 0.1;
+    sound.src = "components/decision29.mp3";
+    sound.play();
+    console.log(sound.volume);
+  }
+}
+function sound_minus(){
+  if(sound.volume >= 0.1){
+    sound.volume = sound.volume - 0.1;
+    sound.src = "components/decision29.mp3";
+    sound.play();
+    console.log(sound.volume);
+  } 
+}
 
 //関数の呼び出し回数などを調べるのに
 // function log(){
