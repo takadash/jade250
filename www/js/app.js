@@ -147,7 +147,7 @@ function getMyPlace() {
         var option = {
           fillOpacity: k-0.05,
           strokeWeight: j,
-          strokeOpacity: k-0.047,
+          strokeOpacity: k-0.049,
         };
 
 				if(radius < 3){
@@ -174,16 +174,18 @@ function getMyPlace() {
           cnt++;
           console.log(cnt);
           // circle.setOptions( option ) ;
-				}else{
-					circle.setRadius(radius + 4);
+				}else if(radius < 280){
+					circle.setRadius(radius + 6);
           // k -= 0.04;
           cnt++;
           console.log(cnt);
           // circle.setOptions( option ) ;
+        }else{
+          circle.setRadius(radius + 4);
         }
 
-        k -= 0.022;
-        j -= 0.15;
+        k -= 0.0245;
+        j -= 0.1525;
         circle.setOptions( option ) ;
         console.log('k : ' + k);
 
