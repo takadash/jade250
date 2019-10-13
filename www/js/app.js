@@ -120,17 +120,18 @@ function getMyPlace() {
 
 		var circle = new google.maps.Circle({
 				center: latlng,
-				radius: 3,
-				strokeColor: "#0b8ee2",
+				radius: 0,
+				strokeColor: "rgba(101, 165, 224, 0.73)",
 				strokeOpacity: 1,
-				strokeWeight: 1,
+				strokeWeight: 10,
 				fillColor: "rgba(101, 165, 224, 0.73)",
-				fillOpacity: 0.2
+				fillOpacity: 1
 		});
 		circle.setMap(map);
 
-		var direction = 1;
+		var j = 10, k = 1;
 		var rMin = 150, rMax = 300;
+    var cnt = 0;
 		setInterval(function() {
 				var radius = circle.getRadius();
 				if (radius > rMax) {
@@ -138,19 +139,53 @@ function getMyPlace() {
 					sleep(600);
 					// circle.setRadius(10);
 					radius = 0;
+          k = 1
+          j = 10;
+          cnt = 0;
 				}
 
-				if(radius < 3)
-					circle.setRadius(radius + 0.3);
-				else if(radius < 100)
-					circle.setRadius(radius + 14);
-				else if(radius < 220)
-					circle.setRadius(radius + 12);
-				else if(radius < 250)
-					circle.setRadius(radius + 8);
-				else
-					circle.setRadius(radius + 4);
+        var option = {
+          fillOpacity: k-0.05,
+          strokeWeight: j,
+          strokeOpacity: k-0.047,
+        };
 
+				if(radius < 3){
+					circle.setRadius(radius + 0.3);
+          // k -= 0.03;
+          cnt++;
+          console.log(cnt);
+          // circle.setOptions( option ) ;
+				}else if(radius < 100){
+					circle.setRadius(radius + 14);
+          // k -= 0.14;
+          cnt++;
+          console.log(cnt);
+          // circle.setOptions( option ) ;
+				}else if(radius < 220){
+					circle.setRadius(radius + 12);
+          // k -= 0.12;
+          cnt++;
+          console.log(cnt);
+          // circle.setOptions( option ) ;
+				}else if(radius < 250){
+					circle.setRadius(radius + 8);
+          // k -= 0.08;
+          cnt++;
+          console.log(cnt);
+          // circle.setOptions( option ) ;
+				}else{
+					circle.setRadius(radius + 4);
+          // k -= 0.04;
+          cnt++;
+          console.log(cnt);
+          // circle.setOptions( option ) ;
+        }
+
+        k -= 0.022;
+        j -= 0.15;
+        circle.setOptions( option ) ;
+        console.log('k : ' + k);
 
 				// if(radius < 10) sleep(10000);
 
