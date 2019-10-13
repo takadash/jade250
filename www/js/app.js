@@ -42,6 +42,28 @@ function initMap() {
   });
 };
 
+// function sleep(msec) {
+// 	 return new Promise(function(resolve) {
+//
+// 			setTimeout(function() {resolve()}, msec);
+//
+// 	 })
+// }
+
+function sleep(waitMsec) {
+  var startMsec = new Date();
+
+  // 指定ミリ秒間だけループさせる（CPUは常にビジー状態）
+  while (new Date() - startMsec < waitMsec);
+}
+
+async function start() {
+
+  await sleep(5000);
+  console.log('5秒経過しました！');
+
+}
+
 
 // 現在位置プログラム
 function getMyPlace() {
@@ -52,6 +74,7 @@ function getMyPlace() {
     output.innerHTML = "<p>Geolocationはあなたのブラウザーでサポートされておりません</p>";
     return;
   }
+
 
   function success(position) {
     // var latitude  = position.coords.latitude;//緯度
@@ -82,18 +105,56 @@ function getMyPlace() {
       circle.setMap(null);
     }
 
-    circle = new google.maps.Circle({
-      center: latlng,
-      map: map,
-      radius: 100, // 半径（m）
-      fillColor: '#AFDFE7', // 塗りつぶし色
-      fillOpacity: 0.2, // 塗りつぶし透過度（0: 透明 ⇔ 1:不透明）
-      strokeColor: '#3333FF', // 外周色
-      strokeOpacity: 1, // 外周透過度（0: 透明 ⇔ 1:不透明）
-      strokeWeight: 5 // 外周太さ
-    });
-    
-    circle.bindTo("center", marker_g, "position");
+    // circle = new google.maps.Circle({
+    //   center: latlng,
+    //   map: map,
+    //   radius: 100, // 半径（m）
+    //   fillColor: '#AFDFE7', // 塗りつぶし色
+    //   fillOpacity: 0.2, // 塗りつぶし透過度（0: 透明 ⇔ 1:不透明）
+    //   strokeColor: '#3333FF', // 外周色
+    //   strokeOpacity: 1, // 外周透過度（0: 透明 ⇔ 1:不透明）
+    //   strokeWeight: 5 // 外周太さ
+    // });
+		//
+    // circle.bindTo("center", marker_g, "position");
+
+		var circle = new google.maps.Circle({
+				center: latlng,
+				radius: 3,
+				strokeColor: "#0b8ee2",
+				strokeOpacity: 1,
+				strokeWeight: 1,
+				fillColor: "rgba(101, 165, 224, 0.73)",
+				fillOpacity: 0.2
+		});
+		circle.setMap(map);
+
+		var direction = 1;
+		var rMin = 150, rMax = 300;
+		setInterval(function() {
+				var radius = circle.getRadius();
+				if (radius > rMax) {
+					// start();
+					sleep(600);
+					// circle.setRadius(10);
+					radius = 0;
+				}
+
+				if(radius < 3)
+					circle.setRadius(radius + 0.3);
+				else if(radius < 100)
+					circle.setRadius(radius + 14);
+				else if(radius < 220)
+					circle.setRadius(radius + 12);
+				else if(radius < 250)
+					circle.setRadius(radius + 8);
+				else
+					circle.setRadius(radius + 4);
+
+
+				// if(radius < 10) sleep(10000);
+
+		}, 50);
 
     if (output.innerHTML) {
       output.innerHTML = "";
