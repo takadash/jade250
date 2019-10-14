@@ -156,12 +156,12 @@ function stamp_push1(i) {
   function error() {
     //エラーの場合
     // hyouzi.innerHTML = "座標位置を取得できません";
-    alert('座標位置を取得できません');
+    // alert('座標位置を取得できません');
     // '<ons-toast id="myToast" animation="ascend">FABs up!<button onclick="myToast.hide()">ok</button></ons-toast>'
     // toast.insertAdjacentHTML('afterbegin',"ons.notification.toast('Hi there!', { timeout: 1000, animation: 'fall' })");
     // toast.insertAdjacentHTML('afterbegin','<div class="toast"><div class="toast__message">Message Message Message Message Message Message</div><button class="toast__button">ACTION</button></div>');
-    myToast.show();
-    ons.notification.toast('Hi there!', { timeout: 2000, animation: 'lift' })
+    // myToast.show();
+    ons.notification.toast('座標位置を取得できません', { timeout: 2000, animation: 'ascend' })
   };
   navigator.geolocation.getCurrentPosition(Success, error); //成功と失敗を判断
 
