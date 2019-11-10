@@ -181,6 +181,7 @@ function taihei() {
     // チェックボックスがチェックされていればマーカ表示
     // alert('true');
     for (var i = 0; i < cnt; i++) {
+      marker4[i].setAnimation(google.maps.Animation.DROP);
       marker4[i].setVisible(true);
 
     }
