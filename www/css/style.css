@@ -1,6 +1,9 @@
 /*全体*/
+.bottom_toolbar {
+    height: 100px !important;
+}
 .hidden_box {
-    margin: 2em 0;/*前後の余白*/
+    margin: 1em 0;/*前後の余白*/
     padding: 0;
 }
 
