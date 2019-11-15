@@ -112,6 +112,7 @@ function getMyPlace() {
 
 //音源
 var sound = new Audio();
+//document.getElementById('cnt_stamp').textContent = cnt_stamp;
 sound.volume = 0.1;
 function click_sound() {
   sound.src = "components/decision22.mp3";
