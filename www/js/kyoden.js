@@ -168,6 +168,7 @@ function kyoden() {
     // チェックボックスがチェックされていればマーカ表示
     //alert('true');
     for (var i = 0; i < cnt2; i++) {
+      marker2[i].setAnimation(google.maps.Animation.DROP);
       marker2[i].setVisible(true);
     }
 
