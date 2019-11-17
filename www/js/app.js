@@ -8,6 +8,7 @@ var map;
 var stampclick = [];
 var marker_g;
 var circle;
+var circle_cnt = 0;
 
 function onload() {
   //前回の値を読み込み
@@ -67,6 +68,7 @@ async function start() {
 
 // 現在位置プログラム
 function getMyPlace() {
+  circle_cnt++;
 
   var output = document.getElementById("result");
 
@@ -127,6 +129,7 @@ function getMyPlace() {
 				fillColor: "rgba(101, 165, 224, 0.73)",
 				fillOpacity: 1
 		});
+    if(circle_cnt == 1)
 		circle.setMap(map);
 
 		var j = 10, k = 1;
