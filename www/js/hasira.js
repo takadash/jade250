@@ -16,8 +16,8 @@ var stamplng6 = [];
 var maker_is_displayed = 0;
 var cnt6 = 0;
 var cnt_stamp6 = 0;
-// document.getElementById('cnt_stamp6').textContent = cnt_stamp6;
-// document.getElementById('bar').value = 0;
+ document.getElementById('cnt_stamp6').textContent = cnt_stamp6;
+ document.getElementById('bar6').value = 0;
 
 hasiraData.order("createData", true)
   .fetchAll()

@@ -72,14 +72,19 @@ kiyochikaData.order("createData", true)
       });
 
       infoWindow5[i] = new google.maps.InfoWindow({ // 吹き出しの追加
-        content: '<div class="map">' + kiyotitle[i] + '</div>' + '地域　　　　　　' + city[i] + kiyo_area1[i] + ' ' + kiyo_area2[i] + '<br>景物　　　　　　' + obj[i] + '<br>' + stampclick[i] + '<br>' + url_click[i]// 吹き出しに表示する内容
+        // 吹き出しに表示する内容
+        content:
+        '<div class="map">' + kiyotitle[i] + '</div>' + '地域　　　　　　' + city[i] + kiyo_area1[i] + ' ' + kiyo_area2[i] + 
+        '<br>景物　　　　　　' + obj[i] + '<br>' + stampclick[i] + '<br>' + '<img src= https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=kiyochika&file=G2-28.jpg&size=100>'
+
+        //content: '<iframe src=' + img_url[i] + ' >' + '</iframe>'
       });
 
       //仮画像のinfoWindow
       url_infoWindow[i] = new google.maps.InfoWindow({
         content: '<iframe src=' + img_url[i] + ' >' + '</iframe>'
         //content: '<img src= https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=kiyochika&file=G2-31.jpg&size=890>'
-        
+        //イラストやurl '<img src= https:www.rbbtoday.com/imgs/p/RqJIzsl7cmxG8-cARbeaqilNLEDQQ0JFREdG/510534.jpg>'
       });
       markerEvent5(i); // マーカーにクリックイベントを追加
       //仮清親画像表示
