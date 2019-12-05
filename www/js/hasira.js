@@ -6,17 +6,17 @@ var hasiraData = ncmb.DataStore('hasira');
 
 var map;
 var marker6 = [];
-var infoWindow1 = [];
+var infoWindow6 = [];
 var currentInfoWindow = null;
-var stampclick1 = [];
-var stamplat1 = [];
-var stamplng1 = [];
+var stampclick6 = [];
+var stamplat6 = [];
+var stamplng6 = [];
 //var lat2;
 //var lng2;
 var maker_is_displayed = 0;
-var cnt1 = 0;
-var cnt_stamp = 0;
-// document.getElementById('cnt_stamp').textContent = cnt_stamp;
+var cnt6 = 0;
+var cnt_stamp6 = 0;
+// document.getElementById('cnt_stamp6').textContent = cnt_stamp6;
 // document.getElementById('bar').value = 0;
 
 hasiraData.order("createData", true)
@@ -32,7 +32,7 @@ hasiraData.order("createData", true)
     var place = [];
     var type = [];
 
-    for (var i = 0; i < results.length; i++, cnt1++) {
+    for (var i = 0; i < results.length; i++, cnt6++) {
       var object = results[i];
       lat[i] = parseFloat(object.lat);
       lng[i] = parseFloat(object.lng);
@@ -41,9 +41,9 @@ hasiraData.order("createData", true)
       place[i] = object.place;
       type[i] = object.type;
 
-      stamplat1[i] = lat[i];
-      stamplng1[i] = lng[i];
-      stampclick1[i] = '<div id="stamp"><ons-button onclick ="stamp_push1(' + i + ')">スタンプ</ons-button></div>' + '<div id="btn">'
+      stamplat6[i] = lat[i];
+      stamplng6[i] = lng[i];
+      stampclick6[i] = '<div id="stamp"><ons-button onclick ="stamp_push1(' + i + ')">スタンプ</ons-button></div>' + '<div id="btn">'
       //ピンたて
       markerLatLng = {
         lat: lat[i],
@@ -58,8 +58,8 @@ hasiraData.order("createData", true)
         }
       });
 
-      infoWindow1[i] = new google.maps.InfoWindow({ // 吹き出しの追加
-        content: '<div class="map">' + name[i] + '</div>' + '標識の種類　　　　　　' + type[i] + '<br>所在場所　　　　' + place[i] + '<br>' + text[i] + '<br>' + stampclick1[i] // 吹き出しに表示する内容
+      infoWindow6[i] = new google.maps.InfoWindow({ // 吹き出しの追加
+        content: '<div class="map">' + name[i] + '</div>' + '標識の種類　　　　　　' + type[i] + '<br>所在場所　　　　' + place[i] + '<br>' + text[i] + '<br>' + stampclick6[i] // 吹き出しに表示する内容
       });
       markerEvent1(i); // マーカーにクリックイベントを追加
 
@@ -71,8 +71,8 @@ hasiraData.order("createData", true)
         if (currentInfoWindow) { //currentInfoWindowに値があるならば
           currentInfoWindow.close(); //開いていた吹き出しを閉じる
         }
-        infoWindow1[i].open(map, marker6[i]); // 吹き出しの表示
-        currentInfoWindow = infoWindow1[i];
+        infoWindow6[i].open(map, marker6[i]); // 吹き出しの表示
+        currentInfoWindow = infoWindow6[i];
       });
     }
 
@@ -86,8 +86,8 @@ function stamp_push1(i) {
   //alert('true');
   var hyouzi = document.getElementById("stamp");
   var btn_display = document.getElementById("btn");
-  stamp_lat = stamplat1[i];
-  stamp_lng = stamplng1[i];
+  stamp_lat = stamplat6[i];
+  stamp_lng = stamplng6[i];
 
 
   // 現在位置プログラム
@@ -131,9 +131,9 @@ function stamp_push1(i) {
       hyouzi.style.display = "none";
 
       btn_display.insertAdjacentHTML('afterbegin', '<img src="human_pictures/human_red.png">');
-      cnt_stamp++;
-      document.getElementById('cnt_stamp').textContent = cnt_stamp;
-      document.getElementById('bar').value = cnt_stamp;
+      cnt_stamp6++;
+      document.getElementById('cnt_stamp6').textContent = cnt_stamp6;
+      document.getElementById('bar').value = cnt_stamp6;
 
       marker6[i].setIcon({
                 url: 'http://maps.google.co.jp/mapfiles/ms/icons/red.png'
@@ -165,14 +165,14 @@ function hasira() {
   if (cb == true) {
     // チェックボックスがチェックされていればマーカ表示
     //alert('true');
-    for (var i = 0; i < cnt1; i++) {
+    for (var i = 0; i < cnt6; i++) {
       marker6[i].setVisible(true);
     }
 
   } else {
     // チェックボックスがチェックされていなければ非表示
     //alert('false');
-    for (var i = 0; i < cnt1; i++) {
+    for (var i = 0; i < cnt6; i++) {
       marker6[i].setVisible(false);
     }
   }
