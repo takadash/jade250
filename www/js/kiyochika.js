@@ -80,7 +80,7 @@ kiyochikaData.order("createData", true)
         // 吹き出しに表示する内容
         content:
         '<div class="map">' + kiyotitle[i] + '</div>' + '地域　　　　　　' + city[i] + kiyo_area1[i] + ' ' + kiyo_area2[i] + 
-        '<br>景物　　　　　　' + obj[i] + '<br>' + stampclick[i] + '<br>' + '<img src= "https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=kiyochika&file='+ file_url[i] + '.jpg&size=100" onclick="showTemplateDialog()">'
+        '<br>景物　　　　　　' + obj[i] + '<br>' + stampclick[i] + '<br>' + '<img src= "https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=kiyochika&file='+ file_url[i] + '.jpg&size=100" onclick="showTemplateDialog(\'' + file_url[i] + '\')">'
         + '<br>' //+ url_click[i]
         //サンプル画像のurl
         //https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=kiyochika&file=G2-28.jpg&size=100
@@ -226,15 +226,26 @@ function kiyochika() {
   }
 }
 
+
+
 //仮
-var showTemplateDialog = function() {
+function showTemplateDialog(hikisuu) {
   var dialog = document.getElementById('my-dialog');
 
+    //仮
+    function urlchange(){
+    var url_url = 'https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=kiyochika&file='+ hikisuu +  '.jpg&size=100';
+    //alert('yes');
+    document.getElementById('testlog').src = url_url;
+  }
+
   if (dialog) {
+    urlchange();
     dialog.show();
   } else {
     ons.createElement('dialog.html', { append: true })
       .then(function(dialog) {
+        urlchange();
         dialog.show();
       });
   }
