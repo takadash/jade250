@@ -23,7 +23,7 @@ hasiraData.order("createData", true)
   .fetchAll()
   .then(function(results) {
     //全件検索に成功した場合の処理
-    alert('取得に成功');
+    //alert('取得に成功');
 
     var lat = [];
     var lng = [];

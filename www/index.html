@@ -14,8 +14,6 @@
   <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
   <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-
   <script>
     // Page init event
     document.addEventListener('init', function(event) {
@@ -70,25 +68,9 @@
         <div class="center">利用規約</div>
       </ons-toolbar>
 
-<!--       <ul class="link_list">
-        <li>クリック0</li>
-         <li>クリック1</li>
-        <li>クリック2</li>
-        <li>クリック3</li>
-      </ul>
-
-      <div class="box">
-        <div class="box_inner">
-           ↓ここに.load_xxが入る
-          <ul class="box_load"> </ul>  ↑ここに.load_xxが入る
-          <div class="close"> 閉じる </div>
-        </div>
-      </div>
-      <div class="box_cover"> </div> -->
-
       <div class="content" style="text-align: center">
 
-        <p>この利用規約（以下，「本規約」といいます。）は，日本大学文理学部（以下，「当大
+         <p>この利用規約（以下，「本規約」といいます。）は，日本大学文理学部（以下，「当大
           学」といいます。）が提供する江戸・東京ものがたり（以下，「本アプリ」といいます
           。）の利用条件を定めるものです。どなたでも本アプリの利用は可能ですが、利用者（以
           下，「ユーザー」といいます。）は、本規約に定める事項を承諾の上ご利用ください。
@@ -121,7 +103,8 @@
               <script src="js/kiyochika.js"></script>
               <script src="js/kyoden.js"></script>
               <script src="js/hasira.js"></script>
-              <script src="js/edo.js"></script>
+              <!-- データベースをまだ入れていないため、コメントアウト -->
+              <!-- <script src="js/edo.js"></script> -->
 
               <ons-list-header>ピン選択</ons-list-header>
 
@@ -281,9 +264,23 @@
           </script>
         </ons-page>
       </template>
-
     </ons-page>
   </template>
+
+<!-- テストテンプレート -->
+<template id="dialog.html">
+  <ons-dialog id="my-dialog">
+    <div><div style="text-align: center; padding: 5px;">
+      <p>
+        <img src= https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=kiyochika&file=G2-28.jpg&size=400>
+      </p>
+      <p>
+        <ons-button onclick="hideDialog('my-dialog')">Close</ons-button>
+      </p>
+    </div>
+  </ons-dialog>
+</template>
+
 </body>
 
 </html>

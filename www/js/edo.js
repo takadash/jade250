@@ -19,7 +19,7 @@ var cnt_edo = 0;
 document.getElementById('cnt_edo').textContent = cnt_edo;
 document.getElementById('bar7').value = 0;
 
-kabukiData.order("createData", true)
+edoData.order("createData", true)
   .fetchAll()
   .then(function(results) {
     //全件検索に成功した場合の処理
@@ -47,7 +47,8 @@ kabukiData.order("createData", true)
 
       stamplat7[i] = lat1[i];
       stamplng7[i] = lng1[i];
-      stampclick7[i] = '<div id="stamp"><ons-button onclick ="stamp_push1(' + i + ')">スタンプ</ons-button></div>' + '<div id="btn">'
+      stampclick7[i] = '<div id="stamp"><ons-button onclick ="stamp_push1(' 
+                      + i + ')">スタンプ</ons-button></div>' + '<div id="btn">'
       //ピンたて
       markerLatLng = {
         lat: lat1[i],
@@ -63,7 +64,9 @@ kabukiData.order("createData", true)
       });
 
       infoWindow7[i] = new google.maps.InfoWindow({ // 吹き出しの追加
-        content: '<div class="map">' + title[i] + '</div>' + '地名　　　　　　' + name[i] + '<br>参考文献　　　　' + bibliography[i] + volume[i] + page[i] + '<br>' + title[i] + text[i] + '<br>' + stampclick7[i] // 吹き出しに表示する内容
+        content: '<div class="map">' + title[i] + '</div>' + '地名　　　　　　' + 
+        name[i] + '<br>参考文献　　　　' + bibliography[i] + volume[i] + page[i] + 
+        '<br>' + title[i] + text[i] + '<br>' + stampclick7[i] // 吹き出しに表示する内容
       });
       markerEvent1(i); // マーカーにクリックイベントを追加
 
@@ -140,7 +143,7 @@ function stamp_push1(i) {
       document.getElementById('bar').value = cnt_edo;
 
       marker7[i].setIcon({
-                url: 'http://maps.google.co.jp/mapfiles/ms/icons/green.png'
+                url: 'http://maps.google.co.jp/mapfiles/ms/icons/pink.png'
             });
 
     } else {
@@ -160,10 +163,10 @@ function stamp_push1(i) {
 
 
 // チェックボックスがクリックされると呼び出されるfunction
-function kabuki() {
+function edo() {
   // checkboxのElementを取得
   // var cb = document.getElementById("check-1");
-  var cb = document.form1.check_7.checked;
+  var cb = document.form7.check_7.checked;
   //console.log(cb);
 
   if (cb == true) {

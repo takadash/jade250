@@ -38,6 +38,7 @@ kiyochikaData.order("createData", true)
     var obj = [];
 
     var img_url = [];
+    var file_url = [];
 
     for (var i = 0; i < results.length; i++, cnt5++) {
       var object = results[i];
@@ -51,12 +52,15 @@ kiyochikaData.order("createData", true)
 
       //仮
       img_url[i] = object.img_url;
+      file_url[i] = object.file_url;
+
 
       stamplat5[i] = lat5[i];
       stamplng5[i] = lng5[i];
       stampclick[i] = '<div id="stamp"><ons-button onclick="stamp_push5(' + i + ')">スタンプ</button></div>' + '<div id="btn">'
       //仮urlボタン
-      url_click[i] = '<div id="kiyo_img"><ons-button onclick="kiyo_img_push(' + i + ')">url</button></div>'
+      //url_click[i] = '<div id="kiyo_img"><ons-button onclick="kiyo_img_push(' + i + ')">url</button></div>'
+      url_click[i] = '<ons-button onclick="showTemplateDialog()">Show Dialog</ons-button>';
       //ピンたて
       markerLatLng = {
         lat: lat5[i],
@@ -72,11 +76,14 @@ kiyochikaData.order("createData", true)
       });
 
       infoWindow5[i] = new google.maps.InfoWindow({ // 吹き出しの追加
+        maxWidth: 1000,
         // 吹き出しに表示する内容
         content:
         '<div class="map">' + kiyotitle[i] + '</div>' + '地域　　　　　　' + city[i] + kiyo_area1[i] + ' ' + kiyo_area2[i] + 
-        '<br>景物　　　　　　' + obj[i] + '<br>' + stampclick[i] + '<br>' + '<img src= https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=kiyochika&file=G2-28.jpg&size=100>'
-
+        '<br>景物　　　　　　' + obj[i] + '<br>' + stampclick[i] + '<br>' + '<img src= "https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=kiyochika&file='+ file_url[i] + '.jpg&size=100" onclick="showTemplateDialog()">'
+        + '<br>' //+ url_click[i]
+        //サンプル画像のurl
+        //https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=kiyochika&file=G2-28.jpg&size=100
         //content: '<iframe src=' + img_url[i] + ' >' + '</iframe>'
       });
 
@@ -86,6 +93,7 @@ kiyochikaData.order("createData", true)
         //content: '<img src= https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=kiyochika&file=G2-31.jpg&size=890>'
         //イラストやurl '<img src= https:www.rbbtoday.com/imgs/p/RqJIzsl7cmxG8-cARbeaqilNLEDQQ0JFREdG/510534.jpg>'
       });
+
       markerEvent5(i); // マーカーにクリックイベントを追加
       //仮清親画像表示
       urlEvent(i);
@@ -191,7 +199,8 @@ function kiyo_img_push(i){
   //後で入れる
   //var hyouzi = document.getElementById("kiyo_img");
   //alert('true');
-  url_infoWindow[i].open(map, marker5[i]);
+  //url_infoWindow[i].open(map, marker5[i]);
+
 }
 
 
@@ -217,71 +226,22 @@ function kiyochika() {
   }
 }
 
-// jQuery(function () {
-//   var box = jQuery('.box');
-//   var link = jQuery('.link_list li ');
-//   var box_cover = jQuery('.box_cover');
-//   var close = jQuery('.close');
-//   var box_load = jQuery('.box_load');
-//   var box_load_li = jQuery('.box_load>li');
-//   // box_load内に要素を入れる 
-//   // ①新しい配列all_linkを作る 
-//   // ②link_listの中のliがいくつあるのか取ってきてforで回す
-//   // ③配列all_linkに171115_0.html、171115_1.html・・・のような感じで値を格納する 
-//   // ④box_loadの中にlink_listのliの数だけ'<li class="load_'+i+'"></li>を増やす 
-//   // ⑤<li class="load_'+i+'"></li>に配列all_link[i]をloadする 
-//   // ※load_0に対応するのはall_link[0](←配列の1番目。配列は0から始まります) 
+//仮
+var showTemplateDialog = function() {
+  var dialog = document.getElementById('my-dialog');
 
-//   //var all_link = new Array();
-//   //var links = jQuery('.link_list').find('li'); 
+  if (dialog) {
+    dialog.show();
+  } else {
+    ons.createElement('dialog.html', { append: true })
+      .then(function(dialog) {
+        dialog.show();
+      });
+  }
+};
 
-//   // for (var i = 0; i < links.length; i++) { 
-//   //   all_link[i] = '171115_' + i + '.html'; 
-//   //   box_load.append('<li class="load_' + i + '"></li>'); 
-//   //   jQuery('.load_' + i).load(all_link[i]); 
-//   // }
-
-//   var all_link = 'https://www.chs.nihon-u.ac.jp/';
-//   var links = jQuery('.link?list').find('li');
-//   box_load.append('<li class="load_0"></li>');
-//   jQuery('.load_').load(all_link);
-
-//   //一度box_load>liを非表示にする
-//   jQuery('.box_load>li').hide();
-//   // linkをクリックしたとき 
-//   link.on('click', function () {
-//     alert('true!');
-//     //link.index(this)で、クリックされたliを指定する
-//     var li_index = link.index(this); 
-//     jQuery('.box_load>li').removeClass('active');
-//     jQuery('.load_' + li_index).addClass('active'); 
-//     jQuery('.box_load>li').hide();
-//     jQuery('.box_load >li.active').show();
-//     //もし.boxに「active」というクラスがあったら
-//     if (box.hasClass('active')) {
-//       box.removeClass('active');
-//       box_cover.removeClass('active');
-//       close.removeClass('active');
-//       jQuery('.box_load>li').removeClass('active');
-//     } else {
-//       // もしないなら
-//       box.addClass('active');
-//       box_cover.addClass('active');
-//       close.addClass('active');
-//     }
-//   });
-//   //box_coverをクリックしたとき
-//   box_cover.on('click', function () {
-//     box.removeClass('active');
-//     box_cover.removeClass('active');
-//     close.removeClass('active');
-//     jQuery('.box_load>li').removeClass('active');
-//   });
-//   //closeをクリックしたとき 
-//   close.on('click', function () {
-//     box.removeClass('active');
-//     box_cover.removeClass('active');
-//     close.removeClass('active');
-//     jQuery('.box_load>li').removeClass('active');
-//   });
-// });
+var hideDialog = function(id) {
+  document
+    .getElementById(id)
+    .hide();
+};
