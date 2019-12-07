@@ -242,47 +242,43 @@
             </div>
 
             <div class="center">Main</div>
-          </ons-toolbar>
-          <style>
+            </ons-toolbar>
+              <style>
             /* Set the size of the div element that contains the map */
-            #map {
-              height: 100%;
+                #map {
+                  height: 100%;
               /* The height is 400 pixels */
-              width: 100%;
+                  width: 100%;
               /* The width is the width of the web page */
-            }
-          </style>
-          <div id="map"></div>
-
-          <ons-fab position="left bottom" (click)="onClick()">
+                }
+              </style>
+            <div id="map"></div>
+            <ons-fab position="left bottom" (click)="onClick()">
         <!-- <ons-icon icon="locate"></ons-icon> -->
-        <ion-icon name="locate"></ion-icon>
-      </ons-fab>
-
-
-          <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXueT8O-UOJmfh2M-1Xh1IbfKWNXv-coU&callback=initMap">
+              <ion-icon name="locate"></ion-icon>
+            </ons-fab>
+            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXueT8O-UOJmfh2M-1Xh1IbfKWNXv-coU&callback=initMap">
           </script>
         </ons-page>
       </template>
     </ons-page>
   </template>
 
-<!-- テストテンプレート -->
-<template id="dialog.html">
-  <ons-dialog id="my-dialog">
-    <div><div style="text-align: center; padding: 5px;">
-      <p>
-        <div>
-        <img id="testlog" src= "https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=kiyochika&file=G2-28.jpg&size=300">
+ <!-- テストテンプレート -->
+  <template id="kiyochika_dialog.html">
+    <ons-dialog id="my-dialog">
+      <div>
+        <div style="text-align: center; padding: 5px;">
+          <p>
+            <img id="kiyochika_img">
+          </p>
+          <p>
+            <ons-button onclick="hideDialog('my-dialog')">Close</ons-button>
+          </p>
+        </div>
       </div>
-      </p>
-      <p>
-        <ons-button onclick="hideDialog('my-dialog')">Close</ons-button>
-      </p>
-    </div>
-  </ons-dialog>
-</template>
-
+    </ons-dialog>
+  </template>
 </body>
 
 </html>
