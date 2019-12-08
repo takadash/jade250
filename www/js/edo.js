@@ -26,7 +26,7 @@ document.getElementById('bar7').value = 0;
     .fetchAll()
     .then(function(results) {
       //全件検索に成功した場合の処理
-      // alert('取得に成功');
+      // alert('1');
       var text_id = [];
       var head = [];
       var category = [];
@@ -42,7 +42,7 @@ document.getElementById('bar7').value = 0;
       .fetchAll()
       .then(function(results) {
         //全件検索に成功した場合の処理
-        // alert('取得に成功');
+        // alert('2');
         var text_id = [];
         var head = [];
         var category = [];
@@ -63,7 +63,7 @@ document.getElementById('bar7').value = 0;
         .fetchAll()
         .then(function(results) {
           //全件検索に成功した場合の処理
-          // alert('picture取得に成功');
+          // alert('3');
           // alert(results.length);
 
           for(var i = 0; i < results.length; i++) {
@@ -81,12 +81,13 @@ document.getElementById('bar7').value = 0;
           console.log(results.length);
         });
 
+        function callback() {
         edoData.order("createData", true)
           .limit(500)
           .fetchAll()
           .then(function(results) {
             //全件検索に成功した場合の処理
-            // alert('取得に成功');
+            // alert('4');
             var lat = [];
             var lng = [];
             var title = [];
@@ -166,6 +167,8 @@ document.getElementById('bar7').value = 0;
             //全件検索に失敗した場合の処理
             //alert('取得に失敗しました');
           });
+        }
+        setTimeout(callback, 1000)
 
 function stamp_push1(i) {
   //alert('true');
