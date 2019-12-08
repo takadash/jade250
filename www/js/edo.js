@@ -115,7 +115,7 @@ document.getElementById('bar7').value = 0;
 
               var infoWindowContent = [];
               for(var k = 0; k < ar_point.length; k++) {
-              infoWindowContent.push('地名（広域）：　','<br>');
+              infoWindowContent += '地名（広域）：　' + '<br>';
             }
             // console.log(ar_point.length);
             console.log(infoWindowContent);
