@@ -190,14 +190,14 @@ function showTemplateDialog(file_url_i) {
 
     function urlchange(){
     var url = 'https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=kiyochika&file='+ file_url_i +  '.jpg&size=400';
-    document.getElementById('kiyochika_img').src = url;
+    document.getElementById('picture').src = url;
   }
 
   if (dialog) {
     urlchange();
     dialog.show();
   } else {
-    ons.createElement('kiyochika_dialog.html', { append: true })
+    ons.createElement('picture_dialog.html', { append: true })
       .then(function(dialog) {
         urlchange();
         dialog.show();
