@@ -79,10 +79,10 @@ function getMyPlace() {
 
 
   function success(position) {
-    // var latitude  = position.coords.latitude;//緯度
-    // var longitude = position.coords.longitude;//経度
-    var latitude = 35.693944
-    var longitude = 139.753611
+    var latitude  = position.coords.latitude;//緯度
+    var longitude = position.coords.longitude;//経度
+    // var latitude = 35.693944
+    // var longitude = 139.753611
     //output.innerHTML = '<p>緯度 ' + latitude + '° <br>経度 ' + longitude + '°</p>';
 
     // 位置情報
