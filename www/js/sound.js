@@ -1,8 +1,7 @@
 //音源
 var sound = new Audio();
+//document.getElementById('cnt_stamp').textContent = cnt_stamp;
 sound.volume = 0.1;
-//document.getElementById('vol_range').style="width:100%";
-
 function click_sound() {
   sound.src = "components/decision22.mp3";
   sound.play();
@@ -44,5 +43,5 @@ function sound_minus(){
     sound.src = "components/decision29.mp3";
     sound.play();
     console.log(sound.volume);
-  } 
+  }
 }

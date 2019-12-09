@@ -11,6 +11,7 @@ var currentInfoWindow = null;
 var stampclick = [];
 var stamplat5 = [];
 var stamplng5 = [];
+
 //var lat2;
 //var lng2;
 var maker_is_displayed = 0;
@@ -23,19 +24,19 @@ kiyochikaData.order("createData", true)
   .fetchAll()
   .then(function(results) {
     //全件検索に成功した場合の処理
-    // alert('取得に成功');
 
     var lat5 = [];
     var lng5 = [];
-    //var kumi = [];
     var kiyotitle = [];
     var city = [];
     var kiyo_area1 = [];
     var kiyo_area2 = [];
     var obj = [];
+    var file_url = [];
 
     for (var i = 0; i < results.length; i++, cnt5++) {
       var object = results[i];
+
       lat5[i] = object.lat;
       lng5[i] = object.lng;
       kiyotitle[i] = object.title;
@@ -43,10 +44,12 @@ kiyochikaData.order("createData", true)
       kiyo_area1[i] = object.area1;
       kiyo_area2[i] = object.area2;
       obj[i] = object.obj;
+      file_url[i] = object.file_url;
+
 
       stamplat5[i] = lat5[i];
       stamplng5[i] = lng5[i];
-      stampclick[i] = '<div id="stamp"><ons-button onclick="stamp_push5(' + i + ')">スタンプ</button></div>' + '<div id="btn">'
+      stampclick[i] = '<div id="stamp"><ons-button onclick="stamp_push5(' + i + ')">スタンプ</button></div>' + '<div id="btn">';
       //ピンたて
       markerLatLng = {
         lat: lat5[i],
@@ -62,8 +65,14 @@ kiyochikaData.order("createData", true)
       });
 
       infoWindow5[i] = new google.maps.InfoWindow({ // 吹き出しの追加
-        content: '<div class="map">' + kiyotitle[i] + '</div>' + '地域　　　　　　' + city[i] + kiyo_area1[i] + ' ' + kiyo_area2[i] + '<br>景物　　　　　　' + obj[i] + '<br>' + stampclick[i] // 吹き出しに表示する内容
+        maxWidth: 1000,
+        // 吹き出しに表示する内容
+        content:
+        '<div class="map">' + kiyotitle[i] + '</div>' + '地域　　　　　　' + city[i] + kiyo_area1[i] + ' ' + kiyo_area2[i] + 
+        '<br>景物　　　　　　' + obj[i] + '<br>' + stampclick[i] + '<br>' + 
+        '<img src= "https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=kiyochika&file='+ file_url[i] + '.jpg&size=100" onclick="showTemplateDialog(\'' + file_url[i] + '\')">'
       });
+
       markerEvent5(i); // マーカーにクリックイベントを追加
 
     }
@@ -78,7 +87,6 @@ kiyochikaData.order("createData", true)
         currentInfoWindow = infoWindow5[i];
       });
     }
-
   })
   .catch(function(error) {
     //全件検索に失敗した場合の処理
@@ -86,7 +94,6 @@ kiyochikaData.order("createData", true)
   });
 
 function stamp_push5(i) {
-  //alert('true');
   var hyouzi = document.getElementById("stamp");
   var btn_display = document.getElementById("btn");
   stamp_lat = stamplat5[i];
@@ -170,7 +177,6 @@ function kiyochika() {
 
   if (cb5 == true) {
     // チェックボックスがチェックされていればマーカ表示
-    //alert('true');
     for (var i = 0; i < cnt5; i++) {
       marker5[i].setAnimation(google.maps.Animation.DROP);
       marker5[i].setVisible(true);
@@ -178,9 +184,36 @@ function kiyochika() {
     }
   } else {
     // チェックボックスがチェックされていなければ非表示
-    //alert('false');
     for (var i = 0; i < cnt5; i++) {
       marker5[i].setVisible(false);
     }
   }
 }
+
+//ダイアログ表示
+function showTemplateDialog(file_url_i) {
+  var dialog = document.getElementById('my-dialog');
+
+    function urlchange(){
+    var url = 'https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=kiyochika&file='+ file_url_i +  '.jpg&size=400';
+    document.getElementById('picture').src = url;
+  }
+
+  if (dialog) {
+    urlchange();
+    dialog.show();
+  } else {
+    ons.createElement('picture_dialog.html', { append: true })
+      .then(function(dialog) {
+        urlchange();
+        dialog.show();
+      });
+  }
+};
+//ダイアログ非表示
+function hideDialog(id) {
+  document
+    .getElementById(id)
+    .hide();
+};
+

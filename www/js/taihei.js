@@ -1,3 +1,6 @@
+//url https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=taihey&file=E10-028.jpg&size=400
+
+
 var APPLICATIONKEY = "26cec09426087ef56de1ba79b2291caccf7990b7165dac6910465d5334355ab5";
 var CLIENTKEY = "0ee8fb824e95468f1d7cff3d933ae7373c462f6f523d4bfdee63c7861856be23";
 
@@ -36,6 +39,7 @@ TestData.order("createData", true)
     var town_name_cur = [];
     var tyo_in = [];
     var zinsoku = [];
+    var file_name = [];
 
     for (var i = 0; i < results.length; i++, cnt++) {
       var object = results[i];
@@ -48,6 +52,7 @@ TestData.order("createData", true)
       town_name_cur[i] = object.town_name_cur;
       tyo_in[i] = object.tyo_in;
       zinsoku[i] = object.zinsoku;
+      file_name[i] = object.file_name;
 
       stamplat[i] = lat[i];
       stamplng[i] = lng[i];
@@ -71,7 +76,13 @@ TestData.order("createData", true)
       });
 
       infoWindow4[i] = new google.maps.InfoWindow({ // 吹き出しの追加
-        content: '<div class="map">' + kumi[i] + '</div>' + '町員　　　　　　' + tyo_in[i] + '<br>人足　　　　　　' + zinsoku[i] + '<br>中心地(文字配当図)' + center_moji[i] + '<br>中心地(先頭町名)　' + center_town[i] + '<br><br>' + town_name[i] + '<br>' + stampclick4[i] // 吹き出しに表示する内容
+        // 吹き出しに表示する内容
+        content: 
+        '<div class="map">' + kumi[i] + '</div>' + '町員　　　　　　' + tyo_in[i] + '<br>人足　　　　　　' + zinsoku[i] + 
+        '<br>中心地(文字配当図)' + center_moji[i] + '<br>中心地(先頭町名)　' + center_town[i] + '<br><br>' + town_name[i] + 
+        '<br>' + stampclick4[i] +
+        '<img src= "https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=taihey&file='+ file_name[i] + '.jpg&size=100" onclick="showTemplateDialog2(\'' + file_name[i] + '\')">'
+        //'<img src= "https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=taihey&file=E10-028.jpg&size=400">'
       });
       markerEvent4(i); // マーカーにクリックイベントを追加
 
@@ -198,3 +209,31 @@ function taihei() {
     }
   }
 }
+
+
+//ダイアログ表示
+function showTemplateDialog2(name_url_i) {
+  var dialog = document.getElementById('my-dialog');
+
+    function urlchange_taihey(){
+    var url = 'https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=taihey&file='+ name_url_i +  '.jpg&size=500';
+    document.getElementById('picture').src = url;
+  }
+
+  if (dialog) {
+    urlchange_taihey();
+    dialog.show();
+  } else {
+    ons.createElement('picture_dialog.html', { append: true })
+      .then(function(dialog) {
+        urlchange_taihey();
+        dialog.show();
+      });
+  }
+};
+//ダイアログ非表示
+function hideDialog(id) {
+  document
+    .getElementById(id)
+    .hide();
+};

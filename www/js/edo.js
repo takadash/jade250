@@ -17,70 +17,165 @@ var stamplng_edo = [];
 var maker_is_displayed = 0;
 var pinCnt_edo = 0;
 var cnt_edo = 0;
+const cnt_picture = 592;
 document.getElementById('cnt_edo').textContent = cnt_edo;
 document.getElementById('bar7').value = 0;
 
-edoData.order("createData", true)
-  .limit(500)
-  .fetchAll()
-  .then(function(results) {
-    //全件検索に成功した場合の処理
-    alert('取得に成功');
-    var lat = [];
-    var lng = [];
-    var title = [];
+var text_id = [];
+var head = [];
+var category = [];
+var text = [];
 
-    for (var i = 0; i < results.length; i++, pinCnt_edo++) {
+  edo_textData.order("createData", true)
+    .limit(1000)
+    .fetchAll()
+    .then(function(results) {
+      //全件検索に成功した場合の処理
+      // alert('1');
+      for(var i = 0; i < results.length; i++) {
+      text_id = [];
+      head = [];
+      category = [];
+      text = [];
+    }
+
+      // alert(results.length);
       console.log(results.length);
-      var object = results[i];
-      lat[i] = parseFloat(object.lat);
-      lng[i] = parseFloat(object.lng);
-      title[i] = object.title;
+    });
 
-      stamplat_edo[i] = lat[i];
-      stamplng_edo[i] = lng[i];
-      stampclick_edo[i] = '<div id="stamp"><ons-button onclick ="stamp_push1('
-                      + i + ')">スタンプ</ons-button></div>' + '<div id="btn">'
-      //ピンたて
-      markerLatLng = {
-        lat: lat[i],
-        lng: lng[i]
-      };
-      marker_edo[i] = new google.maps.Marker({
-        position: markerLatLng,
-        map: map,
-        visible: false, // 最初は非表示
-        icon: {
-          url: 'https://maps.google.com/mapfiles/ms/icons/pink-dot.png'
+    edo_textData.order("createData", true)
+      .skip(1000)
+      .limit(200)
+      .fetchAll()
+      .then(function(results) {
+        //全件検索に成功した場合の処理
+        // alert('2');
+
+
+        console.log(results.length);
+      });
+
+      var point_id_pic = [];
+      var point_narrow = [];
+      var point_wide = [];
+      var text_id_main = [];
+      var text_id_sub = [];
+      var picture = [];
+
+      edo_pictureData.order("createData", true)
+        .limit(600)
+        .fetchAll()
+        .then(function(results) {
+          //全件検索に成功した場合の処理
+          // alert('3');
+          // alert(results.length);
+
+          for(var i = 0; i < results.length; i++) {
+            var object = results[i];
+
+            point_id_pic[i] = object.point_id;
+            point_narrow[i] = object.point_narrow;
+            point_wide[i] = object.point_wide;
+            text_id_main[i] = object.text_id_main;
+            text_id_sub[i] = object.text_id_sub;
+            picture[i] = object.picture;
+          }
+
+          // alert(results.length);
+          console.log(results.length);
+        });
+
+        function callback() {
+        edoData.order("createData", true)
+          .limit(500)
+          .fetchAll()
+          .then(function(results) {
+            //全件検索に成功した場合の処理
+            // alert('4');
+            var lat = [];
+            var lng = [];
+            var title = [];
+            var point_id = [];
+
+            for (var i = 0; i < results.length; i++, pinCnt_edo++) {
+              console.log(results.length);
+              var object = results[i];
+              lat[i] = parseFloat(object.lat);
+              lng[i] = parseFloat(object.lng);
+              title[i] = object.title;
+              point_id[i] = object.point_id;
+
+              var ar_point = [];
+              console.log("cnt_picture: " + "%d", cnt_picture);
+
+              for(var j = 0; j < cnt_picture; j++) {
+                // console.log("point_id：" + "%s", point_id[i]);
+                // console.log("point_id：" + "%s", point_id_pic[j]);
+                if(point_id[i] == point_id_pic[j]) {
+                  ar_point.push(j);
+                  console.log("一致: " + "%d",point_id[i]);
+                }
+              }
+
+              var infoWindowContent = [];
+              for(var k = 0; k < ar_point.length; k++) {
+              infoWindowContent += '地名（広域）：　' + point_wide[ar_point[k]] + '<br>' +
+                                   '地名（狭域）：　' + point_narrow[ar_point[k]] + '<br>' +
+                                   '画中詞：　' + '<br>' +
+                                   '本文：　' + '<br>';
+            }
+            // console.log(ar_point.length);
+            console.log(infoWindowContent);
+
+              stamplat_edo[i] = lat[i];
+              stamplng_edo[i] = lng[i];
+              stampclick_edo[i] = '<div id="stamp"><ons-button onclick ="stamp_push1('
+                              + i + ')">スタンプ</ons-button></div>' + '<div id="btn">'
+              //ピンたて
+              markerLatLng = {
+                lat: lat[i],
+                lng: lng[i]
+              };
+              marker_edo[i] = new google.maps.Marker({
+                position: markerLatLng,
+                map: map,
+                visible: false, // 最初は非表示
+                icon: {
+                  url: 'https://maps.google.com/mapfiles/ms/icons/pink-dot.png'
+                }
+              });
+
+              // infoWindowContent.join('');
+              // console.log(infoWindowContent);
+
+              infoWindow_edo[i] = new google.maps.InfoWindow({ // 吹き出しの追加
+                // content: '<div class="map">' + title[i] + '</div>' + '地名　　　　　　' +
+                // name[i] + '<br>参考文献　　　　' + bibliography[i] + volume[i] + page[i] +
+                // '<br>' + title[i] + text[i] + '<br>' + stampclick_edo[i] // 吹き出しに表示する内容
+                content: '<div class="map">' + title[i] + '<br>' + infoWindowContent + '</div>' + '<br>' + stampclick_edo[i]
+              });
+              markerEvent_edo(i); // マーカーにクリックイベントを追加
+
+            }
+
+            // マーカーにクリックイベントを追加
+            function markerEvent_edo(i) {
+              marker_edo[i].addListener('click', function() { // マーカーをクリックしたとき
+                if (currentInfoWindow) { //currentInfoWindowに値があるならば
+                  currentInfoWindow.close(); //開いていた吹き出しを閉じる
+                }
+                infoWindow_edo[i].open(map, marker_edo[i]); // 吹き出しの表示
+                currentInfoWindow = infoWindow_edo[i];
+              });
+            }
+            // alert(pinCnt_edo);
+          })
+          .catch(function(error) {
+            //全件検索に失敗した場合の処理
+            //alert('取得に失敗しました');
+          });
         }
-      });
-
-      infoWindow_edo[i] = new google.maps.InfoWindow({ // 吹き出しの追加
-        // content: '<div class="map">' + title[i] + '</div>' + '地名　　　　　　' +
-        // name[i] + '<br>参考文献　　　　' + bibliography[i] + volume[i] + page[i] +
-        // '<br>' + title[i] + text[i] + '<br>' + stampclick_edo[i] // 吹き出しに表示する内容
-        content: '<div class="map">' + title[i] + '</div>' + '<br>' + stampclick_edo[i]
-      });
-      markerEvent_edo(i); // マーカーにクリックイベントを追加
-
-    }
-
-    // マーカーにクリックイベントを追加
-    function markerEvent_edo(i) {
-      marker_edo[i].addListener('click', function() { // マーカーをクリックしたとき
-        if (currentInfoWindow) { //currentInfoWindowに値があるならば
-          currentInfoWindow.close(); //開いていた吹き出しを閉じる
-        }
-        infoWindow_edo[i].open(map, marker_edo[i]); // 吹き出しの表示
-        currentInfoWindow = infoWindow_edo[i];
-      });
-    }
-    alert(pinCnt_edo);
-  })
-  .catch(function(error) {
-    //全件検索に失敗した場合の処理
-    //alert('取得に失敗しました');
-  });
+        setTimeout(callback, 1000)
 
 function stamp_push1(i) {
   //alert('true');
