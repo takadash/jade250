@@ -114,7 +114,7 @@
           <input type="checkbox" id="label1" />
           <div class="hidden_show">
             <ons-button id="push-button">START</ons-button>
-          </div> 
+          </div>
 
       </ons-bottom-toolbar>
 
@@ -179,6 +179,7 @@
               </ons-list-item>
 
               <ons-list-item>
+               <li  align="center" id="comp" style="z-index: 2;"></li>
                 <meter id="bar" min="0" max="23"  style="width: 100%; height: 30px;"></meter>
               </ons-list-item>
 
@@ -186,16 +187,11 @@
                 <!-- <div id="cnt_kyoden"></div>/64<span class="item_label">京伝黄表紙</span> -->
                 <span class="item_label">京伝黄表紙</span><img src="https://maps.google.com/mapfiles/ms/icons/yellow-dot.png" width="20" height="20" border="0" />（<div id="cnt_kyoden"></div>/64）
               </ons-list-item>
+
               <ons-list-item>
                 <!-- <div id="bar2" style="background-color: yellow; font-size: 10px;">&nbsp;</div> -->
-                <table style="width: 100%; height: 13px; border:1px solid #4f4f48; z-index: 0;">
-                  <tr>
-                    <td align="left">
-                      <div id="bar2" style="background-color: yellow; font-size: 13px; z-index: 1;">&nbsp;</div>
-                    </td>
-                    <td align="center" id="comp" style="z-index: 2;"></td>
-                  </tr>
-                </table>
+                <li align="center" id="comp2" style="z-index: 2;"></li>
+                <meter id="bar2" min="0" max="64"  style="width: 100%; height: 30px;"></meter>
               </ons-list-item>
 
 
@@ -205,6 +201,7 @@
               </ons-list-item>
 
               <ons-list-item>
+                <li align="center" id="comp4" style="z-index: 2;"></li>
                 <meter id="bar4" min="0" max="64"  style="width: 100%; height: 30px;"></meter>
               </ons-list-item>
 
@@ -212,9 +209,25 @@
                 <span class="item_label">小林清親版画</span><img src="https://maps.google.com/mapfiles/ms/icons/blue-dot.png" width="20" height="20" border="0" />（<div id="cnt_kiyochika"></div>/56）
               </ons-list-item>
               <ons-list-item>
+                <li align="center" id="comp5" style="z-index: 2;"></li>
                 <meter id="bar5" min="0" max="56"  style="width: 100%; height: 30px;"></meter>
               </ons-list-item>
-<!--
+
+              <ons-list-item modifier="nodivider">
+                <span class="item_label">千代田区標柱</span><img src="https://maps.google.com/mapfiles/ms/icons/purple-dot.png" width="20" height="20" border="0" />（<div id="cnt_stamp6"></div>/56）
+              </ons-list-item>
+              <ons-list-item>
+                <meter id="bar6" min="0" max="56"  style="width: 100%; height: 30px;"></meter>
+              </ons-list-item>
+
+              <ons-list-item modifier="nodivider">
+                <span class="item_label">江戸名所図会</span><img src="https://maps.google.com/mapfiles/ms/icons/pink-dot.png" width="20" height="20" border="0" />（<div id="cnt_edo"></div>/56）
+              </ons-list-item>
+              <ons-list-item>
+                <meter id="bar7" min="0" max="56"  style="width: 100%; height: 30px;"></meter>
+              </ons-list-item>
+
+
               <ons-list-header>現在地の更新</ons-list-header>
               <ons-list-item onclick="getMyPlace()" tappeble>
                 <ons-button>更新</ons-button>

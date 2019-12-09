@@ -147,6 +147,11 @@ function stamp_push1(i) {
                 url: 'http://maps.google.co.jp/mapfiles/ms/icons/green.png'
             });
 
+      if(cnt_stamp == 23) {
+        var comp = document.getElementById("comp");
+        comp.innerHTML = "C O M P L E T E ！";
+      }      
+
     } else {
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
       alert('遠くてスタンプが押せませんでした');

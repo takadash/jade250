@@ -157,6 +157,11 @@ function stamp_push4(i) {
                 url: 'http://maps.google.co.jp/mapfiles/ms/icons/red.png'
             });
 
+      if(cnt_taihei == 64) {
+        var comp = document.getElementById("comp4");
+        comp.innerHTML = "C O M P L E T E ！";
+      }
+
     } else {
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
       alert('遠くてスタンプが押せませんでした');

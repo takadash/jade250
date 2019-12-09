@@ -17,7 +17,7 @@ var maker_is_displayed = 0;
 var cnt2 = 0;
 var cnt_kyoden = 0;
 document.getElementById('cnt_kyoden').textContent = cnt_kyoden;
-document.getElementById('bar2').style.width = "0px";
+document.getElementById('bar2').value= 0;
 
 kyodenData.order("createData", true)
   .fetchAll()
@@ -138,16 +138,16 @@ function stamp_push2(i) {
       btn_display.insertAdjacentHTML('afterbegin', '<img src="human_pictures/human_red.png">');
       cnt_kyoden++;
       document.getElementById('cnt_kyoden').textContent = cnt_kyoden;
-      document.getElementById('bar2').style.width = (cnt_kyoden/64.0*100) + '%';
-
-      if(true) {
-        var comp = document.getElementById("comp");
-        comp.innerHTML = "C O M P L E T E ！";
-      }
+      document.getElementById('bar2').value = cnt_kyoden;
 
       marker2[i].setIcon({
                 url: 'http://maps.google.co.jp/mapfiles/ms/icons/yellow.png'
             });
+
+      if(cnt_kyoden == 64) {
+        var comp = document.getElementById("comp2");
+        comp.innerHTML = "C O M P L E T E ！";
+      }
 
     } else {
       alert('遠くてスタンプが押せませんでした');
