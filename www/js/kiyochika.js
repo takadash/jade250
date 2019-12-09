@@ -167,6 +167,7 @@ function kiyochika() {
     // チェックボックスがチェックされていればマーカ表示
     //alert('true');
     for (var i = 0; i < cnt5; i++) {
+      marker5[i].setAnimation(google.maps.Animation.DROP);
       marker5[i].setVisible(true);
 
     }

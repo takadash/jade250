@@ -60,6 +60,7 @@ kabukiData.order("createData", true)
         icon: {
           url: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
         }
+        //animation: google.maps.Animation.DROP
       });
 
       infoWindow1[i] = new google.maps.InfoWindow({ // 吹き出しの追加
@@ -81,6 +82,7 @@ kabukiData.order("createData", true)
     }
 
   })
+
   .catch(function(error) {
     //全件検索に失敗した場合の処理
     //alert('取得に失敗しました');
@@ -93,6 +95,8 @@ function stamp_push1(i) {
   stamp_lat = stamplat1[i];
   stamp_lng = stamplng1[i];
 
+  var toast = document.getElementById("map");
+  var myToast = document.getElementById("myToast");
 
   // 現在位置プログラム
   if (!navigator.geolocation) { //Geolocation apiがサポートされていない場合
@@ -151,7 +155,13 @@ function stamp_push1(i) {
 
   function error() {
     //エラーの場合
-    hyouzi.innerHTML = "座標位置を取得できません";
+    // hyouzi.innerHTML = "座標位置を取得できません";
+    // alert('座標位置を取得できません');
+    // '<ons-toast id="myToast" animation="ascend">FABs up!<button onclick="myToast.hide()">ok</button></ons-toast>'
+    // toast.insertAdjacentHTML('afterbegin',"ons.notification.toast('Hi there!', { timeout: 1000, animation: 'fall' })");
+    // toast.insertAdjacentHTML('afterbegin','<div class="toast"><div class="toast__message">Message Message Message Message Message Message</div><button class="toast__button">ACTION</button></div>');
+    // myToast.show();
+    ons.notification.toast('座標位置を取得できません', { timeout: 2000, animation: 'ascend' })
   };
   navigator.geolocation.getCurrentPosition(Success, error); //成功と失敗を判断
 
@@ -170,6 +180,7 @@ function kabuki() {
     // チェックボックスがチェックされていればマーカ表示
     //alert('true');
     for (var i = 0; i < cnt1; i++) {
+      marker1[i].setAnimation(google.maps.Animation.DROP);
       marker1[i].setVisible(true);
     }
 

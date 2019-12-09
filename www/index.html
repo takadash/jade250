@@ -214,13 +214,13 @@
               <ons-list-item>
                 <meter id="bar5" min="0" max="56"  style="width: 100%; height: 30px;"></meter>
               </ons-list-item>
-
+<!--
               <ons-list-header>現在地の更新</ons-list-header>
               <ons-list-item onclick="getMyPlace()" tappeble>
                 <ons-button>更新</ons-button>
                 <div id="result"></div>
               </ons-list-item>
-
+-->
             </ons-list>
           </ons-page>
         </ons-splitter-side>
@@ -230,6 +230,7 @@
 
       <template id="home.html">
         <ons-page>
+          <script>getMyPlace();</script>
           <ons-toolbar>
             <div class="left">
               <ons-toolbar-button onclick="fn.open()">
@@ -250,10 +251,15 @@
           </style>
           <div id="map"></div>
 
-          <ons-fab position="left bottom" (click)="onClick()">
+          <ons-fab position="left bottom" onclick="getMyPlace()">
         <!-- <ons-icon icon="locate"></ons-icon> -->
-        <ion-icon name="locate"></ion-icon>
+        <ion-icon name="locate" id="result"></ion-icon>
       </ons-fab>
+
+      <ons-toast id="myToast" animation="ascend">
+        FABs up!
+        <button onclick="myToast.hide()">ok</button>
+      </ons-toast>
 
           <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXueT8O-UOJmfh2M-1Xh1IbfKWNXv-coU&callback=initMap">
           </script>
