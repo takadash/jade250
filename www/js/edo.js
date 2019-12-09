@@ -21,16 +21,23 @@ const cnt_picture = 592;
 document.getElementById('cnt_edo').textContent = cnt_edo;
 document.getElementById('bar7').value = 0;
 
+var text_id = [];
+var head = [];
+var category = [];
+var text = [];
+
   edo_textData.order("createData", true)
     .limit(1000)
     .fetchAll()
     .then(function(results) {
       //全件検索に成功した場合の処理
       // alert('1');
-      var text_id = [];
-      var head = [];
-      var category = [];
-      var text = [];
+      for(var i = 0; i < results.length; i++) {
+      text_id = [];
+      head = [];
+      category = [];
+      text = [];
+    }
 
       // alert(results.length);
       console.log(results.length);
@@ -43,10 +50,7 @@ document.getElementById('bar7').value = 0;
       .then(function(results) {
         //全件検索に成功した場合の処理
         // alert('2');
-        var text_id = [];
-        var head = [];
-        var category = [];
-        var text = [];
+
 
         console.log(results.length);
       });
@@ -115,7 +119,10 @@ document.getElementById('bar7').value = 0;
 
               var infoWindowContent = [];
               for(var k = 0; k < ar_point.length; k++) {
-              infoWindowContent += '地名（広域）：　' + '<br>';
+              infoWindowContent += '地名（広域）：　' + point_wide[ar_point[k]] + '<br>' +
+                                   '地名（狭域）：　' + point_narrow[ar_point[k]] + '<br>' +
+                                   '画中詞：　' + '<br>' +
+                                   '本文：　' + '<br>';
             }
             // console.log(ar_point.length);
             console.log(infoWindowContent);
