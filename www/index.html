@@ -56,6 +56,12 @@
       <ons-toolbar>
         <div class="center">テスト画面</div>
       </ons-toolbar>
+      <div id="test_target"></div>
+      <script>
+        document.getElementById("test_target").addEventListener( "click", function( event) {
+          alert('YES!');
+        }        
+      </script>
       <ons-button id="push-start">テスト</ons-button>
     </ons-page>
   </ons-template>
