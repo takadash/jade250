@@ -4,7 +4,7 @@ var CLIENTKEY = "e760446f705aa042f7f2b70e63f29b1f57eed9d71f15532036ce333c44f9f3c
 var ncmb = new NCMB(APPLICATIONKEY, CLIENTKEY);
 var edoData = ncmb.DataStore('edo');
 var edo_textData = ncmb.DataStore('edo_text');
-var edo_pictureData = ncmb.DataStore('edo_picture');
+var edo_pictureData = ncmb.DataStore('edo_picture3');
 
 var map;
 var marker_edo = [];
@@ -32,7 +32,7 @@ var text = [];
     .fetchAll()
     .then(function(results) {
       //全件検索に成功した場合の処理
-      alert('1');
+      // alert('1');
       for(var i = 0; i < results.length; i++) {
         var object = results[i];
       text_id[i] = object.text_id;
@@ -54,7 +54,7 @@ var text = [];
       .fetchAll()
       .then(function(results) {
         //全件検索に成功した場合の処理
-        alert('2');
+        // alert('2');
         // alert(results.length);
         // alert(results[126].text_id);
         for (var i = 1000; i < 1000+results.length; i++) {
@@ -73,14 +73,16 @@ var text = [];
       var point_wide = [];
       var text_id_main = [];
       var text_id_sub = [];
-      var picture = [];
+      var file = [];
+      var title_pic = [];
+      var other = [];
 
       edo_pictureData.order("createData", true)
         .limit(600)
         .fetchAll()
         .then(function(results) {
           //全件検索に成功した場合の処理
-          alert('3');
+          // alert('3');
           // alert(results.length);
 
           for(var i = 0; i < results.length; i++) {
@@ -91,7 +93,9 @@ var text = [];
             point_wide[i] = object.point_wide;
             text_id_main[i] = object.text_id_main;
             text_id_sub[i] = object.text_id_sub;
-            picture[i] = object.picture;
+            file[i] = object.file;
+            title_pic[i] = object.title;
+            other[i] = object.other;
           }
 
           // alert(results.length);
@@ -104,12 +108,12 @@ var text = [];
           .fetchAll()
           .then(function(results) {
             //全件検索に成功した場合の処理
-            alert('4');
+            // alert('4');
             var lat = [];
             var lng = [];
             var title = [];
             var point_id = [];
-
+            var noData = 0;
             for (var i = 0; i < results.length; i++, pinCnt_edo++) {
               console.log(results.length);
               var object = results[i];
@@ -129,6 +133,20 @@ var text = [];
                   // console.log("一致: " + "%d",point_id[i]);
                 }
               }
+              if(ar_point.length == 0) {
+                for(var j = 0; j < cnt_picture; j++) {
+                  if(title[i] == title_pic[j]) {
+                    ar_point.push(j);
+                  }
+                }
+              }
+              if(ar_point.length == 0) {
+                for(var j = 0; j < cnt_picture; j++) {
+                  if(title[i] == other[j]) {
+                    ar_point.push(j);
+                  }
+                }
+              }
 
               var ar_text_main = [];
               var ar_text_sub = [];
@@ -142,6 +160,8 @@ var text = [];
                 }
               }
             }
+
+            if(ar_point.length == 0) noData++;
 
               var infoWindowContent = [];
               for(var k = 0; k < ar_point.length; k++) {
@@ -183,6 +203,7 @@ var text = [];
               markerEvent_edo(i); // マーカーにクリックイベントを追加
 
             }
+            alert(noData);
 
             // マーカーにクリックイベントを追加
             function markerEvent_edo(i) {
