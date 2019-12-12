@@ -113,7 +113,9 @@ var text = [];
             var lng = [];
             var title = [];
             var point_id = [];
-            var noData = 0;
+            var noData = [];
+            var samePlace = 0;
+
             for (var i = 0; i < results.length; i++, pinCnt_edo++) {
               console.log(results.length);
               var object = results[i];
@@ -133,20 +135,20 @@ var text = [];
                   // console.log("一致: " + "%d",point_id[i]);
                 }
               }
-              if(ar_point.length == 0) {
-                for(var j = 0; j < cnt_picture; j++) {
-                  if(title[i] == title_pic[j]) {
-                    ar_point.push(j);
-                  }
-                }
-              }
-              if(ar_point.length == 0) {
-                for(var j = 0; j < cnt_picture; j++) {
-                  if(title[i] == other[j]) {
-                    ar_point.push(j);
-                  }
-                }
-              }
+              // if(ar_point.length == 0) {
+              //   for(var j = 0; j < cnt_picture; j++) {
+              //     if(title[i] == title_pic[j]) {
+              //       ar_point.push(j);
+              //     }
+              //   }
+              // }
+              // if(ar_point.length == 0) {
+              //   for(var j = 0; j < cnt_picture; j++) {
+              //     if(title[i] == other[j]) {
+              //       ar_point.push(j);
+              //     }
+              //   }
+              // }
 
               var ar_text_main = [];
               var ar_text_sub = [];
@@ -161,7 +163,16 @@ var text = [];
               }
             }
 
-            if(ar_point.length == 0) noData++;
+            if(ar_point.length == 0) noData.push(title[i]);
+
+            var reset = 0;
+            if(lat[i] > 0) {
+            for(var j = 0; j < results.length; j++) {
+              if(lat[i] == lat[j] && lng[i] == lng[j]) reset++;
+            }
+          }
+            if(reset >= 2) samePlace++;
+            console.log("reset: "+"%d",reset);
 
               var infoWindowContent = [];
               for(var k = 0; k < ar_point.length; k++) {
@@ -203,7 +214,7 @@ var text = [];
               markerEvent_edo(i); // マーカーにクリックイベントを追加
 
             }
-            alert(noData);
+            alert(samePlace/2);
 
             // マーカーにクリックイベントを追加
             function markerEvent_edo(i) {
