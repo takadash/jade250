@@ -18,6 +18,7 @@ var maker_is_displayed = 0;
 var pinCnt_edo = 0;
 var cnt_edo = 0;
 const cnt_picture = 592;
+const cnt_text = 1127;
 document.getElementById('cnt_edo').textContent = cnt_edo;
 document.getElementById('bar7').value = 0;
 
@@ -33,10 +34,11 @@ var text = [];
       //全件検索に成功した場合の処理
       // alert('1');
       for(var i = 0; i < results.length; i++) {
-      text_id = [];
-      head = [];
-      category = [];
-      text = [];
+        var object = results[i];
+      text_id[i] = object.text_id;
+      head[i] = object.head;
+      category[i] = object.category;
+      text[i] = object.text;
     }
 
       // alert(results.length);
@@ -50,6 +52,13 @@ var text = [];
       .then(function(results) {
         //全件検索に成功した場合の処理
         // alert('2');
+        for (var i = 1000; i < results.length; i++) {
+          var object = results[i];
+          text_id[i] = object.text_id;
+          head[i] = object.head;
+          category[i] = object.category;
+          text[i] = object.text;
+        }
 
 
         console.log(results.length);
@@ -106,14 +115,25 @@ var text = [];
               point_id[i] = object.point_id;
 
               var ar_point = [];
-              console.log("cnt_picture: " + "%d", cnt_picture);
+              // console.log("cnt_picture: " + "%d", cnt_picture);
 
               for(var j = 0; j < cnt_picture; j++) {
                 // console.log("point_id：" + "%s", point_id[i]);
                 // console.log("point_id：" + "%s", point_id_pic[j]);
                 if(point_id[i] == point_id_pic[j]) {
                   ar_point.push(j);
-                  console.log("一致: " + "%d",point_id[i]);
+                  // console.log("一致: " + "%d",point_id[i]);
+                }
+              }
+
+              var ar_text_main = [];
+              var ar_text_sub = [];
+              for(var j = 0; j < cnt_text; j++) {
+                if(text_id_main[i] == text_id[j]) {
+                  ar_text_main.push(j);
+                }
+                if(text_id_sub[i] == text_id[j]) {
+                  ar_text_sub.push(j);
                 }
               }
 
@@ -121,8 +141,8 @@ var text = [];
               for(var k = 0; k < ar_point.length; k++) {
               infoWindowContent += '地名（広域）：　' + point_wide[ar_point[k]] + '<br>' +
                                    '地名（狭域）：　' + point_narrow[ar_point[k]] + '<br>' +
-                                   '画中詞：　' + '<br>' +
-                                   '本文：　' + '<br>';
+                                   '画中詞：　' + text[ar_text_sub[k]] + '<br>' +
+                                   '本文：　' + text[ar_text_main[k]] + '<br>';
             }
             // console.log(ar_point.length);
             console.log(infoWindowContent);
