@@ -32,7 +32,7 @@ var text = [];
     .fetchAll()
     .then(function(results) {
       //全件検索に成功した場合の処理
-      // alert('1');
+      alert('1');
       for(var i = 0; i < results.length; i++) {
         var object = results[i];
       text_id[i] = object.text_id;
@@ -41,6 +41,9 @@ var text = [];
       text[i] = object.text;
     }
 
+    for(var i = 0; i < cnt_text; i++) {
+      console.log(text_id[i]);
+    }
       // alert(results.length);
       console.log(results.length);
     });
@@ -51,15 +54,16 @@ var text = [];
       .fetchAll()
       .then(function(results) {
         //全件検索に成功した場合の処理
-        // alert('2');
-        for (var i = 1000; i < results.length; i++) {
-          var object = results[i];
+        alert('2');
+        // alert(results.length);
+        // alert(results[126].text_id);
+        for (var i = 1000; i < 1000+results.length; i++) {
+          var object = results[i-1000];
           text_id[i] = object.text_id;
           head[i] = object.head;
           category[i] = object.category;
           text[i] = object.text;
         }
-
 
         console.log(results.length);
       });
@@ -76,7 +80,7 @@ var text = [];
         .fetchAll()
         .then(function(results) {
           //全件検索に成功した場合の処理
-          // alert('3');
+          alert('3');
           // alert(results.length);
 
           for(var i = 0; i < results.length; i++) {
@@ -100,7 +104,7 @@ var text = [];
           .fetchAll()
           .then(function(results) {
             //全件検索に成功した場合の処理
-            // alert('4');
+            alert('4');
             var lat = [];
             var lng = [];
             var title = [];
@@ -129,13 +133,15 @@ var text = [];
               var ar_text_main = [];
               var ar_text_sub = [];
               for(var j = 0; j < cnt_text; j++) {
-                if(text_id_main[i] == text_id[j]) {
+                for(var k = 0; k < ar_point.length; k++) {
+                if(text_id_main[ar_point[k]] == text_id[j]) {
                   ar_text_main.push(j);
                 }
-                if(text_id_sub[i] == text_id[j]) {
+                if(text_id_sub[ar_point[k]] == text_id[j]) {
                   ar_text_sub.push(j);
                 }
               }
+            }
 
               var infoWindowContent = [];
               for(var k = 0; k < ar_point.length; k++) {
