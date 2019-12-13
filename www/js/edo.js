@@ -112,7 +112,7 @@ function callback() {
       var title = [];
       var point_id = [];
       var noData = [];
-      var samePlace = 0;
+      var samePlace = [];
 
       for (var i = 0; i < results.length; i++, pinCnt_edo++) {
         console.log(results.length);
@@ -160,10 +160,13 @@ function callback() {
         var reset = 0;
         if (lat[i] > 0) {
           for (var j = 0; j < results.length; j++) {
-            if (lat[i] == lat[j] && lng[i] == lng[j]) reset++;
+            if (lat[i] == lat[j] && lng[i] == lng[j]) {
+              reset++;
+              samePlace.push(title[i]);
+            }
           }
         }
-        if (reset >= 2) samePlace++;
+        // if (reset >= 2) samePlace++;
         console.log("reset: " + "%d", reset);
 
         var infoWindowContent = [];
@@ -206,7 +209,7 @@ function callback() {
         markerEvent_edo(i); // マーカーにクリックイベントを追加
       }
 
-      alert(samePlace / 2);
+      alert(samePlace);
 
       // マーカーにクリックイベントを追加
       function markerEvent_edo(i) {
