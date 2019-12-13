@@ -33,7 +33,7 @@ edo_textData.order("createData", true)
   .then(function(results) {
     //全件検索に成功した場合の処理
     // alert('1');
-    for(var i = 0; i < results.length; i++) {
+    for (var i = 0; i < results.length; i++) {
       var object = results[i];
       text_id[i] = object.text_id;
       head[i] = object.head;
@@ -41,7 +41,7 @@ edo_textData.order("createData", true)
       text[i] = object.text;
     }
 
-    for(var i = 0; i < cnt_text; i++) {
+    for (var i = 0; i < cnt_text; i++) {
       console.log(text_id[i]);
     }
     // alert(results.length);
@@ -57,8 +57,8 @@ edo_textData.order("createData", true)
     // alert('2');
     // alert(results.length);
     // alert(results[126].text_id);
-    for (var i = 1000; i < 1000+results.length; i++) {
-      var object = results[i-1000];
+    for (var i = 1000; i < 1000 + results.length; i++) {
+      var object = results[i - 1000];
       text_id[i] = object.text_id;
       head[i] = object.head;
       category[i] = object.category;
@@ -84,7 +84,7 @@ edo_pictureData.order("createData", true)
     // alert('3');
     // alert(results.length);
 
-    for(var i = 0; i < results.length; i++) {
+    for (var i = 0; i < results.length; i++) {
       var object = results[i];
 
       point_id_pic[i] = object.point_id;
@@ -100,11 +100,11 @@ edo_pictureData.order("createData", true)
     console.log(results.length);
   });
 
-function callback(){
+function callback() {
   edoData.order("createData", true)
     .limit(500)
     .fetchAll()
-    .then(function(results){
+    .then(function(results) {
       //全件検索に成功した場合の処理
       // alert('4');
       var lat = [];
@@ -125,54 +125,54 @@ function callback(){
         var ar_point = [];
         // console.log("cnt_picture: " + "%d", cnt_picture);
 
-        for(var j = 0; j < cnt_picture; j++) {
+        for (var j = 0; j < cnt_picture; j++) {
           // console.log("point_id：" + "%s", point_id[i]);
           // console.log("point_id：" + "%s", point_id_pic[j]);
-          if(point_id[i] == point_id_pic[j]) ar_point.push(j);
-            // console.log("一致: " + "%d",point_id[i]);
+          if (point_id[i] == point_id_pic[j]) ar_point.push(j);
+          // console.log("一致: " + "%d",point_id[i]);
         }
-              // if(ar_point.length == 0) {
-              //   for(var j = 0; j < cnt_picture; j++) {
-              //     if(title[i] == title_pic[j]) {
-              //       ar_point.push(j);
-              //     }
-              //   }
-              // }
-              // if(ar_point.length == 0) {
-              //   for(var j = 0; j < cnt_picture; j++) {
-              //     if(title[i] == other[j]) {
-              //       ar_point.push(j);
-              //     }
-              //   }
-              // }
+        // if(ar_point.length == 0) {
+        //   for(var j = 0; j < cnt_picture; j++) {
+        //     if(title[i] == title_pic[j]) {
+        //       ar_point.push(j);
+        //     }
+        //   }
+        // }
+        // if(ar_point.length == 0) {
+        //   for(var j = 0; j < cnt_picture; j++) {
+        //     if(title[i] == other[j]) {
+        //       ar_point.push(j);
+        //     }
+        //   }
+        // }
 
         var ar_text_main = [];
         var ar_text_sub = [];
-        for(var j = 0; j < cnt_text; j++) {
-          for(var k = 0; k < ar_point.length; k++) {
-            if(text_id_main[ar_point[k]] == text_id[j]) ar_text_main.push(j);
-            if(text_id_sub[ar_point[k]] == text_id[j]) ar_text_sub.push(j);
+        for (var j = 0; j < cnt_text; j++) {
+          for (var k = 0; k < ar_point.length; k++) {
+            if (text_id_main[ar_point[k]] == text_id[j]) ar_text_main.push(j);
+            if (text_id_sub[ar_point[k]] == text_id[j]) ar_text_sub.push(j);
           }
         }
 
-        if(ar_point.length == 0) noData.push(title[i]);
+        if (ar_point.length == 0) noData.push(title[i]);
 
         var reset = 0;
-        if(lat[i] > 0) {
-          for(var j = 0; j < results.length; j++) {
-            if(lat[i] == lat[j] && lng[i] == lng[j]) reset++;
+        if (lat[i] > 0) {
+          for (var j = 0; j < results.length; j++) {
+            if (lat[i] == lat[j] && lng[i] == lng[j]) reset++;
           }
         }
-        if(reset >= 2) samePlace++;
-        console.log("reset: "+"%d",reset);
+        if (reset >= 2) samePlace++;
+        console.log("reset: " + "%d", reset);
 
         var infoWindowContent = [];
-        for(var k = 0; k < ar_point.length; k++) {
+        for (var k = 0; k < ar_point.length; k++) {
           infoWindowContent += '地名（広域）：　' + point_wide[ar_point[k]] + '<br>' +
-                                '地名（狭域）：　' + point_narrow[ar_point[k]] + '<br>' +
-                                '画中詞：　' + text[ar_text_sub[k]] + '<br>' +
-                                '本文：　' + text[ar_text_main[k]] + '<br>'+
-                                '<ons-button>本文</ons-button>';
+            '地名（狭域）：　' + point_narrow[ar_point[k]] + '<br>' +
+            '画中詞：　' + text[ar_text_sub[k]] + '<br>' +
+            '本文：　' + text[ar_text_main[k]] + '<br>' +
+            '<ons-button>本文</ons-button>';
         }
         // console.log(ar_point.length);
         console.log(infoWindowContent);
@@ -191,27 +191,27 @@ function callback(){
           visible: false, // 最初は非表示
           icon: {
             url: 'https://maps.google.com/mapfiles/ms/icons/pink-dot.png'
-          };
+          }
         });
 
         // infoWindowContent.join('');
         // console.log(infoWindowContent);
 
         infoWindow_edo[i] = new google.maps.InfoWindow({ // 吹き出しの追加
-          content: '<div class="map">' + title[i] + 
-                    '<br>' + infoWindowContent + '</div>' + 
-                    '<br>' + stampclick_edo[i]
+          content: '<div class="map">' + title[i] +
+            '<br>' + infoWindowContent + '</div>' +
+            '<br>' + stampclick_edo[i]
         });
 
         markerEvent_edo(i); // マーカーにクリックイベントを追加
       }
 
-      alert(samePlace/2);
+      alert(samePlace / 2);
 
       // マーカーにクリックイベントを追加
-      function markerEvent_edo(i){
+      function markerEvent_edo(i) {
         marker_edo[i].addListener('click', function() { // マーカーをクリックしたとき
-          if(currentInfoWindow) { //currentInfoWindowに値があるならば
+          if (currentInfoWindow) { //currentInfoWindowに値があるならば
             currentInfoWindow.close(); //開いていた吹き出しを閉じる
           }
           infoWindow_edo[i].open(map, marker_edo[i]); // 吹き出しの表示
@@ -219,7 +219,7 @@ function callback(){
         });
       }
       // alert(pinCnt_edo);
-    });
+    })
     .catch(function(error) {
       //全件検索に失敗した場合の処理
       //alert('取得に失敗しました');
@@ -273,11 +273,10 @@ function stamp_push1(i) {
       document.getElementById('bar').value = cnt_edo;
 
       marker_edo[i].setIcon({
-                url: 'http://maps.google.co.jp/mapfiles/ms/icons/pink.png'
+        url: 'http://maps.google.co.jp/mapfiles/ms/icons/pink.png'
       });
 
-    }
-    else {
+    } else {
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
       alert('遠くてスタンプが押せませんでした');
     }
@@ -320,8 +319,8 @@ function edo() {
 function showTemplateDialog(file_url_i) {
   var dialog = document.getElementById('my-dialog');
 
-    function urlchange(){
-    var url = 'https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=kiyochika&file='+ file_url_i +  '.jpg&size=400';
+  function urlchange() {
+    var url = 'https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=kiyochika&file=' + file_url_i + '.jpg&size=400';
     document.getElementById('picture').src = url;
   }
 
@@ -329,7 +328,9 @@ function showTemplateDialog(file_url_i) {
     urlchange();
     dialog.show();
   } else {
-    ons.createElement('picture_dialog.html', { append: true })
+    ons.createElement('picture_dialog.html', {
+        append: true
+      })
       .then(function(dialog) {
         urlchange();
         dialog.show();
