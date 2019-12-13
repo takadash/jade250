@@ -45,7 +45,7 @@ edo_textData.order("createData", true)
       console.log(text_id[i]);
     }
     // alert(results.length);
-    console.log(results.length);
+    // console.log(results.length);
   });
 
 edo_textData.order("createData", true)
@@ -64,7 +64,7 @@ edo_textData.order("createData", true)
       category[i] = object.category;
       text[i] = object.text;
     }
-    console.log(results.length);
+    // console.log(results.length);
   });
 
 var point_id_pic = [];
@@ -97,7 +97,7 @@ edo_pictureData.order("createData", true)
       other[i] = object.other;
     }
     // alert(results.length);
-    console.log(results.length);
+    // console.log(results.length);
   });
 
 function callback() {
@@ -115,7 +115,7 @@ function callback() {
       var samePlace = [];
 
       for (var i = 0; i < results.length; i++, pinCnt_edo++) {
-        console.log(results.length);
+        // console.log(results.length);
         var object = results[i];
         lat[i] = parseFloat(object.lat);
         lng[i] = parseFloat(object.lng);
@@ -167,7 +167,7 @@ function callback() {
           }
         }
         // if (reset >= 2) samePlace++;
-        console.log("reset: " + "%d", reset);
+        // console.log("reset: " + "%d", reset);
 
         var infoWindowContent = [];
         for (var k = 0; k < ar_point.length; k++) {
@@ -182,7 +182,7 @@ function callback() {
 
         stamplat_edo[i] = lat[i];
         stamplng_edo[i] = lng[i];
-        stampclick_edo[i] = '<div id="stamp"><ons-button onclick ="stamp_push1(' + i + ')">スタンプ</ons-button></div>' + '<div id="btn">'
+        stampclick_edo[i] = '<div id="stamp"><ons-button onclick ="stamp_push_edo(' + i + ')">スタンプ</ons-button></div>' + '<div id="btn">'
         //ピンたて
         markerLatLng = {
           lat: lat[i],
@@ -230,7 +230,7 @@ function callback() {
 }
 setTimeout(callback, 1000);
 
-function stamp_push1(i) {
+function stamp_push_edo(i) {
   //alert('true');
   var hyouzi = document.getElementById("stamp");
   var btn_display = document.getElementById("btn");
@@ -273,7 +273,7 @@ function stamp_push1(i) {
       btn_display.insertAdjacentHTML('afterbegin', '<img src="human_pictures/human_red.png">');
       cnt_edo++;
       document.getElementById('cnt_edo').textContent = cnt_edo;
-      document.getElementById('bar').value = cnt_edo;
+      document.getElementById('bar7').value = cnt_edo;
 
       marker_edo[i].setIcon({
         url: 'http://maps.google.co.jp/mapfiles/ms/icons/pink.png'

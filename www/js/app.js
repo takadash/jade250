@@ -157,31 +157,31 @@ function getMyPlace() {
 					circle.setRadius(radius + 0.3);
           // k -= 0.03;
           cnt++;
-          console.log(cnt);
+          // console.log(cnt);
           // circle.setOptions( option ) ;
 				}else if(radius < 100){
 					circle.setRadius(radius + 14);
           // k -= 0.14;
           cnt++;
-          console.log(cnt);
+          // console.log(cnt);
           // circle.setOptions( option ) ;
 				}else if(radius < 220){
 					circle.setRadius(radius + 12);
           // k -= 0.12;
           cnt++;
-          console.log(cnt);
+          // console.log(cnt);
           // circle.setOptions( option ) ;
 				}else if(radius < 250){
 					circle.setRadius(radius + 8);
           // k -= 0.08;
           cnt++;
-          console.log(cnt);
+          // console.log(cnt);
           // circle.setOptions( option ) ;
 				}else if(radius < 280){
 					circle.setRadius(radius + 6);
           // k -= 0.04;
           cnt++;
-          console.log(cnt);
+          // console.log(cnt);
           // circle.setOptions( option ) ;
         }else{
           circle.setRadius(radius + 4);
@@ -190,7 +190,7 @@ function getMyPlace() {
         k -= 0.0245;
         j -= 0.1525;
         circle.setOptions( option ) ;
-        console.log('k : ' + k);
+        // console.log('k : ' + k);
 
 				// if(radius < 10) sleep(10000);
 

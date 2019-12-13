@@ -68,8 +68,8 @@ kiyochikaData.order("createData", true)
         maxWidth: 1000,
         // 吹き出しに表示する内容
         content:
-        '<div class="map">' + kiyotitle[i] + '</div>' + '地域　　　　　　' + city[i] + kiyo_area1[i] + ' ' + kiyo_area2[i] + 
-        '<br>景物　　　　　　' + obj[i] + '<br>' + stampclick[i] + '<br>' + 
+        '<div class="map">' + kiyotitle[i] + '</div>' + '地域　　　　　　' + city[i] + kiyo_area1[i] + ' ' + kiyo_area2[i] +
+        '<br>景物　　　　　　' + obj[i] + '<br>' + stampclick[i] + '<br>' +
         '<img src= "https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=kiyochika&file='+ file_url[i] + '.jpg&size=100" onclick="showTemplateDialog(\'' + file_url[i] + '\')">'
       });
 
@@ -142,6 +142,7 @@ function stamp_push5(i) {
 
       btn_display.insertAdjacentHTML('afterbegin', '<img src="human_pictures/human_red.png">');
       cnt_kiyochika++;
+      alert(cnt_kiyochika);
       document.getElementById('cnt_kiyochika').textContent = cnt_kiyochika;
       document.getElementById('bar5').value = cnt_kiyochika;
 
@@ -216,4 +217,3 @@ function hideDialog(id) {
     .getElementById(id)
     .hide();
 };
-

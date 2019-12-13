@@ -43,7 +43,7 @@ hasiraData.order("createData", true)
 
       stamplat6[i] = lat[i];
       stamplng6[i] = lng[i];
-      stampclick6[i] = '<div id="stamp"><ons-button onclick ="stamp_push1(' + i + ')">スタンプ</ons-button></div>' + '<div id="btn">'
+      stampclick6[i] = '<div id="stamp"><ons-button onclick ="stamp_push_hasira(' + i + ')">スタンプ</ons-button></div>' + '<div id="btn">'
       //ピンたて
       markerLatLng = {
         lat: lat[i],
@@ -82,7 +82,7 @@ hasiraData.order("createData", true)
     //alert('取得に失敗しました');
   });
 
-function stamp_push1(i) {
+function stamp_push_hasira(i) {
   //alert('true');
   var hyouzi = document.getElementById("stamp");
   var btn_display = document.getElementById("btn");
@@ -133,7 +133,7 @@ function stamp_push1(i) {
       btn_display.insertAdjacentHTML('afterbegin', '<img src="human_pictures/human_red.png">');
       cnt_stamp6++;
       document.getElementById('cnt_stamp6').textContent = cnt_stamp6;
-      document.getElementById('bar').value = cnt_stamp6;
+      document.getElementById('bar6').value = cnt_stamp6;
 
       marker6[i].setIcon({
                 url: 'http://maps.google.co.jp/mapfiles/ms/icons/red.png'

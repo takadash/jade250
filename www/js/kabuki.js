@@ -79,7 +79,7 @@ kabukiData.order("createData", true)
         infoWindow1[i].open(map, marker1[i]); // 吹き出しの表示
         currentInfoWindow = infoWindow1[i];
         //ピンを押した時の音
-        pin_choice_sound();
+        // pin_choice_sound();
       });
     }
 
@@ -144,7 +144,8 @@ function stamp_push1(i) {
       btn_display.insertAdjacentHTML('afterbegin', '<img src="human_pictures/human_red.png">');
       cnt_stamp++;
       //スタンプ獲得音
-      get_stamp_sound();
+      // get_stamp_sound();
+      alert(cnt_stamp);
       document.getElementById('cnt_stamp').textContent = cnt_stamp;
       document.getElementById('bar').value = cnt_stamp;
 
@@ -161,7 +162,7 @@ function stamp_push1(i) {
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
       alert('遠くてスタンプが押せませんでした');
       //スタンプ獲得失敗音
-      stamp_failed_sound();
+      // stamp_failed_sound();
     }
   };
 
@@ -197,7 +198,7 @@ function kabuki() {
     }
 
     //app.jsのclick_sound関数
-    click_sound();
+    // click_sound();
 
   } else {
     // チェックボックスがチェックされていなければ非表示
