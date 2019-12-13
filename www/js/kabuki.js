@@ -78,6 +78,8 @@ kabukiData.order("createData", true)
         }
         infoWindow1[i].open(map, marker1[i]); // 吹き出しの表示
         currentInfoWindow = infoWindow1[i];
+        //ピンを押した時の音
+        pin_choice_sound();
       });
     }
 
@@ -88,6 +90,7 @@ kabukiData.order("createData", true)
     //alert('取得に失敗しました');
   });
 
+//スランプを押した時の関数
 function stamp_push1(i) {
   //alert('true');
   var hyouzi = document.getElementById("stamp");
@@ -140,6 +143,8 @@ function stamp_push1(i) {
 
       btn_display.insertAdjacentHTML('afterbegin', '<img src="human_pictures/human_red.png">');
       cnt_stamp++;
+      //スタンプ獲得音
+      get_stamp_sound();
       document.getElementById('cnt_stamp').textContent = cnt_stamp;
       document.getElementById('bar').value = cnt_stamp;
 
@@ -150,11 +155,13 @@ function stamp_push1(i) {
       if(cnt_stamp == 23) {
         var comp = document.getElementById("comp");
         comp.innerHTML = "C O M P L E T E ！";
-      }      
+      }
 
     } else {
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
       alert('遠くてスタンプが押せませんでした');
+      //スタンプ獲得失敗音
+      stamp_failed_sound();
     }
   };
 
@@ -179,7 +186,7 @@ function kabuki() {
   // checkboxのElementを取得
   // var cb = document.getElementById("check-1");
   var cb = document.form1.check_1.checked;
-  //console.log(cb);
+  //console.log("cb = "+cb);
 
   if (cb == true) {
     // チェックボックスがチェックされていればマーカ表示
@@ -188,6 +195,9 @@ function kabuki() {
       marker1[i].setAnimation(google.maps.Animation.DROP);
       marker1[i].setVisible(true);
     }
+
+    //app.jsのclick_sound関数
+    click_sound();
 
   } else {
     // チェックボックスがチェックされていなければ非表示
