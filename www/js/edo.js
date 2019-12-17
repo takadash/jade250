@@ -3,7 +3,7 @@ var CLIENTKEY = "e760446f705aa042f7f2b70e63f29b1f57eed9d71f15532036ce333c44f9f3c
 
 var ncmb = new NCMB(APPLICATIONKEY, CLIENTKEY);
 var edoData = ncmb.DataStore('edo');
-var edo_textData = ncmb.DataStore('edo_text');
+var edo_textData = ncmb.DataStore('edo_text2');
 var edo_pictureData = ncmb.DataStore('edo_picture3');
 
 var map;
@@ -39,6 +39,7 @@ edo_textData.order("createData", true)
       head[i] = object.head;
       category[i] = object.category;
       text[i] = object.text;
+      if(text[i] == "") text[i] = "なし";
     }
 
     for (var i = 0; i < cnt_text; i++) {
@@ -63,12 +64,15 @@ edo_textData.order("createData", true)
       head[i] = object.head;
       category[i] = object.category;
       text[i] = object.text;
+      if(text[i] == "") text[i] = "なし";
     }
     console.log(results.length);
   });
 
 var point_id_pic = [];
+//狭域
 var point_narrow = [];
+//広域
 var point_wide = [];
 var text_id_main = [];
 var text_id_sub = [];
@@ -89,7 +93,9 @@ edo_pictureData.order("createData", true)
 
       point_id_pic[i] = object.point_id;
       point_narrow[i] = object.point_narrow;
+      if(point_narrow[i] == "") point_narrow[i] = "なし";
       point_wide[i] = object.point_wide;
+      if(point_wide[i] == "") point_wide[i] = "なし";
       text_id_main[i] = object.text_id_main;
       text_id_sub[i] = object.text_id_sub;
       file[i] = object.file;
@@ -171,11 +177,13 @@ function callback() {
 
         var infoWindowContent = [];
         for (var k = 0; k < ar_point.length; k++) {
-          infoWindowContent += '地名（広域）：　' + point_wide[ar_point[k]] + '<br>' +
+          infoWindowContent +=
+            '地名（広域）：　' + point_wide[ar_point[k]] + '<br>' +
             '地名（狭域）：　' + point_narrow[ar_point[k]] + '<br>' +
             '画中詞：　' + text[ar_text_sub[k]] + '<br>' +
-            '本文：　' + text[ar_text_main[k]] + '<br>' +
-            '<ons-button>本文</ons-button>';
+            '<div><ons-button onclick="showTemplateDialog_edo(' 
+            + '\'' + text[ar_text_main[k]]     + '\''
+            + ')">本文</ons-button></div>'
         }
         // console.log(ar_point.length);
         console.log(infoWindowContent);
@@ -319,30 +327,34 @@ function edo() {
 }
 
 //ダイアログ表示
-function showTemplateDialog(file_url_i) {
-  var dialog = document.getElementById('my-dialog');
+function showTemplateDialog_edo(d) {
+  var dialog = document.getElementById('edo_dialog');
 
-  function urlchange() {
-    var url = 'https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=kiyochika&file=' + file_url_i + '.jpg&size=400';
-    document.getElementById('picture').src = url;
+  function insert_text(){
+  var honbun = d;
+  document.getElementById('honbun').innerHTML = "本文：   " + honbun;
   }
 
   if (dialog) {
-    urlchange();
     dialog.show();
+    insert_text();
   } else {
-    ons.createElement('picture_dialog.html', {
-        append: true
-      })
+    ons.createElement('edo_dialog.html', {append: true})
       .then(function(dialog) {
-        urlchange();
         dialog.show();
+        insert_text();
       });
   }
 };
 //ダイアログ非表示
-function hideDialog(id) {
+function hideDialog_edo(id) {
   document
     .getElementById(id)
     .hide();
 };
+
+// //ダイアログのスクロールの上に戻す
+// function scrollToTop(){
+//   alert('scroll!');
+//   scrollTo(0,0);
+// }

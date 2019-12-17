@@ -263,7 +263,7 @@
     </ons-page>
   </template>
 
- <!-- テストテンプレート -->
+ <!-- 清親と纏のテストテンプレート -->
   <template id="picture_dialog.html">
     <ons-dialog id="my-dialog">
       <div>
@@ -273,6 +273,26 @@
           </p>
           <p>
             <ons-button onclick="hideDialog('my-dialog')">閉じる</ons-button>
+          </p>
+        </div>
+      </div>
+    </ons-dialog>
+  </template>
+
+  <!-- 名所図会のテストテンプレート -->
+  <template id="edo_dialog.html">
+    <ons-dialog id="edo_dialog">
+      <div>
+        </style>
+        <div style="overflow:auto; width:350px; height:350px;">
+          <p>
+ <!--            <div id="chimei_kouiki">あり</div> <br> 
+            <div id="chimei_kyouiki">なし</div> <br>
+            <div id="gatyushi">なし</div> <br> -->
+            <div id="honbun" class="test">なし</div> <br>
+          </p>
+          <p>
+            <ons-button onclick="hideDialog_edo('edo_dialog')">閉じる</ons-button>
           </p>
         </div>
       </div>
