@@ -42,11 +42,12 @@ edo_textData.order("createData", true)
       if(text[i] == "") text[i] = "なし";
     }
 
-    for (var i = 0; i < cnt_text; i++) {
-      console.log(text_id[i]);
-    }
+    // for (var i = 0; i < cnt_text; i++) {
+    //   console.log(text_id[i]);
+    // }
+
     // alert(results.length);
-    console.log(results.length);
+    //console.log(results.length);
   });
 
 edo_textData.order("createData", true)
@@ -66,7 +67,7 @@ edo_textData.order("createData", true)
       text[i] = object.text;
       if(text[i] == "") text[i] = "なし";
     }
-    console.log(results.length);
+    //console.log(results.length);
   });
 
 var point_id_pic = [];
@@ -103,7 +104,7 @@ edo_pictureData.order("createData", true)
       other[i] = object.other;
     }
     // alert(results.length);
-    console.log(results.length);
+    //console.log(results.length);
   });
 
 function callback() {
@@ -121,7 +122,7 @@ function callback() {
       var samePlace = [];
 
       for (var i = 0; i < results.length; i++, pinCnt_edo++) {
-        console.log(results.length);
+        //console.log(results.length);
         var object = results[i];
         lat[i] = parseFloat(object.lat);
         lng[i] = parseFloat(object.lng);
@@ -173,20 +174,23 @@ function callback() {
           }
         }
         // if (reset >= 2) samePlace++;
-        console.log("reset: " + "%d", reset);
+        //console.log("reset: " + "%d", reset);
 
         var infoWindowContent = [];
         for (var k = 0; k < ar_point.length; k++) {
           infoWindowContent +=
-            '地名（広域）：　' + point_wide[ar_point[k]] + '<br>' +
-            '地名（狭域）：　' + point_narrow[ar_point[k]] + '<br>' +
-            '画中詞：　' + text[ar_text_sub[k]] + '<br>' +
-            '<div><ons-button onclick="showTemplateDialog_edo(' 
+            // '地名（広域）：　' + point_wide[ar_point[k]] + '<br>' +
+            // '地名（狭域）：　' + point_narrow[ar_point[k]] + '<br>' +
+            // '画中詞：　' + text[ar_text_sub[k]] + '<br>' +
+            '<div><ons-button onclick="showTemplateDialog_edo('
+            + '\'' + point_wide[ar_point[k]]   + '\'' + '\,'
+            + '\'' + point_narrow[ar_point[k]] + '\'' + '\,'
+            + '\'' + text[ar_text_sub[k]]      + '\'' + '\,'
             + '\'' + text[ar_text_main[k]]     + '\''
             + ')">本文</ons-button></div>'
         }
         // console.log(ar_point.length);
-        console.log(infoWindowContent);
+        //console.log(infoWindowContent);
 
         stamplat_edo[i] = lat[i];
         stamplng_edo[i] = lng[i];
@@ -217,7 +221,7 @@ function callback() {
         markerEvent_edo(i); // マーカーにクリックイベントを追加
       }
 
-      alert(samePlace);
+      //alert(samePlace);
 
       // マーカーにクリックイベントを追加
       function markerEvent_edo(i) {
@@ -327,18 +331,26 @@ function edo() {
 }
 
 //ダイアログ表示
-function showTemplateDialog_edo(d) {
+function showTemplateDialog_edo(a,b,c,d) {
   var dialog = document.getElementById('edo_dialog');
 
   function insert_text(){
-  var honbun = d;
-  document.getElementById('honbun').innerHTML = "本文：   " + honbun;
+    var kouiki = a;
+    var kyouiki = b;
+    var gatyushi = c;
+    var honbun = d;
+
+    document.getElementById('kouiki').innerHTML = "地名（広域）：　" + kouiki;
+    document.getElementById('kyouiki').innerHTML = "地名（狭域）：　" + kyouiki;
+    document.getElementById('gatyushi').innerHTML = "画中詞：　" + gatyushi;
+    document.getElementById('honbun').innerHTML = "本文：　" + honbun;
   }
 
   if (dialog) {
     dialog.show();
     insert_text();
-  } else {
+  }
+  else{
     ons.createElement('edo_dialog.html', {append: true})
       .then(function(dialog) {
         dialog.show();
@@ -346,6 +358,36 @@ function showTemplateDialog_edo(d) {
       });
   }
 };
+
+// テストテンプレート
+function showTemplateDialog_edo2(a,b,c,d) {
+  var dialog2 = document.getElementById('edo_dialog2');
+
+  function insert_text(){
+    var kouiki = a;
+    var kyouiki = b;
+    var gatyushi = c;
+    var honbun = d;
+
+    document.getElementById('kouiki2').innerHTML = "地名（広域）：　" + kouiki;
+    document.getElementById('kyouiki2').innerHTML = "地名（狭域）：　" + kyouiki;
+    document.getElementById('gatyushi2').innerHTML = "画中詞：　" + gatyushi;
+    document.getElementById('honbun2').innerHTML = "本文：　" + honbun;
+  }
+
+  if (dialog2) {
+    dialog2.show();
+    insert_text();
+  }
+  else{
+    ons.createElement('edo_dialog.html2', {append: true})
+      .then(function(dialog) {
+        dialog.show();
+        insert_text();
+      });
+  }
+};
+
 //ダイアログ非表示
 function hideDialog_edo(id) {
   document
