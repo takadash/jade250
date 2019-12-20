@@ -324,7 +324,7 @@
           <div id="honbun">なし</div> <br> -->
         </p>
         <p>
-          <ons-button onclick="showTemplateDialog_edo2('kouiki','bbb','ccc','ddd')">画中詞・本文</ons-button>
+          <ons-button onclick="showTemplateDialog_edo2()">画中詞・本文</ons-button>
           <ons-button onclick="hideDialog_edo('edo_dialog')">閉じる</ons-button>
         </p>
       </div>
@@ -336,7 +336,7 @@
 <!-- テストテンプレート -->
   <ons-template id="edo_dialog.html2">
     <ons-dialog id="edo_dialog2">
-      <div style="overflow:auto; width:350px; height:350px;">
+      <div id="scroll" style="overflow:auto; width:350px; height:500px;">
         <p>
 <!--           <div id="kouiki2">ありあり</div> <br> 
           <div id="kyouiki2">なし</div> <br> -->

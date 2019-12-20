@@ -363,7 +363,7 @@ function showTemplateDialog_edo(a,b,c,d) {
 };
 
 // テストテンプレート
-function showTemplateDialog_edo2(c,d) {
+function showTemplateDialog_edo2() {
   var dialog2 = document.getElementById('edo_dialog2');
 
   function insert_text(){
@@ -386,6 +386,7 @@ function showTemplateDialog_edo2(c,d) {
 
 //ダイアログ非表示
 function hideDialog_edo(id) {
+  document.getElementById('scroll').scrollTop = 0;
   document
     .getElementById(id)
     .hide();
