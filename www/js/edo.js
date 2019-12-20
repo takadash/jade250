@@ -2,7 +2,7 @@ var APPLICATIONKEY = "ed1ce2abd40a216eb032b0d94ac80c9dd9b5027f9a28a2283936297e0a
 var CLIENTKEY = "e760446f705aa042f7f2b70e63f29b1f57eed9d71f15532036ce333c44f9f3c1";
 
 var ncmb = new NCMB(APPLICATIONKEY, CLIENTKEY);
-var edoData = ncmb.DataStore('edo');
+var edoData = ncmb.DataStore('edo3');
 var edo_textData = ncmb.DataStore('edo_text2');
 var edo_pictureData = ncmb.DataStore('edo_picture3');
 
@@ -153,6 +153,7 @@ function callback() {
         //   }
         // }
 
+
         var ar_text_main = [];
         var ar_text_sub = [];
         for (var j = 0; j < cnt_text; j++) {
@@ -186,8 +187,8 @@ function callback() {
             + '\'' + point_wide[ar_point[k]]   + '\'' + '\,'
             + '\'' + point_narrow[ar_point[k]] + '\'' + '\,'
             + '\'' + text[ar_text_sub[k]]      + '\'' + '\,'
-            + '\'' + text[ar_text_main[k]]     + '\''
-            + ')">本文</ons-button></div>'
+            + '\'' + text[ar_text_main[k]]     + '\'' 
+            + ')">写真が入る</ons-button></div>'
         }
         // console.log(ar_point.length);
         //console.log(infoWindowContent);
@@ -330,20 +331,22 @@ function edo() {
   }
 }
 
+var gatyushi;
+var honbun;
 //ダイアログ表示
 function showTemplateDialog_edo(a,b,c,d) {
   var dialog = document.getElementById('edo_dialog');
 
+
   function insert_text(){
     var kouiki = a;
     var kyouiki = b;
-    var gatyushi = c;
-    var honbun = d;
+    gatyushi = c;
+    honbun = d;
+ 
 
     document.getElementById('kouiki').innerHTML = "地名（広域）：　" + kouiki;
     document.getElementById('kyouiki').innerHTML = "地名（狭域）：　" + kyouiki;
-    document.getElementById('gatyushi').innerHTML = "画中詞：　" + gatyushi;
-    document.getElementById('honbun').innerHTML = "本文：　" + honbun;
   }
 
   if (dialog) {
@@ -360,17 +363,10 @@ function showTemplateDialog_edo(a,b,c,d) {
 };
 
 // テストテンプレート
-function showTemplateDialog_edo2(a,b,c,d) {
+function showTemplateDialog_edo2(c,d) {
   var dialog2 = document.getElementById('edo_dialog2');
 
   function insert_text(){
-    var kouiki = a;
-    var kyouiki = b;
-    var gatyushi = c;
-    var honbun = d;
-
-    document.getElementById('kouiki2').innerHTML = "地名（広域）：　" + kouiki;
-    document.getElementById('kyouiki2').innerHTML = "地名（狭域）：　" + kyouiki;
     document.getElementById('gatyushi2').innerHTML = "画中詞：　" + gatyushi;
     document.getElementById('honbun2').innerHTML = "本文：　" + honbun;
   }
