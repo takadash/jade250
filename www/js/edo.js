@@ -2,8 +2,8 @@ var APPLICATIONKEY = "ed1ce2abd40a216eb032b0d94ac80c9dd9b5027f9a28a2283936297e0a
 var CLIENTKEY = "e760446f705aa042f7f2b70e63f29b1f57eed9d71f15532036ce333c44f9f3c1";
 
 var ncmb = new NCMB(APPLICATIONKEY, CLIENTKEY);
-var edoData = ncmb.DataStore('edo');
-var edo_textData = ncmb.DataStore('edo_text');
+var edoData = ncmb.DataStore('edo3');
+var edo_textData = ncmb.DataStore('edo_text2');
 var edo_pictureData = ncmb.DataStore('edo_picture3');
 
 var map;
@@ -39,13 +39,15 @@ edo_textData.order("createData", true)
       head[i] = object.head;
       category[i] = object.category;
       text[i] = object.text;
+      if(text[i] == "") text[i] = "なし";
     }
 
-    for (var i = 0; i < cnt_text; i++) {
-      console.log(text_id[i]);
-    }
+    // for (var i = 0; i < cnt_text; i++) {
+    //   console.log(text_id[i]);
+    // }
+
     // alert(results.length);
-    // console.log(results.length);
+    //console.log(results.length);
   });
 
 edo_textData.order("createData", true)
@@ -63,12 +65,15 @@ edo_textData.order("createData", true)
       head[i] = object.head;
       category[i] = object.category;
       text[i] = object.text;
+      if(text[i] == "") text[i] = "なし";
     }
-    // console.log(results.length);
+    //console.log(results.length);
   });
 
 var point_id_pic = [];
+//狭域
 var point_narrow = [];
+//広域
 var point_wide = [];
 var text_id_main = [];
 var text_id_sub = [];
@@ -89,7 +94,9 @@ edo_pictureData.order("createData", true)
 
       point_id_pic[i] = object.point_id;
       point_narrow[i] = object.point_narrow;
+      if(point_narrow[i] == "") point_narrow[i] = "なし";
       point_wide[i] = object.point_wide;
+      if(point_wide[i] == "") point_wide[i] = "なし";
       text_id_main[i] = object.text_id_main;
       text_id_sub[i] = object.text_id_sub;
       file[i] = object.file;
@@ -97,7 +104,7 @@ edo_pictureData.order("createData", true)
       other[i] = object.other;
     }
     // alert(results.length);
-    // console.log(results.length);
+    //console.log(results.length);
   });
 
 function callback() {
@@ -115,7 +122,7 @@ function callback() {
       var samePlace = [];
 
       for (var i = 0; i < results.length; i++, pinCnt_edo++) {
-        // console.log(results.length);
+        //console.log(results.length);
         var object = results[i];
         lat[i] = parseFloat(object.lat);
         lng[i] = parseFloat(object.lng);
@@ -146,6 +153,7 @@ function callback() {
         //   }
         // }
 
+
         var ar_text_main = [];
         var ar_text_sub = [];
         for (var j = 0; j < cnt_text; j++) {
@@ -167,18 +175,23 @@ function callback() {
           }
         }
         // if (reset >= 2) samePlace++;
-        // console.log("reset: " + "%d", reset);
+        //console.log("reset: " + "%d", reset);
 
         var infoWindowContent = [];
         for (var k = 0; k < ar_point.length; k++) {
-          infoWindowContent += '地名（広域）：　' + point_wide[ar_point[k]] + '<br>' +
-            '地名（狭域）：　' + point_narrow[ar_point[k]] + '<br>' +
-            '画中詞：　' + text[ar_text_sub[k]] + '<br>' +
-            '本文：　' + text[ar_text_main[k]] + '<br>' +
-            '<ons-button>本文</ons-button>';
+          infoWindowContent +=
+            // '地名（広域）：　' + point_wide[ar_point[k]] + '<br>' +
+            // '地名（狭域）：　' + point_narrow[ar_point[k]] + '<br>' +
+            // '画中詞：　' + text[ar_text_sub[k]] + '<br>' +
+            '<div><ons-button onclick="showTemplateDialog_edo('
+            + '\'' + point_wide[ar_point[k]]   + '\'' + '\,'
+            + '\'' + point_narrow[ar_point[k]] + '\'' + '\,'
+            + '\'' + text[ar_text_sub[k]]      + '\'' + '\,'
+            + '\'' + text[ar_text_main[k]]     + '\''
+            + ')">写真が入る</ons-button></div>'
         }
         // console.log(ar_point.length);
-        console.log(infoWindowContent);
+        //console.log(infoWindowContent);
 
         stamplat_edo[i] = lat[i];
         stamplng_edo[i] = lng[i];
@@ -209,7 +222,7 @@ function callback() {
         markerEvent_edo(i); // マーカーにクリックイベントを追加
       }
 
-      alert(samePlace);
+      //alert(samePlace);
 
       // マーカーにクリックイベントを追加
       function markerEvent_edo(i) {
@@ -318,31 +331,68 @@ function edo() {
   }
 }
 
+var gatyushi;
+var honbun;
 //ダイアログ表示
-function showTemplateDialog(file_url_i) {
-  var dialog = document.getElementById('my-dialog');
+function showTemplateDialog_edo(a,b,c,d) {
+  var dialog = document.getElementById('edo_dialog');
 
-  function urlchange() {
-    var url = 'https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=kiyochika&file=' + file_url_i + '.jpg&size=400';
-    document.getElementById('picture').src = url;
+
+  function insert_text(){
+    var kouiki = a;
+    var kyouiki = b;
+    gatyushi = c;
+    honbun = d;
+
+
+    document.getElementById('kouiki').innerHTML = "地名（広域）：　" + kouiki;
+    document.getElementById('kyouiki').innerHTML = "地名（狭域）：　" + kyouiki;
   }
 
   if (dialog) {
-    urlchange();
     dialog.show();
-  } else {
-    ons.createElement('picture_dialog.html', {
-        append: true
-      })
+    insert_text();
+  }
+  else{
+    ons.createElement('edo_dialog.html', {append: true})
       .then(function(dialog) {
-        urlchange();
         dialog.show();
+        insert_text();
       });
   }
 };
+
+// テストテンプレート
+function showTemplateDialog_edo2(c,d) {
+  var dialog2 = document.getElementById('edo_dialog2');
+
+  function insert_text(){
+    document.getElementById('gatyushi2').innerHTML = "画中詞：　" + gatyushi;
+    document.getElementById('honbun2').innerHTML = "本文：　" + honbun;
+  }
+
+  if (dialog2) {
+    dialog2.show();
+    insert_text();
+  }
+  else{
+    ons.createElement('edo_dialog.html2', {append: true})
+      .then(function(dialog) {
+        dialog.show();
+        insert_text();
+      });
+  }
+};
+
 //ダイアログ非表示
-function hideDialog(id) {
+function hideDialog_edo(id) {
   document
     .getElementById(id)
     .hide();
 };
+
+// //ダイアログのスクロールの上に戻す
+// function scrollToTop(){
+//   alert('scroll!');
+//   scrollTo(0,0);
+// }

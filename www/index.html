@@ -295,7 +295,7 @@
     </ons-page>
   </template>
 
- <!-- テストテンプレート -->
+ <!-- 清親と纏のテストテンプレート -->
   <template id="picture_dialog.html">
     <ons-dialog id="my-dialog">
       <div>
@@ -310,6 +310,83 @@
       </div>
     </ons-dialog>
   </template>
-</body>
 
+  <!-- 名所図会のテストテンプレート -->
+
+  <ons-template id="edo_dialog.html">
+    <ons-dialog id="edo_dialog">
+      <!-- <ons-navigator id="aiueo"> -->
+      <div style="overflow:auto; width:350px; height:350px;">
+        <p>
+          <div id="kouiki">ありよりのなし</div> <br> 
+          <div id="kyouiki">なし</div> <br>
+<!--           <div id="gatyushi">なし</div> <br>
+          <div id="honbun">なし</div> <br> -->
+        </p>
+        <p>
+          <ons-button onclick="showTemplateDialog_edo2('kouiki','bbb','ccc','ddd')">画中詞・本文</ons-button>
+          <ons-button onclick="hideDialog_edo('edo_dialog')">閉じる</ons-button>
+        </p>
+      </div>
+      <!-- </ons-navigator> -->
+    </ons-dialog>
+  </ons-template>
+  
+
+<!-- テストテンプレート -->
+  <ons-template id="edo_dialog.html2">
+    <ons-dialog id="edo_dialog2">
+      <div style="overflow:auto; width:350px; height:350px;">
+        <p>
+<!--           <div id="kouiki2">ありあり</div> <br> 
+          <div id="kyouiki2">なし</div> <br> -->
+          <div id="gatyushi2">なし</div> <br>
+          <div id="honbun2">なし</div> <br>
+        </p>
+        <p>
+          <!-- <ons-button onclick="showTemplateDialog_edo('aaa','bbb','ccc','ddd')">画中詞・本文</ons-button> -->
+          <ons-button onclick="hideDialog_edo('edo_dialog2')">閉じる</ons-button>
+        </p>
+      </div>
+    </ons-dialog>
+  </ons-template>
+
+</body>
 </html>
+
+<!-- <ons-template id="next.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="center">Page 2</div>
+    </ons-toolbar>
+
+    <p style="text-align: center;">
+      <ons-button onclick="myNav.popPage()">Back</ons-button>
+    </p>
+  </ons-page>
+</ons-template>
+
+
+<ons-template id="navigator.html">
+  <ons-dialog style="height: 160px;" var="naviDialog" cancelable>
+
+    <ons-navigator var="myNav">
+      <ons-toolbar inline>
+        <div class="center">
+          Navigator
+        </div>
+      </ons-toolbar>
+
+      <div style="text-align: center">
+        <p>
+          This is a dialog with a navigator.
+        </p>
+
+        <p>
+          <ons-button onclick="naviDialog.hide()">Close</ons-button>
+          <ons-button onclick="myNav.pushPage('next.html')">Next</ons-button>
+        </p>
+      </div>
+    </ons-navigator>
+  </ons-dialog>
+</ons-template> -->
