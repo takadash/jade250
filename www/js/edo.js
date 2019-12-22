@@ -183,7 +183,7 @@ function callback() {
             // '地名（広域）：　' + point_wide[ar_point[k]] + '<br>' +
             // '地名（狭域）：　' + point_narrow[ar_point[k]] + '<br>' +
             // '画中詞：　' + text[ar_text_sub[k]] + '<br>' +
-            '<div><ons-button onclick="showTemplateDialog_edo('
+            '<div style="padding: 2.5px;"><ons-button onclick="showTemplateDialog_edo('
             + '\'' + point_wide[ar_point[k]]   + '\'' + '\,'
             + '\'' + point_narrow[ar_point[k]] + '\'' + '\,'
             + '\'' + text[ar_text_sub[k]]      + '\'' + '\,'
@@ -195,7 +195,7 @@ function callback() {
 
         stamplat_edo[i] = lat[i];
         stamplng_edo[i] = lng[i];
-        stampclick_edo[i] = '<div id="stamp"><ons-button onclick ="stamp_push_edo(' + i + ')">スタンプ</ons-button></div>' + '<div id="btn">'
+        stampclick_edo[i] = '<div id="stamp" style="padding: 2.5px;"><ons-button onclick ="stamp_push_edo(' + i + ')">スタンプ</ons-button></div>' + '<div id="btn">'
         //ピンたて
         markerLatLng = {
           lat: lat[i],
@@ -386,14 +386,17 @@ function showTemplateDialog_edo2() {
 
 //ダイアログ非表示
 function hideDialog_edo(id) {
+  document
+    .getElementById(id)
+    .hide();
+};
+
+function hideDialog_edo_scroll(id) {
   document.getElementById('scroll').scrollTop = 0;
   document
     .getElementById(id)
     .hide();
 };
 
-// //ダイアログのスクロールの上に戻す
-// function scrollToTop(){
-//   alert('scroll!');
-//   scrollTo(0,0);
-// }
+
+
