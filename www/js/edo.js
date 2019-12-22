@@ -2,7 +2,7 @@ var APPLICATIONKEY = "ed1ce2abd40a216eb032b0d94ac80c9dd9b5027f9a28a2283936297e0a
 var CLIENTKEY = "e760446f705aa042f7f2b70e63f29b1f57eed9d71f15532036ce333c44f9f3c1";
 
 var ncmb = new NCMB(APPLICATIONKEY, CLIENTKEY);
-var edoData = ncmb.DataStore('edo3');
+var edoData = ncmb.DataStore('edo4');
 var edo_textData = ncmb.DataStore('edo_text2');
 var edo_pictureData = ncmb.DataStore('edo_picture3');
 
@@ -397,6 +397,3 @@ function hideDialog_edo_scroll(id) {
     .getElementById(id)
     .hide();
 };
-
-
-
