@@ -323,8 +323,10 @@
 <!--           <div id="gatyushi">なし</div> <br>
           <div id="honbun">なし</div> <br> -->
         </p>
-        <p>
+        <p style="text-align: center;">
           <ons-button onclick="showTemplateDialog_edo2()">画中詞・本文</ons-button>
+        </p>
+        <p style="text-align: center;">
           <ons-button onclick="hideDialog_edo('edo_dialog')">閉じる</ons-button>
         </p>
       </div>
@@ -336,57 +338,67 @@
 <!-- テストテンプレート -->
   <ons-template id="edo_dialog.html2">
     <ons-dialog id="edo_dialog2">
-      <div id="scroll" style="overflow:auto; width:45vh; height:90vh">
+      <div id="scroll" style="overflow:auto; width:45vh; height:92vh">
         <p>
 <!--           <div id="kouiki2">ありあり</div> <br> 
           <div id="kyouiki2">なし</div> <br> -->
           <div id="gatyushi2">なし</div> <br>
           <div id="honbun2">なし</div> <br>
         </p>
-        <p>
-          <!-- <ons-button onclick="showTemplateDialog_edo('aaa','bbb','ccc','ddd')">画中詞・本文</ons-button> -->
+        <p style="text-align: center; padding: 0.5px;">
           <ons-button onclick="hideDialog_edo_scroll('edo_dialog2')">閉じる</ons-button>
         </p>
       </div>
     </ons-dialog>
   </ons-template>
 
+
+<!-- ここからてすと -->
+
+    <ons-template id="hasira_dialog.html">
+    <ons-dialog id="hasira_dialog">
+      <div id="scroll" style="overflow:auto; width:45vh; height:92vh">
+        <p>
+          <div id="hasira_text">なし</div>
+        </p>
+        <p style="text-align: center; padding: 0.5px;">
+          <ons-button onclick="hideDialog_hasira('hasira_dialog')">閉じる</ons-button>
+        </p>
+      </div>
+    </ons-dialog>
+  </ons-template>  
+
+<!--     <ons-template id="matoi_dialog.html">
+    <ons-dialog id="matoi_dialog">
+      <div id="scroll" style="overflow:auto; width:45vh; height:92vh">
+        <p>
+
+          <div id="gatyushi2">なし</div> <br>
+          <div id="honbun2">なし</div> <br>
+        </p>
+        <p style="text-align: center; padding: 0.5px;">
+          <ons-button onclick="hideDialog_edo_scroll('matoi_dialog')">閉じる</ons-button>
+        </p>
+      </div>
+    </ons-dialog>
+  </ons-template>
+
+    <ons-template id="kabuki_dialog.html">
+    <ons-dialog id="kabuki_dialog">
+      <div id="scroll" style="overflow:auto; width:45vh; height:92vh">
+        <p>
+
+          <div id="gatyushi2">なし</div> <br>
+          <div id="honbun2">なし</div> <br>
+        </p>
+        <p style="text-align: center; padding: 0.5px;">
+          <ons-button onclick="hideDialog_edo_scroll('kabuki_dialog')">閉じる</ons-button>
+        </p>
+      </div>
+    </ons-dialog>
+  </ons-template> -->
+
 </body>
 </html>
 
-<!-- <ons-template id="next.html">
-  <ons-page>
-    <ons-toolbar>
-      <div class="center">Page 2</div>
-    </ons-toolbar>
 
-    <p style="text-align: center;">
-      <ons-button onclick="myNav.popPage()">Back</ons-button>
-    </p>
-  </ons-page>
-</ons-template>
-
-
-<ons-template id="navigator.html">
-  <ons-dialog style="height: 160px;" var="naviDialog" cancelable>
-
-    <ons-navigator var="myNav">
-      <ons-toolbar inline>
-        <div class="center">
-          Navigator
-        </div>
-      </ons-toolbar>
-
-      <div style="text-align: center">
-        <p>
-          This is a dialog with a navigator.
-        </p>
-
-        <p>
-          <ons-button onclick="naviDialog.hide()">Close</ons-button>
-          <ons-button onclick="myNav.pushPage('next.html')">Next</ons-button>
-        </p>
-      </div>
-    </ons-navigator>
-  </ons-dialog>
-</ons-template> -->

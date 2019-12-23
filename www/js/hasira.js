@@ -59,7 +59,12 @@ hasiraData.order("createData", true)
       });
 
       infoWindow6[i] = new google.maps.InfoWindow({ // 吹き出しの追加
-        content: '<div class="map">' + name[i] + '</div>' + '標識の種類　　　　　　' + type[i] + '<br>所在場所　　　　' + place[i] + '<br>' + text[i] + '<br>' + stampclick6[i] // 吹き出しに表示する内容
+        // 吹き出しに表示する内容
+        content: '<div class="map">' + name[i] + '</div>' + '標識の種類　　　　　　' + 
+                  type[i] + '<br>所在場所　　　　' + place[i] + '<br>'
+                  // '<br>' + text[i] + '<br>' + 
+                   +'<ons-button onclick="showTemplateDialog_hasira(\'' + text[i] + '\')">本文</ons-button>' +
+                  stampclick6[i]
       });
       markerEvent1(i); // マーカーにクリックイベントを追加
 
@@ -177,3 +182,30 @@ function hasira() {
     }
   }
 }
+
+
+//ダイアログ表示
+function showTemplateDialog_hasira(text_i) {
+  var dialog = document.getElementById('hasira_dialog');
+
+  function insert_text_hasira(){
+    document.getElementById('hasira_text').innerHTML = "本文：　" + text_i;
+  }
+
+  if (dialog) {
+    insert_text_hasira();
+    dialog.show();
+  } else {
+    ons.createElement('hasira_dialog.html', { append: true })
+      .then(function(dialog) {
+        insert_text_hasira();
+        dialog.show();
+      });
+  }
+};
+//ダイアログ非表示
+function hideDialog_hasira(id) {
+  document
+    .getElementById(id)
+    .hide();
+};
