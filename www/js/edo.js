@@ -4,7 +4,7 @@ var CLIENTKEY = "e760446f705aa042f7f2b70e63f29b1f57eed9d71f15532036ce333c44f9f3c
 var ncmb = new NCMB(APPLICATIONKEY, CLIENTKEY);
 var edoData = ncmb.DataStore('edo4');
 var edo_textData = ncmb.DataStore('edo_text2');
-var edo_pictureData = ncmb.DataStore('edo_picture3');
+var edo_pictureData = ncmb.DataStore('edo_picture4');
 
 var map;
 var marker_edo = [];
@@ -18,7 +18,7 @@ var maker_is_displayed = 0;
 var pinCnt_edo = 0;
 var cnt_edo = 0;
 const cnt_picture = 592;
-const cnt_text = 1127;
+const cnt_text = 1128;
 document.getElementById('cnt_edo').textContent = cnt_edo;
 document.getElementById('bar7').value = 0;
 
@@ -32,14 +32,14 @@ edo_textData.order("createData", true)
   .fetchAll()
   .then(function(results) {
     //全件検索に成功した場合の処理
-    // alert('1');
+     alert('1');
     for (var i = 0; i < results.length; i++) {
       var object = results[i];
       text_id[i] = object.text_id;
       head[i] = object.head;
       category[i] = object.category;
       text[i] = object.text;
-      if(text[i] == "") text[i] = "なし";
+      // if(text[i] == "") text[i] = "なし";
     }
 
     // for (var i = 0; i < cnt_text; i++) {
@@ -56,7 +56,7 @@ edo_textData.order("createData", true)
   .fetchAll()
   .then(function(results) {
     //全件検索に成功した場合の処理
-    // alert('2');
+    alert('2');
     // alert(results.length);
     // alert(results[126].text_id);
     for (var i = 1000; i < 1000 + results.length; i++) {
@@ -65,7 +65,8 @@ edo_textData.order("createData", true)
       head[i] = object.head;
       category[i] = object.category;
       text[i] = object.text;
-      if(text[i] == "") text[i] = "なし";
+      // if(text[i] == "") text[i] = "なし";
+      // console.log(text[i]);
     }
     //console.log(results.length);
   });
@@ -79,14 +80,14 @@ var text_id_main = [];
 var text_id_sub = [];
 var file = [];
 var title_pic = [];
-var other = [];
+
 
 edo_pictureData.order("createData", true)
   .limit(600)
   .fetchAll()
   .then(function(results) {
     //全件検索に成功した場合の処理
-    // alert('3');
+     alert('3');
     // alert(results.length);
 
     for (var i = 0; i < results.length; i++) {
@@ -94,14 +95,11 @@ edo_pictureData.order("createData", true)
 
       point_id_pic[i] = object.point_id;
       point_narrow[i] = object.point_narrow;
-      if(point_narrow[i] == "") point_narrow[i] = "なし";
       point_wide[i] = object.point_wide;
-      if(point_wide[i] == "") point_wide[i] = "なし";
       text_id_main[i] = object.text_id_main;
       text_id_sub[i] = object.text_id_sub;
       file[i] = object.file;
       title_pic[i] = object.title;
-      other[i] = object.other;
     }
     // alert(results.length);
     //console.log(results.length);
@@ -113,7 +111,7 @@ function callback() {
     .fetchAll()
     .then(function(results) {
       //全件検索に成功した場合の処理
-      // alert('4');
+      alert('4');
       var lat = [];
       var lng = [];
       var title = [];
@@ -158,8 +156,12 @@ function callback() {
         var ar_text_sub = [];
         for (var j = 0; j < cnt_text; j++) {
           for (var k = 0; k < ar_point.length; k++) {
-            if (text_id_main[ar_point[k]] == text_id[j]) ar_text_main.push(j);
+            if (text_id_main[ar_point[k]] == text_id[j]){
+              ar_text_main.push(j);
+            }
+            // else                                         ar_text_main.push(9999);
             if (text_id_sub[ar_point[k]] == text_id[j]) ar_text_sub.push(j);
+            // else                                        ar_text_sub.push(9999);
           }
         }
 
@@ -179,19 +181,36 @@ function callback() {
 
         var infoWindowContent = [];
         for (var k = 0; k < ar_point.length; k++) {
-          infoWindowContent +=
-            // '地名（広域）：　' + point_wide[ar_point[k]] + '<br>' +
-            // '地名（狭域）：　' + point_narrow[ar_point[k]] + '<br>' +
-            // '画中詞：　' + text[ar_text_sub[k]] + '<br>' +
-            '<div style="padding: 2.5px;"><ons-button onclick="showTemplateDialog_edo('
+          if(file[ar_point[k]] == '画像なし'){
+            infoWindowContent +=
+            '<div style="padding: 2.5px;">'+
+            '<img src="img/noimage2.png" width="80" height="60" onclick="showTemplateDialog_edo('
             + '\'' + point_wide[ar_point[k]]   + '\'' + '\,'
             + '\'' + point_narrow[ar_point[k]] + '\'' + '\,'
             + '\'' + text[ar_text_sub[k]]      + '\'' + '\,'
-            + '\'' + text[ar_text_main[k]]     + '\''
-            + ')">写真が入る</ons-button></div>'
+            + '\'' + text[ar_text_main[k]]     + '\'' + '\,'
+            + '\'' + file[ar_point[k]]         + '\''
+            + ')">'
+            + '</div>'
+          }
+          else{
+            infoWindowContent +=
+            '<div style="padding: 2.5px;">'+
+            '<img src="https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=edo&file='
+            + file[ar_point[k]]
+            + '.jpg&size=100" onclick="showTemplateDialog_edo('
+            + '\'' + point_wide[ar_point[k]]   + '\'' + '\,'
+            + '\'' + point_narrow[ar_point[k]] + '\'' + '\,'
+            + '\'' + text[ar_text_sub[k]]      + '\'' + '\,'
+            + '\'' + text[ar_text_main[k]]     + '\'' + '\,'
+            + '\'' + file[ar_point[k]]         + '\''
+            + ')">'
+            + '</div>'
+          }
         }
         // console.log(ar_point.length);
         //console.log(infoWindowContent);
+
 
         stamplat_edo[i] = lat[i];
         stamplng_edo[i] = lng[i];
@@ -334,19 +353,25 @@ function edo() {
 var gatyushi;
 var honbun;
 //ダイアログ表示
-function showTemplateDialog_edo(a,b,c,d) {
+function showTemplateDialog_edo(a,b,c,d,e) {
   var dialog = document.getElementById('edo_dialog');
 
 
   function insert_text(){
     var kouiki = a;
     var kyouiki = b;
+    var picture_edo_url
+    if(e == '画像なし') picture_edo_url = 'img/noimage2.png';
+    else              picture_edo_url = 'https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=edo&file=' + e + '.jpg&size=350';
     gatyushi = c;
     honbun = d;
+    alert(d);
 
 
     document.getElementById('kouiki').innerHTML = "地名（広域）：　" + kouiki;
     document.getElementById('kyouiki').innerHTML = "地名（狭域）：　" + kyouiki;
+    document.getElementById('edo_picture').src = picture_edo_url;
+    // document.getElementById('edo_picture').src = 'img/noimage.png';
   }
 
   if (dialog) {

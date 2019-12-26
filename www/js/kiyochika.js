@@ -196,7 +196,7 @@ function showTemplateDialog(file_url_i) {
   var dialog = document.getElementById('my-dialog');
 
     function urlchange(){
-    var url = 'https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=kiyochika&file='+ file_url_i +  '.jpg&size=400';
+    var url = 'https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=kiyochika&file='+ file_url_i +  '.jpg&size=350';
     document.getElementById('picture').src = url;
   }
 
