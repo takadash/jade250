@@ -24,6 +24,7 @@ hasiraData.order("createData", true)
   .then(function(results) {
     //全件検索に成功した場合の処理
     //alert('取得に成功');
+    alert(results.length);
 
     var lat = [];
     var lng = [];
@@ -141,7 +142,7 @@ function stamp_push_hasira(i) {
       document.getElementById('bar6').value = cnt_stamp6;
 
       marker6[i].setIcon({
-                url: 'http://maps.google.co.jp/mapfiles/ms/icons/red.png'
+                url: 'http://maps.google.co.jp/mapfiles/ms/icons/purple.png'
             });
 
     } else {

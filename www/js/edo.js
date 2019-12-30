@@ -365,7 +365,6 @@ function showTemplateDialog_edo(a,b,c,d,e) {
     else              picture_edo_url = 'https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=edo&file=' + e + '.jpg&size=350';
     gatyushi = c;
     honbun = d;
-    alert(d);
 
 
     document.getElementById('kouiki').innerHTML = "地名（広域）：　" + kouiki;
