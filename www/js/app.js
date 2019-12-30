@@ -4,11 +4,11 @@
 //var ncmb = new NCMB(APPLICATIONKEY, CLIENTKEY);
 //var TestData = ncmb.DataStore('example');
 // 改行できるかの実験
-var map;
 var stampclick = [];
 var marker_g;
 var circle;
 var circle_cnt = 0;
+// var map = null;
 
 function onload() {
   //前回の値を読み込み
@@ -29,19 +29,25 @@ function onload() {
       animation: "none"
     });
   }
+
+    // var latlng = new google.maps.LatLng(35.693944,139.753611);
+    // var myOptions = {
+    //   zoom: 15,
+    //   center: latlng,
+    //   mapTypeId: google.maps.MapTypeId.ROADMAP
+    // };
+    // var map = new google.maps.Map(document.getElementById("map"), myOptions);
+
+  // var map = new google.maps.Map(document.getElementById('map'), {
+  //   center: { // 地図の中心を指定 (初期:千代田区)
+  //     lat: 35.693944, // 緯度
+  //     lng: 139.753611 // 経度
+  //   },
+  //   zoom: 15, // 地図のズームを指定
+  //   mapTypeId: google.maps.MapTypeId.ROADMAP
+  // });
 }
 
-//GoogleMapの表示
-function initMap() {
-  // #mapに地図を埋め込む
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: { // 地図の中心を指定 (初期:千代田区)
-      lat: 35.693944, // 緯度
-      lng: 139.753611 // 経度
-    },
-    zoom: 15 // 地図のズームを指定
-  });
-};
 
 // function sleep(msec) {
 // 	 return new Promise(function(resolve) {
@@ -200,8 +206,8 @@ function getMyPlace() {
       output.innerHTML = "";
     }
 
-    map.setZoom(15);
-    map.panTo(latlng);
+    // map.setZoom(15);
+    // map.panTo(latlng);
   };
 
   function error() {

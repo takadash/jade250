@@ -45,3 +45,40 @@ ol {
   list-style-type: none;
 }
 
+.infobox {
+    font-family: 'Arial', sans-serif;
+    display: block;
+    width: 300px;
+    position: relative;
+    background: white;
+    opacity: 0.9;
+}
+.infobox .inner .header{
+    background-color: #555;
+    padding: 5px;
+    color:#fff;
+}
+.infobox .inner .container {
+    padding: 10px;
+    font-size: 12px;
+}
+.infobox .inner .footer {
+    text-align: right;
+    padding: 10px;
+}
+.infobox .inner {
+  border-bottom: 5px solid #0dcdbd;
+}
+.infobox .inner .footer button {
+    padding: 5px 20px;
+    background-color: #009E9E;
+    border: none;
+    color:#fff;
+    font-size: 14px;
+}
+.infobox .inner .footer button:hover {
+    background-color: #f7941d;
+}
+.infobox img {
+    z-index: 1
+}

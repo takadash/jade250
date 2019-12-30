@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="components/loader.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/gurahu.css">
+
+
   <script src="js/app.js"></script>
   <script src="js/splitter.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
@@ -43,10 +45,11 @@
   </script>
 
   <title>ちよダッシュ</title>
+
 </head>
 
 
-<body onload="onload()" ng-controller="initController" ng-init="init()">
+<body onload= "onload()" ng-controller="initController" ng-init="init()">
 
   <ons-navigator var="MyNavi" id="navigator" page="page1.html"></ons-navigator>
 
@@ -130,12 +133,16 @@
               <div class="center">ちよダッシュ！</div>
             </ons-toolbar>
             <ons-list>
+
+
               <script src="js/taihei.js"></script>
               <script src="js/kabuki.js"></script>
               <script src="js/kiyochika.js"></script>
               <script src="js/kyoden.js"></script>
               <script src="js/hasira.js"></script>
               <script src="js/edo.js"></script>
+              <!-- <script src="js/test.js"></script> -->
+
 
               <ons-list-header>ピン選択</ons-list-header>
 
@@ -267,6 +274,9 @@
 
             <div class="center">Main</div>
             </ons-toolbar>
+
+
+
               <style>
             /* Set the size of the div element that contains the map */
                 #map {
@@ -276,6 +286,7 @@
               /* The width is the width of the web page */
             }
           </style>
+
           <div id="map"></div>
 
           <ons-fab position="left bottom" onclick="getMyPlace()">
@@ -287,9 +298,10 @@
         FABs up!
         <button onclick="myToast.hide()">ok</button>
       </ons-toast>
-
-          <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXueT8O-UOJmfh2M-1Xh1IbfKWNXv-coU&callback=initMap">
-          </script>
+      <!-- <script src="https://maps.google.com/maps/api/js?v=3&key=AIzaSyAXueT8O-UOJmfh2M-1Xh1IbfKWNXv-coU&callback=initMap"></script>
+      <script src="liblary/infobox.js"></script> -->
+          <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXueT8O-UOJmfh2M-1Xh1IbfKWNXv-coU"></script> -->
+          <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXueT8O-UOJmfh2M-1Xh1IbfKWNXv-coU&callback=initMap"></script> -->
         </ons-page>
       </template>
     </ons-page>
@@ -318,7 +330,7 @@
       <!-- <ons-navigator id="aiueo"> -->
       <div style="overflow:auto; width:350px; height:350px;">
         <p>
-          <div id="kouiki">ありよりのなし</div> <br> 
+          <div id="kouiki">ありよりのなし</div> <br>
           <div id="kyouiki">なし</div> <br>
 <!--           <div id="gatyushi">なし</div> <br>
           <div id="honbun">なし</div> <br> -->
@@ -331,14 +343,14 @@
       <!-- </ons-navigator> -->
     </ons-dialog>
   </ons-template>
-  
+
 
 <!-- テストテンプレート -->
   <ons-template id="edo_dialog.html2">
     <ons-dialog id="edo_dialog2">
       <div style="overflow:auto; width:350px; height:350px;">
         <p>
-<!--           <div id="kouiki2">ありあり</div> <br> 
+<!--           <div id="kouiki2">ありあり</div> <br>
           <div id="kyouiki2">なし</div> <br> -->
           <div id="gatyushi2">なし</div> <br>
           <div id="honbun2">なし</div> <br>
@@ -350,6 +362,41 @@
       </div>
     </ons-dialog>
   </ons-template>
+
+<!-- <script>
+var initMap = function() {
+  _map = new google.maps.Map(document.getElementById("map"), {
+    zoom : _zoom,
+    center: _center,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+  // addMarkerByInfoWindow();
+  // addMarkerByInfoBox();
+};
+
+  $(window).on('load', function() {
+    initMap();
+    });
+</script> -->
+<script src="https://maps.google.com/maps/api/js?v=3&key=AIzaSyAXueT8O-UOJmfh2M-1Xh1IbfKWNXv-coU"></script>
+
+<script>
+//GoogleMapの表示
+function initMap() {
+  //#mapに地図を埋め込む
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: { // 地図の中心を指定 (初期:千代田区)
+      lat: 35.693944, // 緯度
+      lng: 139.753611 // 経度
+    },
+    zoom: 15, // 地図のズームを指定
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+}
+initMap();
+</script>
+
+<script src="liblary/infobox.js"></script>
 
 </body>
 </html>

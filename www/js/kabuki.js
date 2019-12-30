@@ -46,7 +46,7 @@ kabukiData.order("createData", true)
 
       stamplat1[i] = lat1[i];
       stamplng1[i] = lng1[i];
-      stampclick1[i] = '<div id="stamp"><ons-button onclick ="stamp_push1(' + i + ')">スタンプ</ons-button></div>' + '<div id="btn">'
+      stampclick1[i] = '<div id="stamp"><button onclick ="stamp_push1(' + i + ')">スタンプ</button></div>' + '<div id="btn">'
       //ピンたて
       markerLatLng = {
         lat: lat1[i],
@@ -62,11 +62,52 @@ kabukiData.order("createData", true)
         //animation: google.maps.Animation.DROP
       });
 
-      infoWindow1[i] = new google.maps.InfoWindow({ // 吹き出しの追加
-        content: '<div class="map">' + title[i] + '</div>' + '地名　　　　　　' + name[i] + '<br>参考文献　　　　' + bibliography[i] + volume[i] + page[i] + '<br>' + title[i] + text[i] + '<br>' + stampclick1[i] // 吹き出しに表示する内容
-      });
-      markerEvent1(i); // マーカーにクリックイベントを追加
+      // infoWindow1[i] = new google.maps.InfoWindow({ // 吹き出しの追加
+      //   content: '<div class="map">' + title[i] + '</div>' + '地名　　　　　　' + name[i] + '<br>参考文献　　　　' + bibliography[i] + volume[i] + page[i] + '<br>' + title[i] + text[i] + '<br>' + stampclick1[i] // 吹き出しに表示する内容
+      // });
 
+      // Marker をクリックした時のイベントを定義
+// google.maps.event.addListener(marker[i], 'click', function() {
+    // infobox 用の div エレメントを生成
+    // var infoboxContent = document.createElement('div');
+    // infobox に表示するHTML
+    // infoboxContent.innerHTML = '
+    //     <div class="infobox">
+    //       <div class="inner">
+    //         <div class="header"><h3>マルティスープ株式会社</h3></div>
+    //         <div class="container">東京都千代田区神田錦町3-11<br/>03-3518-9013</div>
+    //         <div class="footer"><button>Detail</button></div>
+    //       </div>
+    //     </div>
+    // ';
+    // var infoboxContent = '<div class="map">' + title[i] + '</div>' + '地名　　　　　　' + name[i] + '<br>参考文献　　　　' + bibliography[i] + volume[i] + page[i] + '<br>' + title[i] + text[i] + '<br>' + stampclick1[i]; // 吹き出しに表示する内容
+
+    var infoboxContent =
+        '<div class="infobox">' +
+          '<div class="inner">' +
+            '<div class="header">' + '<h3>' + title[i] + '</h3>' + '</div>' +
+            '<div class="container">' + '地名：　　' + name[i] + '<br/>' + '参考文献：　　' + bibliography[i] + volume[i] + page[i] + '</div>' +
+            '<div class="footer">' + stampclick1[i] + '</div>' +
+          '</div>' +
+        '</div>';
+
+      // infobox のオプション
+    var infoboxOptions = {
+        content: infoboxContent,  //表示するHTML
+        disableAutoPan: false,
+        dixelOffset: new google.maps.Size(-150, -48), // オフセット値
+        zIndex: null,
+        alignBottom: true,
+        boxClass: "infobox",
+        enableEventPropagation: true,
+        closeBoxMargin: "0px 0px -30px 0px",
+        closeBoxURL: "img/close.png", // 閉じるボタンのイメージ
+        infoBoxClearance: new google.maps.Size(1, 1)
+    };
+
+        infoWindow1[i] = new InfoBox(infoboxOptions);
+      markerEvent1(i); // マーカーにクリックイベントを追加
+       // infoWindow1[i].open(map, marker1[i]);
     }
 
     // マーカーにクリックイベントを追加
@@ -190,7 +231,7 @@ function kabuki() {
 
   if (cb == true) {
     // チェックボックスがチェックされていればマーカ表示
-    //alert('true');
+    // alert('true');
     for (var i = 0; i < cnt1; i++) {
       marker1[i].setAnimation(google.maps.Animation.DROP);
       marker1[i].setVisible(true);
@@ -201,7 +242,7 @@ function kabuki() {
 
   } else {
     // チェックボックスがチェックされていなければ非表示
-    //alert('false');
+    // alert('false');
     for (var i = 0; i < cnt1; i++) {
       marker1[i].setVisible(false);
     }
