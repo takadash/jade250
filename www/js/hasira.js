@@ -1,82 +1,78 @@
-var APPLICATIONKEY = "26cec09426087ef56de1ba79b2291caccf7990b7165dac6910465d5334355ab5";
-var CLIENTKEY = "0ee8fb824e95468f1d7cff3d933ae7373c462f6f523d4bfdee63c7861856be23";
+var APPLICATIONKEY = "ed1ce2abd40a216eb032b0d94ac80c9dd9b5027f9a28a2283936297e0a7bfe9b";
+var CLIENTKEY = "e760446f705aa042f7f2b70e63f29b1f57eed9d71f15532036ce333c44f9f3c1";
 
 var ncmb = new NCMB(APPLICATIONKEY, CLIENTKEY);
-var kyodenData = ncmb.DataStore('kyoden');
+var hasiraData = ncmb.DataStore('hasira');
 
 var map;
-var marker2 = [];
-var infoWindow2 = [];
+var marker6 = [];
+var infoWindow6 = [];
 var currentInfoWindow = null;
-var stampclick2 = [];
-var stamplat2 = [];
-var stamplng2 = [];
+var stampclick6 = [];
+var stamplat6 = [];
+var stamplng6 = [];
 //var lat2;
 //var lng2;
 var maker_is_displayed = 0;
-var cnt2 = 0;
-var cnt_kyoden = 0;
-document.getElementById('cnt_kyoden').textContent = cnt_kyoden;
-document.getElementById('bar2').value= 0;
+var cnt6 = 0;
+var cnt_stamp6 = 0;
+ document.getElementById('cnt_stamp6').textContent = cnt_stamp6;
+ document.getElementById('bar6').value = 0;
 
-kyodenData.order("createData", true)
+hasiraData.order("createData", true)
   .fetchAll()
   .then(function(results) {
     //全件検索に成功した場合の処理
+    //alert('取得に成功');
 
+    var lat = [];
+    var lng = [];
+    var text = [];
+    var name = [];
+    var place = [];
+    var type = [];
 
-    var lat2 = [];
-    var lng2 = [];
-    var title2 = [];
-    var text2 = [];
-    var name2 = [];
-    var bibliography2 = [];
-    var volume2 = [];
-    var page2 = [];
-
-    for (var i = 0; i < results.length; i++, cnt2++) {
+    for (var i = 0; i < results.length; i++, cnt6++) {
       var object = results[i];
-      lat2[i] = object.lat;
-      lng2[i] = object.lng;
-      name2[i] = object.name;
-      title2[i] = object.title;
-      text2[i] = object.text;
-      bibliography2[i] = object.biblio;
-      volume2[i] = object.volume;
-      page2[i] = object.page;
+      lat[i] = parseFloat(object.lat);
+      lng[i] = parseFloat(object.lng);
+      name[i] = object.name;
+      text[i] = object.text;
+      place[i] = object.place;
+      type[i] = object.type;
 
-      stamplat2[i] = lat2[i];
-      stamplng2[i] = lng2[i];
-      stampclick2[i] = '<div id="stamp"><ons-button onclick="stamp_push2(' + i + ')">スタンプ</button></div>' + '<div id="btn">'
+      stamplat6[i] = lat[i];
+      stamplng6[i] = lng[i];
+      stampclick6[i] = '<div id="stamp"><ons-button onclick ="stamp_push_hasira(' + i + ')">スタンプ</ons-button></div>' + '<div id="btn">'
       //ピンたて
       markerLatLng = {
-        lat: lat2[i],
-        lng: lng2[i]
+        lat: lat[i],
+        lng: lng[i]
       };
-      marker2[i] = new google.maps.Marker({
+      marker6[i] = new google.maps.Marker({
         position: markerLatLng,
         map: map,
         visible: false, // 最初は非表示
         icon: {
-          url: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
+          url: 'https://maps.google.com/mapfiles/ms/icons/purple-dot.png'
         }
       });
 
-      infoWindow2[i] = new google.maps.InfoWindow({ // 吹き出しの追加
-        content: '<div class="map">' + title2[i] + '</div>' + '地名　　　　　　' + name2[i] + '<br>参考文献　　　　' + bibliography2[i] + volume2[i] + page2[i] + '<br>' + title2[i] + text2[i] + '<br>' + stampclick2[i] // 吹き出しに表示する内容
+      infoWindow6[i] = new google.maps.InfoWindow({ // 吹き出しの追加
+        content: '<div class="map">' + name[i] + '</div>' + '標識の種類　　　　　　' + type[i] + '<br>所在場所　　　　' + place[i] + '<br>' + text[i] + '<br>' + stampclick6[i] // 吹き出しに表示する内容
       });
-      markerEvent2(i); // マーカーにクリックイベントを追加
+      markerEvent1(i); // マーカーにクリックイベントを追加
 
     }
 
     // マーカーにクリックイベントを追加
-    function markerEvent2(i) {
-      marker2[i].addListener('click', function() { // マーカーをクリックしたとき
+    function markerEvent1(i) {
+      marker6[i].addListener('click', function() { // マーカーをクリックしたとき
         if (currentInfoWindow) { //currentInfoWindowに値があるならば
           currentInfoWindow.close(); //開いていた吹き出しを閉じる
         }
-        infoWindow2[i].open(map, marker2[i]); // 吹き出しの表示
-        currentInfoWindow = infoWindow2[i];
+        infoWindow6[i].open(map, marker6[i]); // 吹き出しの表示
+        currentInfoWindow = infoWindow6[i];
       });
     }
 
@@ -86,13 +82,12 @@ kyodenData.order("createData", true)
     //alert('取得に失敗しました');
   });
 
-
-function stamp_push2(i) {
+function stamp_push_hasira(i) {
   //alert('true');
   var hyouzi = document.getElementById("stamp");
   var btn_display = document.getElementById("btn");
-  stamp_lat = stamplat2[i];
-  stamp_lng = stamplng2[i];
+  stamp_lat = stamplat6[i];
+  stamp_lng = stamplng6[i];
 
 
   // 現在位置プログラム
@@ -136,22 +131,17 @@ function stamp_push2(i) {
       hyouzi.style.display = "none";
 
       btn_display.insertAdjacentHTML('afterbegin', '<img src="human_pictures/human_red.png">');
-      cnt_kyoden++;
-      document.getElementById('cnt_kyoden').textContent = cnt_kyoden;
-      document.getElementById('bar2').value = cnt_kyoden;
+      cnt_stamp6++;
+      document.getElementById('cnt_stamp6').textContent = cnt_stamp6;
+      document.getElementById('bar6').value = cnt_stamp6;
 
-      marker2[i].setIcon({
-                url: 'http://maps.google.co.jp/mapfiles/ms/icons/yellow.png'
+      marker6[i].setIcon({
+                url: 'http://maps.google.co.jp/mapfiles/ms/icons/red.png'
             });
 
-      if(cnt_kyoden == 64) {
-        var comp = document.getElementById("comp2");
-        comp.innerHTML = "C O M P L E T E ！";
-      }
-
     } else {
-      alert('遠くてスタンプが押せませんでした');
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
+      alert('遠くてスタンプが押せませんでした');
     }
   };
 
@@ -163,25 +153,27 @@ function stamp_push2(i) {
 
 }
 
-// チェックボックスがクリックされると呼び出されるfunction
-function kyoden() {
-  // checkboxのElementを取得
-  //var cb2 = document.getElementById("cb2");
-  var cb2 = document.form2.check_2.checked;
 
-  if (cb2 == true) {
+
+// チェックボックスがクリックされると呼び出されるfunction
+function hasira() {
+  // checkboxのElementを取得
+  // var cb = document.getElementById("check-1");
+  var cb = document.form6.check_6.checked;
+  //console.log(cb);
+
+  if (cb == true) {
     // チェックボックスがチェックされていればマーカ表示
     //alert('true');
-    for (var i = 0; i < cnt2; i++) {
-      marker2[i].setAnimation(google.maps.Animation.DROP);
-      marker2[i].setVisible(true);
+    for (var i = 0; i < cnt6; i++) {
+      marker6[i].setVisible(true);
     }
 
   } else {
     // チェックボックスがチェックされていなければ非表示
     //alert('false');
-    for (var i = 0; i < cnt2; i++) {
-      marker2[i].setVisible(false);
+    for (var i = 0; i < cnt6; i++) {
+      marker6[i].setVisible(false);
     }
   }
 }

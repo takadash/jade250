@@ -8,6 +8,7 @@ var map;
 var stampclick = [];
 var marker_g;
 var circle;
+var circle_cnt = 0;
 
 function onload() {
   //前回の値を読み込み
@@ -42,9 +43,32 @@ function initMap() {
   });
 };
 
+// function sleep(msec) {
+// 	 return new Promise(function(resolve) {
+//
+// 			setTimeout(function() {resolve()}, msec);
+//
+// 	 })
+// }
+
+function sleep(waitMsec) {
+  var startMsec = new Date();
+
+  // 指定ミリ秒間だけループさせる（CPUは常にビジー状態）
+  while (new Date() - startMsec < waitMsec);
+}
+
+async function start() {
+
+  await sleep(5000);
+  console.log('5秒経過しました！');
+
+}
+
 
 // 現在位置プログラム
 function getMyPlace() {
+  circle_cnt++;
 
   var output = document.getElementById("result");
 
@@ -53,11 +77,12 @@ function getMyPlace() {
     return;
   }
 
+
   function success(position) {
-    // var latitude  = position.coords.latitude;//緯度
-    // var longitude = position.coords.longitude;//経度
-    var latitude = 35.693944
-    var longitude = 139.753611
+    var latitude  = position.coords.latitude;//緯度
+    var longitude = position.coords.longitude;//経度
+    // var latitude = 35.693944
+    // var longitude = 139.753611
     //output.innerHTML = '<p>緯度 ' + latitude + '° <br>経度 ' + longitude + '°</p>';
 
     // 位置情報
@@ -82,18 +107,94 @@ function getMyPlace() {
       circle.setMap(null);
     }
 
-    circle = new google.maps.Circle({
-      center: latlng,
-      map: map,
-      radius: 100, // 半径（m）
-      fillColor: '#AFDFE7', // 塗りつぶし色
-      fillOpacity: 0.2, // 塗りつぶし透過度（0: 透明 ⇔ 1:不透明）
-      strokeColor: '#3333FF', // 外周色
-      strokeOpacity: 1, // 外周透過度（0: 透明 ⇔ 1:不透明）
-      strokeWeight: 5 // 外周太さ
-    });
-    
-    circle.bindTo("center", marker_g, "position");
+    // circle = new google.maps.Circle({
+    //   center: latlng,
+    //   map: map,
+    //   radius: 100, // 半径（m）
+    //   fillColor: '#AFDFE7', // 塗りつぶし色
+    //   fillOpacity: 0.2, // 塗りつぶし透過度（0: 透明 ⇔ 1:不透明）
+    //   strokeColor: '#3333FF', // 外周色
+    //   strokeOpacity: 1, // 外周透過度（0: 透明 ⇔ 1:不透明）
+    //   strokeWeight: 5 // 外周太さ
+    // });
+		//
+    // circle.bindTo("center", marker_g, "position");
+
+		var circle = new google.maps.Circle({
+				center: latlng,
+				radius: 0,
+				strokeColor: "rgba(101, 165, 224, 0.73)",
+				strokeOpacity: 1,
+				strokeWeight: 10,
+				fillColor: "rgba(101, 165, 224, 0.73)",
+				fillOpacity: 1
+		});
+    if(circle_cnt == 1)
+		circle.setMap(map);
+
+		var j = 10, k = 1;
+		var rMin = 150, rMax = 300;
+    var cnt = 0;
+		setInterval(function() {
+				var radius = circle.getRadius();
+				if (radius > rMax) {
+					// start();
+					sleep(600);
+					// circle.setRadius(10);
+					radius = 0;
+          k = 1
+          j = 10;
+          cnt = 0;
+				}
+
+        var option = {
+          fillOpacity: k-0.05,
+          strokeWeight: j,
+          strokeOpacity: k-0.049,
+        };
+
+				if(radius < 3){
+					circle.setRadius(radius + 0.3);
+          // k -= 0.03;
+          cnt++;
+          // console.log(cnt);
+          // circle.setOptions( option ) ;
+				}else if(radius < 100){
+					circle.setRadius(radius + 14);
+          // k -= 0.14;
+          cnt++;
+          // console.log(cnt);
+          // circle.setOptions( option ) ;
+				}else if(radius < 220){
+					circle.setRadius(radius + 12);
+          // k -= 0.12;
+          cnt++;
+          // console.log(cnt);
+          // circle.setOptions( option ) ;
+				}else if(radius < 250){
+					circle.setRadius(radius + 8);
+          // k -= 0.08;
+          cnt++;
+          // console.log(cnt);
+          // circle.setOptions( option ) ;
+				}else if(radius < 280){
+					circle.setRadius(radius + 6);
+          // k -= 0.04;
+          cnt++;
+          // console.log(cnt);
+          // circle.setOptions( option ) ;
+        }else{
+          circle.setRadius(radius + 4);
+        }
+
+        k -= 0.0245;
+        j -= 0.1525;
+        circle.setOptions( option ) ;
+        // console.log('k : ' + k);
+
+				// if(radius < 10) sleep(10000);
+
+		}, 50);
 
     if (output.innerHTML) {
       output.innerHTML = "";

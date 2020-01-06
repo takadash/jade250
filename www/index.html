@@ -4,6 +4,8 @@
 <head>
   <meta charset="utf-8">
   <script src="components/loader.js"></script>
+
+  <!-- 下の二つ入れる必要あるのか？-->
   <link rel="stylesheet" href="components/loader.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/gurahu.css">
@@ -64,11 +66,20 @@
 
   <template id="page1.html">
     <ons-page id="first-page">
+
       <ons-toolbar>
         <div class="center">利用規約</div>
       </ons-toolbar>
 
       <div class="content" style="text-align: center">
+
+         <p>この利用規約（以下，「本規約」といいます。）は，日本大学文理学部（以下，「当大
+          学」といいます。）が提供する江戸・東京ものがたり（以下，「本アプリ」といいます
+          。）の利用条件を定めるものです。どなたでも本アプリの利用は可能ですが、利用者（以
+          下，「ユーザー」といいます。）は、本規約に定める事項を承諾の上ご利用ください。
+          第1条（適用）
+          本規約は，ユーザーと当大学との間の本アプリの利用に関わる一切の関係に適用される</p>
+        <p>〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜</p>
 
         <p>この利用規約（以下，「本規約」といいます。）は，日本大学文理学部（以下，「当大
           学」といいます。）が提供する江戸・東京ものがたり（以下，「本アプリ」といいます
@@ -78,14 +89,35 @@
           本規約は，ユーザーと当大学との間の本アプリの利用に関わる一切の関係に適用される</p>
         <p>〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜</p>
 
-        <div class="hidden_box">
+        <p>この利用規約（以下，「本規約」といいます。）は，日本大学文理学部（以下，「当大
+          学」といいます。）が提供する江戸・東京ものがたり（以下，「本アプリ」といいます
+          。）の利用条件を定めるものです。どなたでも本アプリの利用は可能ですが、利用者（以
+          下，「ユーザー」といいます。）は、本規約に定める事項を承諾の上ご利用ください。
+          第1条（適用）
+          本規約は，ユーザーと当大学との間の本アプリの利用に関わる一切の関係に適用される</p>
+        <p>〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜</p>
+
+        <p>この利用規約（以下，「本規約」といいます。）は，日本大学文理学部（以下，「当大
+          学」といいます。）が提供する江戸・東京ものがたり（以下，「本アプリ」といいます
+          。）の利用条件を定めるものです。どなたでも本アプリの利用は可能ですが、利用者（以
+          下，「ユーザー」といいます。）は、本規約に定める事項を承諾の上ご利用ください。
+          第1条（適用）
+          本規約は，ユーザーと当大学との間の本アプリの利用に関わる一切の関係に適用される</p>
+        <p>〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜〜</p>
+
+        </div>
+      </div>
+
+      <ons-bottom-toolbar class="bottom_toolbar">
+       <div class="hidden_box" style="text-align: center">
           <label for="label1">同意する</label>
           <input type="checkbox" id="label1" />
           <div class="hidden_show">
             <ons-button id="push-button">START</ons-button>
           </div>
-        </div>
-      </div>
+
+      </ons-bottom-toolbar>
+
     </ons-page>
   </template>
 
@@ -102,8 +134,11 @@
               <script src="js/kabuki.js"></script>
               <script src="js/kiyochika.js"></script>
               <script src="js/kyoden.js"></script>
+              <script src="js/hasira.js"></script>
+              <script src="js/edo.js"></script>
 
               <ons-list-header>ピン選択</ons-list-header>
+
               <form name="form1" action="">
                 <ons-list-item onclick="kabuki()">
                   <label class="left">
@@ -140,6 +175,24 @@
                 </ons-list-item>
               </form>
 
+              <form name="form6" action="">
+                <ons-list-item onclick="hasira()">
+                  <label class="left">
+                    <ons-checkbox input-id="check_6"></ons-checkbox>
+                  </label>
+                  <label for="check_6" class="center" name="scb3" id="cb1">千代田区標柱<img src="https://maps.google.com/mapfiles/ms/icons/purple-dot.png" width="20" height="20" border="0" /></label>
+                </ons-list-item>
+              </form>
+
+              <form name="form7" action="">
+                <ons-list-item onclick="edo()">
+                  <label class="left">
+                    <ons-checkbox input-id="check_7"></ons-checkbox>
+                  </label>
+                  <label for="check_7" class="center" name="scb3" id="cb1">江戸名所図会<img src="https://maps.google.com/mapfiles/ms/icons/pink-dot.png" width="20" height="20" border="0" /></label>
+                </ons-list-item>
+              </form>
+
               <ons-list-header>ステータス</ons-list-header>
 
               <ons-list-item modifier="nodivider">
@@ -147,6 +200,7 @@
               </ons-list-item>
 
               <ons-list-item>
+               <li  align="center" id="comp" style="z-index: 2;"></li>
                 <meter id="bar" min="0" max="23"  style="width: 100%; height: 30px;"></meter>
               </ons-list-item>
 
@@ -154,16 +208,11 @@
                 <!-- <div id="cnt_kyoden"></div>/64<span class="item_label">京伝黄表紙</span> -->
                 <span class="item_label">京伝黄表紙</span><img src="https://maps.google.com/mapfiles/ms/icons/yellow-dot.png" width="20" height="20" border="0" />（<div id="cnt_kyoden"></div>/64）
               </ons-list-item>
+
               <ons-list-item>
                 <!-- <div id="bar2" style="background-color: yellow; font-size: 10px;">&nbsp;</div> -->
-                <table style="width: 100%; height: 13px; border:1px solid #4f4f48; z-index: 0;">
-                  <tr>
-                    <td align="left">
-                      <div id="bar2" style="background-color: yellow; font-size: 13px; z-index: 1;">&nbsp;</div>
-                    </td>
-                    <td align="center" id="comp" style="z-index: 2;"></td>
-                  </tr>
-                </table>
+                <li align="center" id="comp2" style="z-index: 2;"></li>
+                <meter id="bar2" min="0" max="64"  style="width: 100%; height: 30px;"></meter>
               </ons-list-item>
 
 
@@ -173,6 +222,7 @@
               </ons-list-item>
 
               <ons-list-item>
+                <li align="center" id="comp4" style="z-index: 2;"></li>
                 <meter id="bar4" min="0" max="64"  style="width: 100%; height: 30px;"></meter>
               </ons-list-item>
 
@@ -180,13 +230,22 @@
                 <span class="item_label">小林清親版画</span><img src="https://maps.google.com/mapfiles/ms/icons/blue-dot.png" width="20" height="20" border="0" />（<div id="cnt_kiyochika"></div>/56）
               </ons-list-item>
               <ons-list-item>
+                <li align="center" id="comp5" style="z-index: 2;"></li>
                 <meter id="bar5" min="0" max="56"  style="width: 100%; height: 30px;"></meter>
               </ons-list-item>
 
-              <ons-list-header>現在地の更新</ons-list-header>
-              <ons-list-item onclick="getMyPlace()" tappeble>
-                <ons-button>更新</ons-button>
-                <div id="result"></div>
+              <ons-list-item modifier="nodivider">
+                <span class="item_label">千代田区標柱</span><img src="https://maps.google.com/mapfiles/ms/icons/purple-dot.png" width="20" height="20" border="0" />（<div id="cnt_stamp6"></div>/175）
+              </ons-list-item>
+              <ons-list-item>
+                <meter id="bar6" min="0" max="175"  style="width: 100%; height: 30px;"></meter>
+              </ons-list-item>
+
+              <ons-list-item modifier="nodivider">
+                <span class="item_label">江戸名所図会</span><img src="https://maps.google.com/mapfiles/ms/icons/pink-dot.png" width="20" height="20" border="0" />（<div id="cnt_edo"></div>/499）
+              </ons-list-item>
+              <ons-list-item>
+                <meter id="bar7" min="0" max="499"  style="width: 100%; height: 30px;"></meter>
               </ons-list-item>
 
             </ons-list>
@@ -198,6 +257,7 @@
 
       <template id="home.html">
         <ons-page>
+          <script>getMyPlace();</script>
           <ons-toolbar>
             <div class="left">
               <ons-toolbar-button onclick="fn.open()">
@@ -206,30 +266,127 @@
             </div>
 
             <div class="center">Main</div>
-          </ons-toolbar>
-          <style>
+            </ons-toolbar>
+              <style>
             /* Set the size of the div element that contains the map */
-            #map {
-              height: 100%;
+                #map {
+                  height: 100%;
               /* The height is 400 pixels */
-              width: 100%;
+                  width: 100%;
               /* The width is the width of the web page */
             }
           </style>
           <div id="map"></div>
 
-          <ons-fab position="left bottom" (click)="onClick()">
+          <ons-fab position="left bottom" onclick="getMyPlace()">
         <!-- <ons-icon icon="locate"></ons-icon> -->
-        <ion-icon name="locate"></ion-icon>
+        <ion-icon name="locate" id="result"></ion-icon>
       </ons-fab>
+
+      <ons-toast id="myToast" animation="ascend">
+        FABs up!
+        <button onclick="myToast.hide()">ok</button>
+      </ons-toast>
 
           <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXueT8O-UOJmfh2M-1Xh1IbfKWNXv-coU&callback=initMap">
           </script>
         </ons-page>
       </template>
-
     </ons-page>
   </template>
-</body>
 
+ <!-- 清親と纏のテストテンプレート -->
+  <template id="picture_dialog.html">
+    <ons-dialog id="my-dialog">
+      <div>
+        <div style="text-align: center; padding: 5px;">
+          <p>
+            <img id="picture">
+          </p>
+          <p>
+            <ons-button onclick="hideDialog('my-dialog')">閉じる</ons-button>
+          </p>
+        </div>
+      </div>
+    </ons-dialog>
+  </template>
+
+  <!-- 名所図会のテストテンプレート -->
+
+  <ons-template id="edo_dialog.html">
+    <ons-dialog id="edo_dialog">
+      <!-- <ons-navigator id="aiueo"> -->
+      <div style="overflow:auto; width:350px; height:350px;">
+        <p>
+          <div id="kouiki">ありよりのなし</div> <br> 
+          <div id="kyouiki">なし</div> <br>
+<!--           <div id="gatyushi">なし</div> <br>
+          <div id="honbun">なし</div> <br> -->
+        </p>
+        <p>
+          <ons-button onclick="showTemplateDialog_edo2('kouiki','bbb','ccc','ddd')">画中詞・本文</ons-button>
+          <ons-button onclick="hideDialog_edo('edo_dialog')">閉じる</ons-button>
+        </p>
+      </div>
+      <!-- </ons-navigator> -->
+    </ons-dialog>
+  </ons-template>
+  
+
+<!-- テストテンプレート -->
+  <ons-template id="edo_dialog.html2">
+    <ons-dialog id="edo_dialog2">
+      <div style="overflow:auto; width:350px; height:350px;">
+        <p>
+<!--           <div id="kouiki2">ありあり</div> <br> 
+          <div id="kyouiki2">なし</div> <br> -->
+          <div id="gatyushi2">なし</div> <br>
+          <div id="honbun2">なし</div> <br>
+        </p>
+        <p>
+          <!-- <ons-button onclick="showTemplateDialog_edo('aaa','bbb','ccc','ddd')">画中詞・本文</ons-button> -->
+          <ons-button onclick="hideDialog_edo('edo_dialog2')">閉じる</ons-button>
+        </p>
+      </div>
+    </ons-dialog>
+  </ons-template>
+
+</body>
 </html>
+
+<!-- <ons-template id="next.html">
+  <ons-page>
+    <ons-toolbar>
+      <div class="center">Page 2</div>
+    </ons-toolbar>
+
+    <p style="text-align: center;">
+      <ons-button onclick="myNav.popPage()">Back</ons-button>
+    </p>
+  </ons-page>
+</ons-template>
+
+
+<ons-template id="navigator.html">
+  <ons-dialog style="height: 160px;" var="naviDialog" cancelable>
+
+    <ons-navigator var="myNav">
+      <ons-toolbar inline>
+        <div class="center">
+          Navigator
+        </div>
+      </ons-toolbar>
+
+      <div style="text-align: center">
+        <p>
+          This is a dialog with a navigator.
+        </p>
+
+        <p>
+          <ons-button onclick="naviDialog.hide()">Close</ons-button>
+          <ons-button onclick="myNav.pushPage('next.html')">Next</ons-button>
+        </p>
+      </div>
+    </ons-navigator>
+  </ons-dialog>
+</ons-template> -->

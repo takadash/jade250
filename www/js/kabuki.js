@@ -1,6 +1,5 @@
-var APPLICATIONKEY = "26cec09426087ef56de1ba79b2291caccf7990b7165dac6910465d5334355ab5";
-var CLIENTKEY = "0ee8fb824e95468f1d7cff3d933ae7373c462f6f523d4bfdee63c7861856be23";
-
+var APPLICATIONKEY = "ed1ce2abd40a216eb032b0d94ac80c9dd9b5027f9a28a2283936297e0a7bfe9b";
+var CLIENTKEY = "e760446f705aa042f7f2b70e63f29b1f57eed9d71f15532036ce333c44f9f3c1";
 var ncmb = new NCMB(APPLICATIONKEY, CLIENTKEY);
 var kabukiData = ncmb.DataStore('kabuki');
 
@@ -71,6 +70,7 @@ kabukiData.order("createData", true)
         icon: {
           url: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
         }
+        //animation: google.maps.Animation.DROP
       });
 
       infoWindow1[i] = new google.maps.InfoWindow({ // 吹き出しの追加
@@ -88,15 +88,19 @@ kabukiData.order("createData", true)
         }
         infoWindow1[i].open(map, marker1[i]); // 吹き出しの表示
         currentInfoWindow = infoWindow1[i];
+        //ピンを押した時の音
+        // pin_choice_sound();
       });
     }
 
   })
+
   .catch(function(error) {
     //全件検索に失敗した場合の処理
     //alert('取得に失敗しました');
   });
 
+//スランプを押した時の関数
 function stamp_push1(i) {
   //alert('true');
   var hyouzi = document.getElementById("stamp");
@@ -104,6 +108,8 @@ function stamp_push1(i) {
   stamp_lat = stamplat1[i];
   stamp_lng = stamplng1[i];
 
+  var toast = document.getElementById("map");
+  var myToast = document.getElementById("myToast");
 
   // 現在位置プログラム
   if (!navigator.geolocation) { //Geolocation apiがサポートされていない場合
@@ -147,6 +153,9 @@ function stamp_push1(i) {
 
       btn_display.insertAdjacentHTML('afterbegin', '<img src="human_pictures/human_red.png">');
       cnt_stamp++;
+      //スタンプ獲得音
+      // get_stamp_sound();
+      alert(cnt_stamp);
       document.getElementById('cnt_stamp').textContent = cnt_stamp;
       document.getElementById('bar').value = cnt_stamp;
 
@@ -160,15 +169,28 @@ function stamp_push1(i) {
 
       localStorage.setItem('judge' + i, true);
 
+      if(cnt_stamp == 23) {
+        var comp = document.getElementById("comp");
+        comp.innerHTML = "C O M P L E T E ！";
+      }
+
     } else {
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
       alert('遠くてスタンプが押せませんでした');
+      //スタンプ獲得失敗音
+      // stamp_failed_sound();
     }
   };
 
   function error() {
     //エラーの場合
-    hyouzi.innerHTML = "座標位置を取得できません";
+    // hyouzi.innerHTML = "座標位置を取得できません";
+    // alert('座標位置を取得できません');
+    // '<ons-toast id="myToast" animation="ascend">FABs up!<button onclick="myToast.hide()">ok</button></ons-toast>'
+    // toast.insertAdjacentHTML('afterbegin',"ons.notification.toast('Hi there!', { timeout: 1000, animation: 'fall' })");
+    // toast.insertAdjacentHTML('afterbegin','<div class="toast"><div class="toast__message">Message Message Message Message Message Message</div><button class="toast__button">ACTION</button></div>');
+    // myToast.show();
+    ons.notification.toast('座標位置を取得できません', { timeout: 2000, animation: 'ascend' })
   };
   navigator.geolocation.getCurrentPosition(Success, error); //成功と失敗を判断
 
@@ -181,14 +203,18 @@ function kabuki() {
   // checkboxのElementを取得
   // var cb = document.getElementById("check-1");
   var cb = document.form1.check_1.checked;
-  //console.log(cb);
+  //console.log("cb = "+cb);
 
   if (cb == true) {
     // チェックボックスがチェックされていればマーカ表示
     //alert('true');
     for (var i = 0; i < cnt1; i++) {
+      marker1[i].setAnimation(google.maps.Animation.DROP);
       marker1[i].setVisible(true);
     }
+
+    //app.jsのclick_sound関数
+    // click_sound();
 
   } else {
     // チェックボックスがチェックされていなければ非表示
