@@ -28,26 +28,34 @@ var category = [];
 var text = [];
 
 edo_textData.order("createData", true)
-  .limit(1000)
+  .limit(500)
   .fetchAll()
   .then(function(results) {
     //全件検索に成功した場合の処理
-     alert('1');
+     alert('1-1');
     for (var i = 0; i < results.length; i++) {
       var object = results[i];
       text_id[i] = object.text_id;
       head[i] = object.head;
       category[i] = object.category;
       text[i] = object.text;
-      // if(text[i] == "") text[i] = "なし";
     }
+  });
 
-    // for (var i = 0; i < cnt_text; i++) {
-    //   console.log(text_id[i]);
-    // }
-
-    // alert(results.length);
-    //console.log(results.length);
+  edo_textData.order("createData", true)
+  .skip(500)
+  .limit(500)
+  .fetchAll()
+  .then(function(results) {
+    //全件検索に成功した場合の処理
+     alert('1-2');
+    for (var i = 500; i < 500+results.length; i++) {
+      var object = results[i-500];
+      text_id[i] = object.text_id;
+      head[i] = object.head;
+      category[i] = object.category;
+      text[i] = object.text;
+    }
   });
 
 edo_textData.order("createData", true)
@@ -56,19 +64,13 @@ edo_textData.order("createData", true)
   .fetchAll()
   .then(function(results) {
     //全件検索に成功した場合の処理
-    alert('2');
-    // alert(results.length);
-    // alert(results[126].text_id);
-    for (var i = 1000; i < 1000 + results.length; i++) {
+    alert('2');    for (var i = 1000; i < 1000 + results.length; i++) {
       var object = results[i - 1000];
       text_id[i] = object.text_id;
       head[i] = object.head;
       category[i] = object.category;
       text[i] = object.text;
-      // if(text[i] == "") text[i] = "なし";
-      // console.log(text[i]);
     }
-    //console.log(results.length);
   });
 
 var point_id_pic = [];
@@ -88,7 +90,6 @@ edo_pictureData.order("createData", true)
   .then(function(results) {
     //全件検索に成功した場合の処理
      alert('3');
-    // alert(results.length);
 
     for (var i = 0; i < results.length; i++) {
       var object = results[i];
@@ -101,8 +102,6 @@ edo_pictureData.order("createData", true)
       file[i] = object.file;
       title_pic[i] = object.title;
     }
-    // alert(results.length);
-    //console.log(results.length);
   });
 
 function callback() {
@@ -120,7 +119,6 @@ function callback() {
       var samePlace = [];
 
       for (var i = 0; i < results.length; i++, pinCnt_edo++) {
-        //console.log(results.length);
         var object = results[i];
         lat[i] = parseFloat(object.lat);
         lng[i] = parseFloat(object.lng);
@@ -128,29 +126,10 @@ function callback() {
         point_id[i] = object.point_id;
 
         var ar_point = [];
-        // console.log("cnt_picture: " + "%d", cnt_picture);
 
         for (var j = 0; j < cnt_picture; j++) {
-          // console.log("point_id：" + "%s", point_id[i]);
-          // console.log("point_id：" + "%s", point_id_pic[j]);
           if (point_id[i] == point_id_pic[j]) ar_point.push(j);
-          // console.log("一致: " + "%d",point_id[i]);
         }
-        // if(ar_point.length == 0) {
-        //   for(var j = 0; j < cnt_picture; j++) {
-        //     if(title[i] == title_pic[j]) {
-        //       ar_point.push(j);
-        //     }
-        //   }
-        // }
-        // if(ar_point.length == 0) {
-        //   for(var j = 0; j < cnt_picture; j++) {
-        //     if(title[i] == other[j]) {
-        //       ar_point.push(j);
-        //     }
-        //   }
-        // }
-
 
         var ar_text_main = [];
         var ar_text_sub = [];
@@ -159,9 +138,7 @@ function callback() {
             if (text_id_main[ar_point[k]] == text_id[j]){
               ar_text_main.push(j);
             }
-            // else                                         ar_text_main.push(9999);
             if (text_id_sub[ar_point[k]] == text_id[j]) ar_text_sub.push(j);
-            // else                                        ar_text_sub.push(9999);
           }
         }
 
@@ -176,8 +153,6 @@ function callback() {
             }
           }
         }
-        // if (reset >= 2) samePlace++;
-        //console.log("reset: " + "%d", reset);
 
         var infoWindowContent = [];
         for (var k = 0; k < ar_point.length; k++) {
@@ -208,9 +183,6 @@ function callback() {
             + '</div>'
           }
         }
-        // console.log(ar_point.length);
-        //console.log(infoWindowContent);
-
 
         stamplat_edo[i] = lat[i];
         stamplng_edo[i] = lng[i];
@@ -229,9 +201,6 @@ function callback() {
           }
         });
 
-        // infoWindowContent.join('');
-        // console.log(infoWindowContent);
-
         infoWindow_edo[i] = new google.maps.InfoWindow({ // 吹き出しの追加
           content: '<div class="map">' + title[i] +
             '<br>' + infoWindowContent + '</div>' +
@@ -240,8 +209,6 @@ function callback() {
 
         markerEvent_edo(i); // マーカーにクリックイベントを追加
       }
-
-      //alert(samePlace);
 
       // マーカーにクリックイベントを追加
       function markerEvent_edo(i) {
@@ -253,7 +220,6 @@ function callback() {
           currentInfoWindow = infoWindow_edo[i];
         });
       }
-      // alert(pinCnt_edo);
     })
     .catch(function(error) {
       //全件検索に失敗した場合の処理
@@ -263,7 +229,6 @@ function callback() {
 setTimeout(callback, 1000);
 
 function stamp_push_edo(i) {
-  //alert('true');
   var hyouzi = document.getElementById("stamp");
   var btn_display = document.getElementById("btn");
   stamp_lat = stamplat_edo[i];
@@ -299,7 +264,6 @@ function stamp_push_edo(i) {
     var now_success = getDistance(now_lat, now_lng, stamp_lat, stamp_lng);
 
     if (true) {
-      //hyouzi.innerHTML('<img src="human_pictures/human_red.png">');
       hyouzi.style.display = "none";
 
       btn_display.insertAdjacentHTML('afterbegin', '<img src="human_pictures/human_red.png">');
@@ -312,7 +276,6 @@ function stamp_push_edo(i) {
       });
 
     } else {
-      //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
       alert('遠くてスタンプが押せませんでした');
     }
   };
@@ -329,21 +292,16 @@ function stamp_push_edo(i) {
 
 // チェックボックスがクリックされると呼び出されるfunction
 function edo() {
-  // checkboxのElementを取得
-  // var cb = document.getElementById("check-1");
   var cb = document.form7.check_7.checked;
-  //console.log(cb);
 
   if (cb == true) {
     // チェックボックスがチェックされていればマーカ表示
-    //alert('true');
     for (var i = 0; i < pinCnt_edo; i++) {
       marker_edo[i].setVisible(true);
     }
 
   } else {
     // チェックボックスがチェックされていなければ非表示
-    //alert('false');
     for (var i = 0; i < pinCnt_edo; i++) {
       marker_edo[i].setVisible(false);
     }
@@ -370,7 +328,6 @@ function showTemplateDialog_edo(a,b,c,d,e) {
     document.getElementById('kouiki').innerHTML = "地名（広域）：　" + kouiki;
     document.getElementById('kyouiki').innerHTML = "地名（狭域）：　" + kyouiki;
     document.getElementById('edo_picture').src = picture_edo_url;
-    // document.getElementById('edo_picture').src = 'img/noimage.png';
   }
 
   if (dialog) {

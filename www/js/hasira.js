@@ -2,7 +2,7 @@ var APPLICATIONKEY = "ed1ce2abd40a216eb032b0d94ac80c9dd9b5027f9a28a2283936297e0a
 var CLIENTKEY = "e760446f705aa042f7f2b70e63f29b1f57eed9d71f15532036ce333c44f9f3c1";
 
 var ncmb = new NCMB(APPLICATIONKEY, CLIENTKEY);
-var hasiraData = ncmb.DataStore('hasira');
+var hasiraData = ncmb.DataStore('hashira2');
 
 var map;
 var marker6 = [];
@@ -20,15 +20,19 @@ var cnt_stamp6 = 0;
  document.getElementById('bar6').value = 0;
 
 hasiraData.order("createData", true)
+  .limit(200)
   .fetchAll()
   .then(function(results) {
     //全件検索に成功した場合の処理
     //alert('取得に成功');
-    alert(results.length);
+    // alert(results.length);
 
     var lat = [];
     var lng = [];
     var text = [];
+    var text2 = [];
+    var text3 = [];
+    var text4 = [];
     var name = [];
     var place = [];
     var type = [];
@@ -39,6 +43,9 @@ hasiraData.order("createData", true)
       lng[i] = parseFloat(object.lng);
       name[i] = object.name;
       text[i] = object.text;
+      text2[i] = object.text2;
+      text3[i] = object.text3;
+      text4[i] = object.text4;
       place[i] = object.place;
       type[i] = object.type;
 
@@ -50,6 +57,12 @@ hasiraData.order("createData", true)
         lat: lat[i],
         lng: lng[i]
       };
+      //test
+      for(var j = 0; j < i; j++){
+        if(lat[j] == lat[i] && lng[j] == lng[i]){
+          console.log(lat[j]+','+lng[j]);
+        }
+      }
       marker6[i] = new google.maps.Marker({
         position: markerLatLng,
         map: map,
@@ -63,8 +76,12 @@ hasiraData.order("createData", true)
         // 吹き出しに表示する内容
         content: '<div class="map">' + name[i] + '</div>' + '標識の種類　　　　　　' + 
                   type[i] + '<br>所在場所　　　　' + place[i] + '<br>'
-                  // '<br>' + text[i] + '<br>' + 
-                   +'<ons-button onclick="showTemplateDialog_hasira(\'' + text[i] + '\')">本文</ons-button>' +
+                   +'<ons-button onclick="showTemplateDialog_hasira('
+                   + '\'' + text[i] + '\'' + '\,'
+                   + '\'' + text2[i] + '\'' + '\,'
+                   + '\'' + text3[i] + '\'' + '\,'
+                   + '\'' + text4[i] + '\'' + 
+                  ',)">本文</ons-button>' +
                   stampclick6[i]
       });
       markerEvent1(i); // マーカーにクリックイベントを追加
@@ -186,11 +203,14 @@ function hasira() {
 
 
 //ダイアログ表示
-function showTemplateDialog_hasira(text_i) {
+function showTemplateDialog_hasira(text_i,text2_i,text3_i,text4_i) {
   var dialog = document.getElementById('hasira_dialog');
 
   function insert_text_hasira(){
-    document.getElementById('hasira_text').innerHTML = "本文：　" + text_i;
+    document.getElementById('hasira_text').innerHTML = "本文：　<br>" + text_i;
+    document.getElementById('hasira_text2').innerHTML = text2_i;
+    document.getElementById('hasira_text3').innerHTML = text3_i;
+    document.getElementById('hasira_text4').innerHTML = text4_i;
   }
 
   if (dialog) {
@@ -206,6 +226,7 @@ function showTemplateDialog_hasira(text_i) {
 };
 //ダイアログ非表示
 function hideDialog_hasira(id) {
+  document.getElementById('scroll_hasira').scrollTop = 0;
   document
     .getElementById(id)
     .hide();
