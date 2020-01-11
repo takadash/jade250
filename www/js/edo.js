@@ -28,7 +28,7 @@ var category = [];
 var text = [];
 
 edo_textData.order("createData", true)
-  .limit(500)
+  .limit(200)
   .fetchAll()
   .then(function(results) {
     //全件検索に成功した場合の処理
@@ -43,14 +43,46 @@ edo_textData.order("createData", true)
   });
 
   edo_textData.order("createData", true)
-  .skip(500)
-  .limit(500)
+  .skip(200)
+  .limit(300)
   .fetchAll()
   .then(function(results) {
     //全件検索に成功した場合の処理
      alert('1-2');
+    for (var i = 200; i < 200 + results.length; i++) {
+      var object = results[i-200];
+      text_id[i] = object.text_id;
+      head[i] = object.head;
+      category[i] = object.category;
+      text[i] = object.text;
+    }
+  });
+
+  edo_textData.order("createData", true)
+  .skip(500)
+  .limit(200)
+  .fetchAll()
+  .then(function(results) {
+    //全件検索に成功した場合の処理
+     alert('1-3');
     for (var i = 500; i < 500+results.length; i++) {
       var object = results[i-500];
+      text_id[i] = object.text_id;
+      head[i] = object.head;
+      category[i] = object.category;
+      text[i] = object.text;
+    }
+  });
+
+  edo_textData.order("createData", true)
+  .skip(700)
+  .limit(300)
+  .fetchAll()
+  .then(function(results) {
+    //全件検索に成功した場合の処理
+     alert('1-4');
+    for (var i = 700; i < 700+results.length; i++) {
+      var object = results[i-700];
       text_id[i] = object.text_id;
       head[i] = object.head;
       category[i] = object.category;
@@ -64,7 +96,7 @@ edo_textData.order("createData", true)
   .fetchAll()
   .then(function(results) {
     //全件検索に成功した場合の処理
-    alert('2');    for (var i = 1000; i < 1000 + results.length; i++) {
+    alert('1-5');    for (var i = 1000; i < 1000 + results.length; i++) {
       var object = results[i - 1000];
       text_id[i] = object.text_id;
       head[i] = object.head;
@@ -85,14 +117,35 @@ var title_pic = [];
 
 
 edo_pictureData.order("createData", true)
-  .limit(600)
+  .limit(300)
   .fetchAll()
   .then(function(results) {
     //全件検索に成功した場合の処理
-     alert('3');
+     alert('2-1');
 
     for (var i = 0; i < results.length; i++) {
       var object = results[i];
+
+      point_id_pic[i] = object.point_id;
+      point_narrow[i] = object.point_narrow;
+      point_wide[i] = object.point_wide;
+      text_id_main[i] = object.text_id_main;
+      text_id_sub[i] = object.text_id_sub;
+      file[i] = object.file;
+      title_pic[i] = object.title;
+    }
+  });
+
+edo_pictureData.order("createData", true)
+  .skip(300)
+  .limit(300)
+  .fetchAll()
+  .then(function(results) {
+    //全件検索に成功した場合の処理
+     alert('2-2');
+
+    for (var i = 300; i < 300+results.length; i++) {
+      var object = results[i-300];
 
       point_id_pic[i] = object.point_id;
       point_narrow[i] = object.point_narrow;
@@ -110,7 +163,7 @@ function callback() {
     .fetchAll()
     .then(function(results) {
       //全件検索に成功した場合の処理
-      alert('4');
+      alert('3');
       var lat = [];
       var lng = [];
       var title = [];

@@ -2,7 +2,7 @@ var APPLICATIONKEY = "ed1ce2abd40a216eb032b0d94ac80c9dd9b5027f9a28a2283936297e0a
 var CLIENTKEY = "e760446f705aa042f7f2b70e63f29b1f57eed9d71f15532036ce333c44f9f3c1";
 
 var ncmb = new NCMB(APPLICATIONKEY, CLIENTKEY);
-var TestData = ncmb.DataStore('matoi');
+var TestData = ncmb.DataStore('matoi2');
 //var taiheiStamp = ncmb.DataStore('stamp');
 
 var map;
@@ -37,11 +37,12 @@ TestData.order("createData", true)
     var tyo_in = [];
     var zinsoku = [];
     var file_name = [];
+    var file_name2 = [];
 
     for (var i = 0; i < results.length; i++, cnt++) {
       var object = results[i];
-      lat[i] = object.lat;
-      lng[i] = object.lng;
+      lat[i] = parseFloat(object.lat);
+      lng[i] = parseFloat(object.lng);
       kumi[i] = object.kumi;
       town_name[i] = object.town_name;
       center_town[i] = object.center_town;
@@ -50,11 +51,25 @@ TestData.order("createData", true)
       tyo_in[i] = object.tyo_in;
       zinsoku[i] = object.zinsoku;
       file_name[i] = object.file_name;
+      file_name2[i] =object.file_name2;
 
       stamplat[i] = lat[i];
       stamplng[i] = lng[i];
       // stampclick4[i] =  '<button onclick="stamp_push4(' + i + ')">スタンプ' + '</button><div id="stamp"></div>'
       stampclick4[i] = '<div id="stamp"><ons-button onclick ="stamp_push4(' + i + ')">スタンプ</ons-button></div>' + '<div id="btn">'
+
+      var infoWindowContent = [];
+
+      if(file_name2[i] == ''){
+        infoWindowContent += 
+        '<img src= "https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=taihey&file='+ file_name[i] + '.jpg&size=100" onclick="showTemplateDialog2(\'' + file_name[i] + '\')">'
+      }
+      else{
+        infoWindowContent += 
+        '<img src= "https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=taihey&file='+ file_name[i] + '.jpg&size=100" onclick="showTemplateDialog2(\'' + file_name[i] + '\')">' +
+        '<br>' +
+        '<img src= "https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=taihey&file='+ file_name2[i] + '.jpg&size=100" onclick="showTemplateDialog2(\'' + file_name2[i] + '\')">'        
+      }
 
 
 
@@ -63,6 +78,7 @@ TestData.order("createData", true)
         lat: lat[i],
         lng: lng[i]
       };
+
       marker4[i] = new google.maps.Marker({
         position: markerLatLng,
         map: map,
@@ -72,15 +88,16 @@ TestData.order("createData", true)
         }
       });
 
-      infoWindow4[i] = new google.maps.InfoWindow({ // 吹き出しの追加
-        // 吹き出しに表示する内容
-        content: 
-        '<div class="map">' + kumi[i] + '</div>' + '町員　　　　　　' + tyo_in[i] + '<br>人足　　　　　　' + zinsoku[i] + 
-        '<br>中心地(文字配当図)' + center_moji[i] + '<br>中心地(先頭町名)　' + center_town[i] + '<br><br>' + town_name[i] + 
-        '<br>' + stampclick4[i] +
-        '<img src= "https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=taihey&file='+ file_name[i] + '.jpg&size=100" onclick="showTemplateDialog2(\'' + file_name[i] + '\')">'
-        //'<img src= "https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=taihey&file=E10-028.jpg&size=400">'
-      });
+
+        infoWindow4[i] = new google.maps.InfoWindow({ // 吹き出しの追加
+          // 吹き出しに表示する内容
+          maxWidth: 1000,
+          content: 
+          '<div class="map">' + kumi[i]  + '</div>' + '町員　　　　　' + tyo_in[i] + '<br>人足　　　　　' + zinsoku[i] + 
+          '<br>中心地(文字配当図)' + center_moji[i] + '<br>中心地(先頭町名)　' + center_town[i] + '<br><br>' + town_name[i] +
+          '<br>' + infoWindowContent + '<br>' + stampclick4[i]
+        });
+
       markerEvent4(i); // マーカーにクリックイベントを追加
 
     }
