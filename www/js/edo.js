@@ -32,7 +32,7 @@ edo_textData.order("createData", true)
   .fetchAll()
   .then(function(results) {
     //全件検索に成功した場合の処理
-     alert('1-1');
+     // alert('1-1');
     for (var i = 0; i < results.length; i++) {
       var object = results[i];
       text_id[i] = object.text_id;
@@ -48,7 +48,7 @@ edo_textData.order("createData", true)
   .fetchAll()
   .then(function(results) {
     //全件検索に成功した場合の処理
-     alert('1-2');
+     // alert('1-2');
     for (var i = 200; i < 200 + results.length; i++) {
       var object = results[i-200];
       text_id[i] = object.text_id;
@@ -64,7 +64,7 @@ edo_textData.order("createData", true)
   .fetchAll()
   .then(function(results) {
     //全件検索に成功した場合の処理
-     alert('1-3');
+     // alert('1-3');
     for (var i = 500; i < 500+results.length; i++) {
       var object = results[i-500];
       text_id[i] = object.text_id;
@@ -80,7 +80,7 @@ edo_textData.order("createData", true)
   .fetchAll()
   .then(function(results) {
     //全件検索に成功した場合の処理
-     alert('1-4');
+     // alert('1-4');
     for (var i = 700; i < 700+results.length; i++) {
       var object = results[i-700];
       text_id[i] = object.text_id;
@@ -96,7 +96,8 @@ edo_textData.order("createData", true)
   .fetchAll()
   .then(function(results) {
     //全件検索に成功した場合の処理
-    alert('1-5');    for (var i = 1000; i < 1000 + results.length; i++) {
+    // alert('1-5');
+    for (var i = 1000; i < 1000 + results.length; i++) {
       var object = results[i - 1000];
       text_id[i] = object.text_id;
       head[i] = object.head;
@@ -121,7 +122,7 @@ edo_pictureData.order("createData", true)
   .fetchAll()
   .then(function(results) {
     //全件検索に成功した場合の処理
-     alert('2-1');
+     // alert('2-1');
 
     for (var i = 0; i < results.length; i++) {
       var object = results[i];
@@ -142,7 +143,7 @@ edo_pictureData.order("createData", true)
   .fetchAll()
   .then(function(results) {
     //全件検索に成功した場合の処理
-     alert('2-2');
+     // alert('2-2');
 
     for (var i = 300; i < 300+results.length; i++) {
       var object = results[i-300];
@@ -163,7 +164,7 @@ function callback() {
     .fetchAll()
     .then(function(results) {
       //全件検索に成功した場合の処理
-      alert('3');
+      // alert('3');
       var lat = [];
       var lng = [];
       var title = [];

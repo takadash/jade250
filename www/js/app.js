@@ -211,3 +211,27 @@ function getMyPlace() {
   };
   navigator.geolocation.getCurrentPosition(success, error); //成功と失敗を判断
 }
+
+
+function showTemplateDialog_kiyaku() {
+  var kiyaku = document.getElementById('kiyaku_dialog');
+
+
+  if (kiyaku) {
+    kiyaku.show();
+  }
+  else{
+    ons.createElement('kiyaku_dialog.html', {append: true})
+      .then(function(dialog) {
+        dialog.show();
+      });
+  }
+};
+
+//ダイアログ非表示
+function hideDialog_kiyaku(id) {
+  document.getElementById('scroll_kiyaku').scrollTop = 0;
+  document
+    .getElementById(id)
+    .hide();
+};
