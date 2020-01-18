@@ -27,84 +27,194 @@ var head = [];
 var category = [];
 var text = [];
 
-edo_textData.order("createData", true)
-  .limit(200)
-  .fetchAll()
-  .then(function(results) {
-    //全件検索に成功した場合の処理
-     // alert('1-1');
-    for (var i = 0; i < results.length; i++) {
-      var object = results[i];
-      text_id[i] = object.text_id;
-      head[i] = object.head;
-      category[i] = object.category;
-      text[i] = object.text;
-    }
-  });
 
   edo_textData.order("createData", true)
-  .skip(200)
-  .limit(300)
-  .fetchAll()
-  .then(function(results) {
-    //全件検索に成功した場合の処理
-     // alert('1-2');
-    for (var i = 200; i < 200 + results.length; i++) {
-      var object = results[i-200];
-      text_id[i] = object.text_id;
-      head[i] = object.head;
-      category[i] = object.category;
-      text[i] = object.text;
-    }
-  });
+    .limit(1000)
+    .fetchAll()
+    .then(function(results) {
+      //全件検索に成功した場合の処理
+       // alert('1-1');
+      for (var i = 0; i < results.length; i++) {
+        var object = results[i];
+        text_id[i] = object.text_id;
+        head[i] = object.head;
+        category[i] = object.category;
+        text[i] = object.text;
+      }
+      // alert('aa');
+      edo_textData.order("createData", true)
+        .skip(1000)
+        .limit(200)
+        .fetchAll()
+        .then(function(results) {
+          //全件検索に成功した場合の処理
+          // alert('1-5');
+          for (var i = 1000; i < 1000 + results.length; i++) {
+            var object = results[i - 1000];
+            text_id[i] = object.text_id;
+            head[i] = object.head;
+            category[i] = object.category;
+            text[i] = object.text;
+          }
+          // alert('bb');
+          edo_pictureData.order("createData", true)
+            .limit(600)
+            .fetchAll()
+            .then(function(results) {
+              //全件検索に成功した場合の処理
+               // alert('2-1');
+              for (var i = 0; i < results.length; i++) {
+                var object = results[i];
 
-  edo_textData.order("createData", true)
-  .skip(500)
-  .limit(200)
-  .fetchAll()
-  .then(function(results) {
-    //全件検索に成功した場合の処理
-     // alert('1-3');
-    for (var i = 500; i < 500+results.length; i++) {
-      var object = results[i-500];
-      text_id[i] = object.text_id;
-      head[i] = object.head;
-      category[i] = object.category;
-      text[i] = object.text;
-    }
-  });
+                point_id_pic[i] = object.point_id;
+                point_narrow[i] = object.point_narrow;
+                point_wide[i] = object.point_wide;
+                text_id_main[i] = object.text_id_main;
+                text_id_sub[i] = object.text_id_sub;
+                file[i] = object.file;
+                title_pic[i] = object.title;
+              }
+              // alert('cc');
+              edoData.order("createData", true)
+                .limit(500)
+                .fetchAll()
+                .then(function(results) {
+                  //全件検索に成功した場合の処理
+                  // alert('3');
+                  var lat = [];
+                  var lng = [];
+                  var title = [];
+                  var point_id = [];
+                  var noData = [];
+                  var samePlace = [];
 
-  edo_textData.order("createData", true)
-  .skip(700)
-  .limit(300)
-  .fetchAll()
-  .then(function(results) {
-    //全件検索に成功した場合の処理
-     // alert('1-4');
-    for (var i = 700; i < 700+results.length; i++) {
-      var object = results[i-700];
-      text_id[i] = object.text_id;
-      head[i] = object.head;
-      category[i] = object.category;
-      text[i] = object.text;
-    }
-  });
+                  for (var i = 0; i < results.length; i++, pinCnt_edo++) {
+                    var object = results[i];
+                    lat[i] = parseFloat(object.lat);
+                    lng[i] = parseFloat(object.lng);
+                    title[i] = object.title;
+                    point_id[i] = object.point_id;
 
-edo_textData.order("createData", true)
-  .skip(1000)
-  .limit(200)
-  .fetchAll()
-  .then(function(results) {
-    //全件検索に成功した場合の処理
-    // alert('1-5');
-    for (var i = 1000; i < 1000 + results.length; i++) {
-      var object = results[i - 1000];
-      text_id[i] = object.text_id;
-      head[i] = object.head;
-      category[i] = object.category;
-      text[i] = object.text;
-    }
-  });
+                    var ar_point = [];
+
+                    for (var j = 0; j < cnt_picture; j++) {
+                      if (point_id[i] == point_id_pic[j]) ar_point.push(j);
+                    }
+
+                    var ar_text_main = [];
+                    var ar_text_sub = [];
+                    for (var j = 0; j < cnt_text; j++) {
+                      for (var k = 0; k < ar_point.length; k++) {
+                        if (text_id_main[ar_point[k]] == text_id[j]){
+                          ar_text_main.push(j);
+                        }
+                        if (text_id_sub[ar_point[k]] == text_id[j]) ar_text_sub.push(j);
+                      }
+                    }
+
+                    if (ar_point.length == 0) noData.push(title[i]);
+
+                    var reset = 0;
+                    if (lat[i] > 0) {
+                      for (var j = 0; j < results.length; j++) {
+                        if (lat[i] == lat[j] && lng[i] == lng[j]) {
+                          reset++;
+                          samePlace.push(title[i]);
+                        }
+                      }
+                    }
+
+                    var infoWindowContent = [];
+                    for (var k = 0; k < ar_point.length; k++) {
+                      if(file[ar_point[k]] == '画像なし'){
+                        infoWindowContent +=
+                        '<div style="padding: 2.5px;">'+
+                        '<img src="img/noimage2.png" width="80" height="60" onclick="showTemplateDialog_edo('
+                        + '\'' + point_wide[ar_point[k]]   + '\'' + '\,'
+                        + '\'' + point_narrow[ar_point[k]] + '\'' + '\,'
+                        + '\'' + text[ar_text_sub[k]]      + '\'' + '\,'
+                        + '\'' + text[ar_text_main[k]]     + '\'' + '\,'
+                        + '\'' + file[ar_point[k]]         + '\''
+                        + ')">'
+                        + '</div>'
+                      }
+                      else{
+                        infoWindowContent +=
+                        '<div style="padding: 2.5px;">'+
+                        '<img src="https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=edo&file='
+                        + file[ar_point[k]]
+                        + '.jpg&size=100" onclick="showTemplateDialog_edo('
+                        + '\'' + point_wide[ar_point[k]]   + '\'' + '\,'
+                        + '\'' + point_narrow[ar_point[k]] + '\'' + '\,'
+                        + '\'' + text[ar_text_sub[k]]      + '\'' + '\,'
+                        + '\'' + text[ar_text_main[k]]     + '\'' + '\,'
+                        + '\'' + file[ar_point[k]]         + '\''
+                        + ')">'
+                        + '</div>'
+                      }
+                    }
+
+                    stamplat_edo[i] = lat[i];
+                    stamplng_edo[i] = lng[i];
+                    stampclick_edo[i] = '<div id="stamp" style="padding: 2.5px;"><ons-button onclick ="stamp_push_edo(' + i + ')">スタンプ</ons-button></div>' + '<div id="btn">'
+                    //ピンたて
+                    markerLatLng = {
+                      lat: lat[i],
+                      lng: lng[i]
+                    };
+                    marker_edo[i] = new google.maps.Marker({
+                      position: markerLatLng,
+                      map: map,
+                      visible: false, // 最初は非表示
+                      icon: {
+                        url: 'https://maps.google.com/mapfiles/ms/icons/pink-dot.png'
+                      }
+                    });
+
+                    infoWindow_edo[i] = new google.maps.InfoWindow({ // 吹き出しの追加
+                      content: '<div class="map">' + title[i] +
+                        '<br>' + infoWindowContent + '</div>' +
+                        '<br>' + stampclick_edo[i]
+                    });
+
+                    markerEvent_edo(i); // マーカーにクリックイベントを追加
+                  }
+
+                  // マーカーにクリックイベントを追加
+                  function markerEvent_edo(i) {
+                    marker_edo[i].addListener('click', function() { // マーカーをクリックしたとき
+                      if (currentInfoWindow) { //currentInfoWindowに値があるならば
+                        currentInfoWindow.close(); //開いていた吹き出しを閉じる
+                      }
+                      infoWindow_edo[i].open(map, marker_edo[i]); // 吹き出しの表示
+                      currentInfoWindow = infoWindow_edo[i];
+                    });
+                  }
+                  // alert('dd');
+                  // alert('江戸');
+                  delete_dom_obj('screenLock');
+                })
+                .catch(function(error) {
+                  alert('取得に失敗しました');
+                });
+            })
+            .catch(function(error) {
+              alert('取得に失敗しました');
+            });
+        })
+        .catch(function(error) {
+          alert('取得に失敗しました');
+        });
+    })
+    .catch(function(error) {
+      alert('取得に失敗しました');
+    });
+    // callback();
+    
+    
+     // callback();
+
+
 
 var point_id_pic = [];
 //狭域
@@ -117,170 +227,27 @@ var file = [];
 var title_pic = [];
 
 
-edo_pictureData.order("createData", true)
-  .limit(300)
-  .fetchAll()
-  .then(function(results) {
-    //全件検索に成功した場合の処理
-     // alert('2-1');
+    
+    // callback();
+    
 
-    for (var i = 0; i < results.length; i++) {
-      var object = results[i];
 
-      point_id_pic[i] = object.point_id;
-      point_narrow[i] = object.point_narrow;
-      point_wide[i] = object.point_wide;
-      text_id_main[i] = object.text_id_main;
-      text_id_sub[i] = object.text_id_sub;
-      file[i] = object.file;
-      title_pic[i] = object.title;
-    }
-  });
 
-edo_pictureData.order("createData", true)
-  .skip(300)
-  .limit(300)
-  .fetchAll()
-  .then(function(results) {
-    //全件検索に成功した場合の処理
-     // alert('2-2');
+  // dispLoading("処理中");
 
-    for (var i = 300; i < 300+results.length; i++) {
-      var object = results[i-300];
+     // removeLoading();
 
-      point_id_pic[i] = object.point_id;
-      point_narrow[i] = object.point_narrow;
-      point_wide[i] = object.point_wide;
-      text_id_main[i] = object.text_id_main;
-      text_id_sub[i] = object.text_id_sub;
-      file[i] = object.file;
-      title_pic[i] = object.title;
-    }
-  });
+     
+     // callback();
+     
 
-function callback() {
-  edoData.order("createData", true)
-    .limit(500)
-    .fetchAll()
-    .then(function(results) {
-      //全件検索に成功した場合の処理
-      // alert('3');
-      var lat = [];
-      var lng = [];
-      var title = [];
-      var point_id = [];
-      var noData = [];
-      var samePlace = [];
+// setTimeout(callback, 1000);
 
-      for (var i = 0; i < results.length; i++, pinCnt_edo++) {
-        var object = results[i];
-        lat[i] = parseFloat(object.lat);
-        lng[i] = parseFloat(object.lng);
-        title[i] = object.title;
-        point_id[i] = object.point_id;
+// aa();
+// aa(bb(cc(dd())));
+// cc();
 
-        var ar_point = [];
 
-        for (var j = 0; j < cnt_picture; j++) {
-          if (point_id[i] == point_id_pic[j]) ar_point.push(j);
-        }
-
-        var ar_text_main = [];
-        var ar_text_sub = [];
-        for (var j = 0; j < cnt_text; j++) {
-          for (var k = 0; k < ar_point.length; k++) {
-            if (text_id_main[ar_point[k]] == text_id[j]){
-              ar_text_main.push(j);
-            }
-            if (text_id_sub[ar_point[k]] == text_id[j]) ar_text_sub.push(j);
-          }
-        }
-
-        if (ar_point.length == 0) noData.push(title[i]);
-
-        var reset = 0;
-        if (lat[i] > 0) {
-          for (var j = 0; j < results.length; j++) {
-            if (lat[i] == lat[j] && lng[i] == lng[j]) {
-              reset++;
-              samePlace.push(title[i]);
-            }
-          }
-        }
-
-        var infoWindowContent = [];
-        for (var k = 0; k < ar_point.length; k++) {
-          if(file[ar_point[k]] == '画像なし'){
-            infoWindowContent +=
-            '<div style="padding: 2.5px;">'+
-            '<img src="img/noimage2.png" width="80" height="60" onclick="showTemplateDialog_edo('
-            + '\'' + point_wide[ar_point[k]]   + '\'' + '\,'
-            + '\'' + point_narrow[ar_point[k]] + '\'' + '\,'
-            + '\'' + text[ar_text_sub[k]]      + '\'' + '\,'
-            + '\'' + text[ar_text_main[k]]     + '\'' + '\,'
-            + '\'' + file[ar_point[k]]         + '\''
-            + ')">'
-            + '</div>'
-          }
-          else{
-            infoWindowContent +=
-            '<div style="padding: 2.5px;">'+
-            '<img src="https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=edo&file='
-            + file[ar_point[k]]
-            + '.jpg&size=100" onclick="showTemplateDialog_edo('
-            + '\'' + point_wide[ar_point[k]]   + '\'' + '\,'
-            + '\'' + point_narrow[ar_point[k]] + '\'' + '\,'
-            + '\'' + text[ar_text_sub[k]]      + '\'' + '\,'
-            + '\'' + text[ar_text_main[k]]     + '\'' + '\,'
-            + '\'' + file[ar_point[k]]         + '\''
-            + ')">'
-            + '</div>'
-          }
-        }
-
-        stamplat_edo[i] = lat[i];
-        stamplng_edo[i] = lng[i];
-        stampclick_edo[i] = '<div id="stamp" style="padding: 2.5px;"><ons-button onclick ="stamp_push_edo(' + i + ')">スタンプ</ons-button></div>' + '<div id="btn">'
-        //ピンたて
-        markerLatLng = {
-          lat: lat[i],
-          lng: lng[i]
-        };
-        marker_edo[i] = new google.maps.Marker({
-          position: markerLatLng,
-          map: map,
-          visible: false, // 最初は非表示
-          icon: {
-            url: 'https://maps.google.com/mapfiles/ms/icons/pink-dot.png'
-          }
-        });
-
-        infoWindow_edo[i] = new google.maps.InfoWindow({ // 吹き出しの追加
-          content: '<div class="map">' + title[i] +
-            '<br>' + infoWindowContent + '</div>' +
-            '<br>' + stampclick_edo[i]
-        });
-
-        markerEvent_edo(i); // マーカーにクリックイベントを追加
-      }
-
-      // マーカーにクリックイベントを追加
-      function markerEvent_edo(i) {
-        marker_edo[i].addListener('click', function() { // マーカーをクリックしたとき
-          if (currentInfoWindow) { //currentInfoWindowに値があるならば
-            currentInfoWindow.close(); //開いていた吹き出しを閉じる
-          }
-          infoWindow_edo[i].open(map, marker_edo[i]); // 吹き出しの表示
-          currentInfoWindow = infoWindow_edo[i];
-        });
-      }
-    })
-    .catch(function(error) {
-      //全件検索に失敗した場合の処理
-      //alert('取得に失敗しました');
-    });
-}
-setTimeout(callback, 1000);
 
 function stamp_push_edo(i) {
   var hyouzi = document.getElementById("stamp");
@@ -407,12 +374,18 @@ function showTemplateDialog_edo2() {
   }
 
   if (dialog2) {
+    // ダイアログを小さく
+    // if(honbun == "--") document.getElementById('scroll').style = "";
+    // else               document.getElementById('scroll').style = "overflow:auto; width:45vh; height:92vh"
     dialog2.show();
     insert_text();
   }
   else{
     ons.createElement('edo_dialog.html2', {append: true})
       .then(function(dialog) {
+        // ダイアログを小さく
+        // if(honbun == "--") document.getElementById('scroll').style = "";
+        // else               document.getElementById('scroll').style = "overflow:auto; width:45vh; height:92vh"
         dialog.show();
         insert_text();
       });

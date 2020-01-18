@@ -98,7 +98,7 @@ hasiraData.order("createData", true)
         currentInfoWindow = infoWindow6[i];
       });
     }
-
+    // alert('標柱');
   })
   .catch(function(error) {
     //全件検索に失敗した場合の処理

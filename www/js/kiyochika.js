@@ -87,6 +87,7 @@ kiyochikaData.order("createData", true)
         currentInfoWindow = infoWindow5[i];
       });
     }
+    // alert('清親');
   })
   .catch(function(error) {
     //全件検索に失敗した場合の処理

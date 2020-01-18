@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
   <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
   <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+  <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script> -->
 
   <script>
     // Page init event
@@ -171,9 +172,7 @@
           <div class="hidden_show">
             <ons-button id="push-button">START</ons-button>
           </div>
-
       </ons-bottom-toolbar>
-
     </ons-page>
   </template>
 
@@ -192,6 +191,7 @@
               <script src="js/kyoden.js"></script>
               <script src="js/hasira.js"></script>
               <script src="js/edo.js"></script>
+              <script src="js/screenLock.js"></script>
 
               <ons-list-header>ピン選択</ons-list-header>
 
@@ -307,6 +307,7 @@
               <!-- <ons-list-header>利用規約</ons-list-header> -->
               <ons-list-item>
                 <button onclick="showTemplateDialog_kiyaku()" class="btn-flat-border">利用規約</button>
+                <!-- <button onclick="screenLock()">サンプル実行</button> -->
               </ons-list-item>
 
             </ons-list>
@@ -349,7 +350,8 @@
         <button onclick="myToast.hide()">ok</button>
       </ons-toast>
 
-          <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXueT8O-UOJmfh2M-1Xh1IbfKWNXv-coU&callback=initMap">
+          <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXueT8O-UOJmfh2M-1Xh1IbfKWNXv-coU&callback=initMap" >
+            // delete_dom_obj('screenLock');
           </script>
         </ons-page>
       </template>
@@ -377,7 +379,7 @@
   <ons-template id="edo_dialog.html">
     <ons-dialog id="edo_dialog">
       <!-- <ons-navigator id="aiueo"> -->
-      <div style="text-align: center; padding: 5px;">
+      <div style="text-align: center; padding: 5px; ">
         <p>
           <div id="kouiki">ありよりのなし</div> <br> 
           <div id="kyouiki">なし</div> <br>
@@ -413,7 +415,7 @@
 
   <ons-template id="hasira_dialog.html">
     <ons-dialog id="hasira_dialog">
-      <div id="scroll_hasira" style="overflow:auto; width:45vh">
+      <div id="scroll_hasira" style="overflow:auto; width:45vh; height:92vh">
         <p>
           <div id="hasira_text">なし</div>
           <div id="hasira_text2"></div>

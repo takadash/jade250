@@ -24,6 +24,7 @@ document.getElementById('bar4').value = 0;
 TestData.order("createData", true)
   .fetchAll()
   .then(function(results) {
+    // alert('太平');
     //全件検索に成功した場合の処理
     // alert('取得に成功');
 
@@ -71,8 +72,6 @@ TestData.order("createData", true)
         '<img src= "https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=taihey&file='+ file_name2[i] + '.jpg&size=100" onclick="showTemplateDialog2(\'' + file_name2[i] + '\')">'        
       }
 
-
-
       //ピンたて
       markerLatLng = {
         lat: lat[i],
@@ -99,13 +98,12 @@ TestData.order("createData", true)
         });
 
       markerEvent4(i); // マーカーにクリックイベントを追加
-
     }
 
-    $(document).on("click", "#button", function() {
-      // clickイベントの処理
-      //<div id="stamp"></div>
-    });
+    // $(document).on("click", "#button", function() {
+    //   // clickイベントの処理
+    //   //<div id="stamp"></div>
+    // });
 
     // マーカーにクリックイベントを追加
     function markerEvent4(i) {
@@ -117,7 +115,6 @@ TestData.order("createData", true)
         currentInfoWindow = infoWindow4[i];
       });
     }
-
   })
   .catch(function(error) {
     //全件検索に失敗した場合の処理

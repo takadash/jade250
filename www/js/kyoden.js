@@ -79,7 +79,7 @@ kyodenData.order("createData", true)
         currentInfoWindow = infoWindow2[i];
       });
     }
-
+    // alert('京伝');
   })
   .catch(function(error) {
     //全件検索に失敗した場合の処理
