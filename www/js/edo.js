@@ -27,6 +27,15 @@ var head = [];
 var category = [];
 var text = [];
 
+var point_id_pic = [];
+//狭域
+var point_narrow = [];
+//広域
+var point_wide = [];
+var text_id_main = [];
+var text_id_sub = [];
+var file = [];
+var title_pic = [];
 
   edo_textData.order("createData", true)
     .limit(1000)
@@ -177,7 +186,9 @@ var text = [];
                         '<br>' + stampclick_edo[i]
                     });
 
+                    // console.log('ok,'+ i);
                     markerEvent_edo(i); // マーカーにクリックイベントを追加
+
                   }
 
                   // マーカーにクリックイベントを追加
@@ -195,7 +206,7 @@ var text = [];
                   delete_dom_obj('screenLock');
                 })
                 .catch(function(error) {
-                  alert('取得に失敗しました');
+                  // alert('取得に失敗しました');
                 });
             })
             .catch(function(error) {
@@ -209,45 +220,6 @@ var text = [];
     .catch(function(error) {
       alert('取得に失敗しました');
     });
-    // callback();
-    
-    
-     // callback();
-
-
-
-var point_id_pic = [];
-//狭域
-var point_narrow = [];
-//広域
-var point_wide = [];
-var text_id_main = [];
-var text_id_sub = [];
-var file = [];
-var title_pic = [];
-
-
-    
-    // callback();
-    
-
-
-
-  // dispLoading("処理中");
-
-     // removeLoading();
-
-     
-     // callback();
-     
-
-// setTimeout(callback, 1000);
-
-// aa();
-// aa(bb(cc(dd())));
-// cc();
-
-
 
 function stamp_push_edo(i) {
   var hyouzi = document.getElementById("stamp");
@@ -296,6 +268,11 @@ function stamp_push_edo(i) {
         url: 'http://maps.google.co.jp/mapfiles/ms/icons/pink.png'
       });
 
+      if(cnt_edo == 464) {
+        var comp = document.getElementById("comp7");
+        comp.innerHTML = "C O M P L E T E ！";
+      }
+
     } else {
       alert('遠くてスタンプが押せませんでした');
     }
@@ -332,18 +309,18 @@ function edo() {
 var gatyushi;
 var honbun;
 //ダイアログ表示
-function showTemplateDialog_edo(a,b,c,d,e) {
+function showTemplateDialog_edo(point_w,point_n,text_sub,text_main,text_img) {
   var dialog = document.getElementById('edo_dialog');
 
 
   function insert_text(){
-    var kouiki = a;
-    var kyouiki = b;
+    var kouiki = point_w;
+    var kyouiki = point_n;
     var picture_edo_url
-    if(e == '画像なし') picture_edo_url = 'img/noimage2.png';
-    else              picture_edo_url = 'https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=edo&file=' + e + '.jpg&size=350';
-    gatyushi = c;
-    honbun = d;
+    if(text_img == '画像なし') picture_edo_url = 'img/noimage2.png';
+    else              picture_edo_url = 'https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=edo&file=' + text_img + '.jpg&size=350';
+    gatyushi = text_sub;
+    honbun = text_main;
 
 
     document.getElementById('kouiki').innerHTML = "地名（広域）：　" + kouiki;

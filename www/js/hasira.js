@@ -162,6 +162,11 @@ function stamp_push_hasira(i) {
                 url: 'http://maps.google.co.jp/mapfiles/ms/icons/purple.png'
             });
 
+      if(cnt_stamp6 == 174) {
+        var comp = document.getElementById("comp6");
+        comp.innerHTML = "C O M P L E T E ！";
+      }      
+
     } else {
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
       alert('遠くてスタンプが押せませんでした');

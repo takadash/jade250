@@ -32,3 +32,4 @@ function delete_dom_obj( id_name ){
     var dom_obj_parent=dom_obj.parentNode;
     dom_obj_parent.removeChild(dom_obj);
 }
+screenLock();

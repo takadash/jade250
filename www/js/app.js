@@ -33,7 +33,7 @@ function onload() {
 
 //GoogleMapの表示
 function initMap() {
-  screenLock();
+  // screenLock();
   // async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaScoUyAXueT8O-UOJmfh2M-1Xh1IbfKWNXv-";
   // #mapに地図を埋め込む
   map = new google.maps.Map(document.getElementById('map'), {
