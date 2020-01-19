@@ -33,6 +33,8 @@ function onload() {
 
 //GoogleMapの表示
 function initMap() {
+  // screenLock();
+  // async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaScoUyAXueT8O-UOJmfh2M-1Xh1IbfKWNXv-";
   // #mapに地図を埋め込む
   map = new google.maps.Map(document.getElementById('map'), {
     center: { // 地図の中心を指定 (初期:千代田区)
@@ -41,6 +43,7 @@ function initMap() {
     },
     zoom: 15 // 地図のズームを指定
   });
+  // alert('initMap');
 };
 
 // function sleep(msec) {
@@ -210,3 +213,27 @@ function getMyPlace() {
   };
   navigator.geolocation.getCurrentPosition(success, error); //成功と失敗を判断
 }
+
+
+function showTemplateDialog_kiyaku() {
+  var kiyaku = document.getElementById('kiyaku_dialog');
+
+
+  if (kiyaku) {
+    kiyaku.show();
+  }
+  else{
+    ons.createElement('kiyaku_dialog.html', {append: true})
+      .then(function(dialog) {
+        dialog.show();
+      });
+  }
+};
+
+//ダイアログ非表示
+function hideDialog_kiyaku(id) {
+  document.getElementById('scroll_kiyaku').scrollTop = 0;
+  document
+    .getElementById(id)
+    .hide();
+};

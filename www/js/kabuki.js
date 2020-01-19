@@ -106,9 +106,8 @@ kabukiData.order("createData", true)
         // pin_choice_sound();
       });
     }
-
+    // alert('歌舞伎');
   })
-
   .catch(function(error) {
     //全件検索に失敗した場合の処理
     //alert('取得に失敗しました');
