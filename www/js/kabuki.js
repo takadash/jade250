@@ -63,15 +63,29 @@ kabukiData.order("createData", true)
         lat: lat1[i],
         lng: lng1[i]
       };
+      var judge_kabuki = localStorage.getItem("visit_kabuki" + i);
+          if(localStorage.getItem("visit_kabuki" + i ) === null){
       marker1[i] = new google.maps.Marker({
         position: markerLatLng,
         map: map,
         visible: false, // 最初は非表示
+
         icon: {
           url: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
         }
         //animation: google.maps.Animation.DROP
       });
+          }else{
+            marker1[i] = new google.maps.Marker({
+        position: markerLatLng,
+        map: map,
+        visible: false, // 最初は非表示
+
+        icon: {
+          url: 'https://maps.google.com/mapfiles/ms/icons/green.png'
+        }
+            });
+          }
 
       infoWindow1[i] = new google.maps.InfoWindow({ // 吹き出しの追加
         content: '<div class="map">' + title[i] + '</div>' + '地名　　　　　　' + name[i] + '<br>参考文献　　　　' + bibliography[i] + volume[i] + page[i] + '<br>' + title[i] + text[i] + '<br>' + stampclick1[i] // 吹き出しに表示する内容
@@ -167,12 +181,13 @@ function stamp_push1(i) {
         localStorage.setItem('cnt_stamp', savedate);
         // console.log(savedate);
 
-      localStorage.setItem('judge' + i, true);
 
       if(cnt_stamp == 23) {
         var comp = document.getElementById("comp");
         comp.innerHTML = "C O M P L E T E ！";
       }
+
+      localStorage.setItem('visit_kabuki' + i,true);
 
     } else {
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
