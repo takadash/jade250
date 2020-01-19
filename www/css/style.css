@@ -45,3 +45,18 @@ ol {
   list-style-type: none;
 }
 
+
+.btn-flat-border {
+  display: inline-block;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: #696969;
+  border: solid 2px #696969;
+  border-radius: 3px;
+  transition: .4s;
+}
+
+/*.btn-flat-border:hover {
+  background: #67c5ff;
+  color: white;
+}*/
