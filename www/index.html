@@ -24,16 +24,12 @@
       if (page.matches('#first-page')) {
 
         page.querySelector('#push-button').onclick = function() {
+          //localStorage_setItem_valueはapp.js内の変数
+          localStorage.setItem("isOpen", localStorage_setItem_value);
           document.querySelector('#navigator').pushPage('page2.html');
         };
 
       }
-      // else if (page.matches('#first-page')) {
-
-        // page.querySelector('#push-button').onclick = function() {
-        //   document.querySelector('#navigator').pushPage('page2.html');
-        // };
-      // }
     });
 
     if (ons.platform.isIPhoneX()) {
@@ -109,17 +105,24 @@
       </div>
 
       <ons-bottom-toolbar class="bottom_toolbar">
-        <div style="text-align: center;">
-          <label for="label0">今後表示しない/Do not show again</label>
-          <input type="checkbox" id="label0"/>
-        </div>
-        <div class="hidden_box" style="text-align: center">
-          <label for="label1">同意する</label>
-          <input type="checkbox" id="label1" />
-          <div class="hidden_show">
-            <ons-button id="push-button">START</ons-button>
+
+        <form name="kiyakubox" action="">
+          <div style="text-align: center;" onclick="kiyakuhyouzi()">
+            <label for="label0">今後表示しない/Do not show again</label>
+            <input type="checkbox" id="label0"/>
           </div>
-        </div>
+        </form>
+
+        <form name="doui" acton="">
+          <div class="hidden_box" style="text-align: center">
+            <label for="label1">同意する/Accept</label>
+            <input type="checkbox" id="label1" />
+            <div class="hidden_show">
+              <ons-button id="push-button" onclick="soushin()">START</ons-button>
+            </div>
+          </div>
+        </form>
+
       </ons-bottom-toolbar>
 
     </ons-page>
@@ -259,7 +262,7 @@
         <ion-icon name="locate"></ion-icon>
       </ons-fab>
 
-          <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXueT8O-UOJmfh2M-1Xh1IbfKWNXv-coU&callback=initMap">
+          <script async defer src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap">
           </script>
         </ons-page>
       </template>
