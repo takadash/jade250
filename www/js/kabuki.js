@@ -63,7 +63,7 @@ kabukiData.order("createData", true)
         lat: lat1[i],
         lng: lng1[i]
       };
-      var judge_kabuki = localStorage.getItem("visit_kabuki" + i);
+
           if(localStorage.getItem("visit_kabuki" + i ) === null){
       marker1[i] = new google.maps.Marker({
         position: markerLatLng,

@@ -16,8 +16,10 @@ var stamplng6 = [];
 var maker_is_displayed = 0;
 var cnt6 = 0;
 var cnt_stamp6 = 0;
+var total_hasira = localStorage.getItem("total_hasira");
+if(total_hasira) var cnt_stamp6 = 0 + parseFloat(total_hasira);
  document.getElementById('cnt_stamp6').textContent = cnt_stamp6;
- document.getElementById('bar6').value = 0;
+ document.getElementById('bar6').value = cnt_stamp6;
 
 hasiraData.order("createData", true)
   .limit(200)
@@ -57,30 +59,38 @@ hasiraData.order("createData", true)
         lat: lat[i],
         lng: lng[i]
       };
-      //test
-      for(var j = 0; j < i; j++){
-        if(lat[j] == lat[i] && lng[j] == lng[i]){
-          console.log(lat[j]+','+lng[j]);
-        }
+      if(localStorage.getItem("visit_hasira" + i ) === null){
+  marker6[i] = new google.maps.Marker({
+    position: markerLatLng,
+    map: map,
+    visible: false, // 最初は非表示
+
+    icon: {
+      url: 'https://maps.google.com/mapfiles/ms/icons/purple-dot.png'
+    }
+    //animation: google.maps.Animation.DROP
+  });
+      }else{
+        marker6[i] = new google.maps.Marker({
+    position: markerLatLng,
+    map: map,
+    visible: false, // 最初は非表示
+
+    icon: {
+      url: 'https://maps.google.com/mapfiles/ms/icons/purple.png'
+    }
+        });
       }
-      marker6[i] = new google.maps.Marker({
-        position: markerLatLng,
-        map: map,
-        visible: false, // 最初は非表示
-        icon: {
-          url: 'https://maps.google.com/mapfiles/ms/icons/purple-dot.png'
-        }
-      });
 
       infoWindow6[i] = new google.maps.InfoWindow({ // 吹き出しの追加
         // 吹き出しに表示する内容
-        content: '<div class="map">' + name[i] + '</div>' + '標識の種類　　　　　　' + 
+        content: '<div class="map">' + name[i] + '</div>' + '標識の種類　　　　　　' +
                   type[i] + '<br>所在場所　　　　' + place[i] + '<br>'
                    +'<ons-button onclick="showTemplateDialog_hasira('
                    + '\'' + text[i] + '\'' + '\,'
                    + '\'' + text2[i] + '\'' + '\,'
                    + '\'' + text3[i] + '\'' + '\,'
-                   + '\'' + text4[i] + '\'' + 
+                   + '\'' + text4[i] + '\'' +
                   ',)">本文</ons-button>' +
                   stampclick6[i]
       });
@@ -165,8 +175,9 @@ function stamp_push_hasira(i) {
       if(cnt_stamp6 == 174) {
         var comp = document.getElementById("comp6");
         comp.innerHTML = "C O M P L E T E ！";
-      }      
-
+      }
+      localStorage.setItem("total_hasira", cnt_stamp6);
+      localStorage.setItem('visit_hasira' + i,true);
     } else {
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
       alert('遠くてスタンプが押せませんでした');

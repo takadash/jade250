@@ -17,8 +17,10 @@ var stamplng5 = [];
 var maker_is_displayed = 0;
 var cnt5 = 0;
 var cnt_kiyochika = 0;
+var total_kiyochika = localStorage.getItem("total_kiyochika");
+if(total_kiyochika) var cnt_kiyochika = 0 + parseFloat(total_kiyochika);
 document.getElementById('cnt_kiyochika').textContent = cnt_kiyochika;
-document.getElementById('bar5').value = 0;
+document.getElementById('bar5').value = cnt_kiyochika;
 
 kiyochikaData.order("createData", true)
   .fetchAll()
@@ -55,14 +57,29 @@ kiyochikaData.order("createData", true)
         lat: lat5[i],
         lng: lng5[i]
       };
+
+          if(localStorage.getItem("visit_kiyochika" + i ) === null){
       marker5[i] = new google.maps.Marker({
         position: markerLatLng,
         map: map,
         visible: false, // 最初は非表示
+
         icon: {
           url: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png'
         }
+        //animation: google.maps.Animation.DROP
       });
+          }else{
+            marker5[i] = new google.maps.Marker({
+        position: markerLatLng,
+        map: map,
+        visible: false, // 最初は非表示
+
+        icon: {
+          url: 'https://maps.google.com/mapfiles/ms/icons/blue.png'
+        }
+            });
+          }
 
       infoWindow5[i] = new google.maps.InfoWindow({ // 吹き出しの追加
         maxWidth: 1000,
@@ -143,7 +160,7 @@ function stamp_push5(i) {
 
       btn_display.insertAdjacentHTML('afterbegin', '<img src="human_pictures/human_red.png">');
       cnt_kiyochika++;
-      alert(cnt_kiyochika);
+
       document.getElementById('cnt_kiyochika').textContent = cnt_kiyochika;
       document.getElementById('bar5').value = cnt_kiyochika;
 
@@ -155,7 +172,8 @@ function stamp_push5(i) {
         var comp = document.getElementById("comp5");
         comp.innerHTML = "C O M P L E T E ！";
       }
-
+      localStorage.setItem("total_kiyochika", cnt_kiyochika);
+      localStorage.setItem('visit_kiyochika' + i,true);
     } else {
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
       alert('遠くてスタンプが押せませんでした');
