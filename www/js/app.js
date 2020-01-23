@@ -10,25 +10,29 @@ var marker_g;
 var circle;
 var circle_cnt = 0;
 
+var localStorage_setItem_value = 0;
+
+
 function onload() {
   //前回の値を読み込み
-  localStorage.setItem("isOpen", "0");
-  var isOpen = localStorage.getItem("isOpen");
-  //値が保存されていない、もしくはフラグがオフだった場合
-  if (null == isOpen || 0 == isOpen) {
-    //スプラッシュ削除
-    // navigator.splashscreen.hide();
-    //初回起動終了フラグをオンにする。
-    localStorage.setItem("isOpen", "0");
-    console.log("log1" + "%s", isOpen);
-  } else {
-    //初回ではないのでトップを開く
-    //トップのスコープからオンロード取得時にスプラッシュ削除
-    console.log("log2" + "%s", isOpen);
+  // localStorage.setItem("isOpen", "0");
+  var isOpen2 = localStorage.getItem("isOpen");
+  // console.log("log1 " + isOpen2);
+  //今後表示しないのチェックボックスが押されていた場合
+  if (isOpen2 == 1) {
     document.querySelector('#navigator').pushPage("page2.html", {
       animation: "none"
     });
   }
+}
+
+function kiyakuhyouzi(){
+  // alert("test");
+  var checkbox = document.kiyakubox.label0.checked;
+
+  if (checkbox == true) localStorage_setItem_value = 1;
+  else                  localStorage_setItem_value = 0;
+
 }
 
 //GoogleMapの表示
