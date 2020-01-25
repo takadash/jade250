@@ -14,7 +14,7 @@ var localStorage_setItem_value = 0;
 
 function onload() {
   //前回の値を読み込み
-  // localStorage.setItem("isOpen", "0");
+  localStorage.setItem("isOpen", "0");
   var isOpen2 = localStorage.getItem("isOpen");
   // console.log("log1 " + isOpen2);
   //今後表示しないのチェックボックスが押されていた場合
@@ -34,23 +34,25 @@ function two() {
   document.querySelector('#navigator').pushPage("en.html",{animation:"none"});
 }
 
-function kiyakuhyouzi(){
-  // alert("test");
+
+function kiyakuhyouzi_japanese(){
   // var checkbox = document.kiyakubox.label0.checked;
-  var checkbox = document.getElementById('label0');
-  alert(checkbox.checked);
-  if (checkbox.checked) localStorage_setItem_value = 1;
-  else                  localStorage_setItem_value = 0;
+  var checkbox_japanese = document.getElementById('label_japanese');
+  alert(checkbox_japanese.checked);
+  if (checkbox_japanese.checked) localStorage_setItem_value = 1;
+  else                           localStorage_setItem_value = 0;
 }
 
-function kiyakuhyouzi2(){
 
+function kiyakuhyouzi_english(){
   // var checkbox2 = document.kiyakubox2.label01.checked;
-  var checkbox2 = document.getElementById('label01');
-  alert(checkbox2.checked);
-  if (checkbox2.checked) localStorage_setItem_value = 1;
-  else                  localStorage_setItem_value = 0;
+  var checkbox_english = document.getElementById('label1_english');
+  alert(checkbox_english.checked);
+  if (checkbox_english.checked) localStorage_setItem_value = 1;
+  else                          localStorage_setItem_value = 0;
 }
+
+
 
 //GoogleMapの表示
 function initMap() {
