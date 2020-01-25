@@ -41,6 +41,19 @@
     opacity: 1;
 }
 
-ol {
+/* ol {
   list-style-type: none;
+} */
+
+h1{
+  font-size: 20px;
+}
+h2{
+  font-size: 16px;
+}
+p{
+  font-size: 10px;
+}
+li{
+  font-size: 10px;
 }

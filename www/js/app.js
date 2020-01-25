@@ -25,13 +25,31 @@ function onload() {
   }
 }
 
+function one() {
+  document.querySelector('#navigator').pushPage("page1.html",{animation:"none"});
+  // document.querySelector('#navigator').popPage("en.html",{animation:"none"});
+}
+
+function two() {
+  document.querySelector('#navigator').pushPage("en.html",{animation:"none"});
+}
+
 function kiyakuhyouzi(){
   // alert("test");
-  var checkbox = document.kiyakubox.label0.checked;
-
-  if (checkbox == true) localStorage_setItem_value = 1;
+  // var checkbox = document.kiyakubox.label0.checked;
+  var checkbox = document.getElementById('label0');
+  alert(checkbox.checked);
+  if (checkbox.checked) localStorage_setItem_value = 1;
   else                  localStorage_setItem_value = 0;
+}
 
+function kiyakuhyouzi2(){
+
+  // var checkbox2 = document.kiyakubox2.label01.checked;
+  var checkbox2 = document.getElementById('label01');
+  alert(checkbox2.checked);
+  if (checkbox2.checked) localStorage_setItem_value = 1;
+  else                  localStorage_setItem_value = 0;
 }
 
 //GoogleMapの表示
