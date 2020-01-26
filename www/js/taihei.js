@@ -17,8 +17,10 @@ var stamp_lng;
 var maker_is_displayed = 0;
 var cnt = 0;
 var cnt_taihei = 0;
+var total_taihei = localStorage.getItem("total_taihei");
+if(total_taihei) var cnt_taihei = 0 + parseFloat(total_taihei);
 document.getElementById('cnt_taihei').textContent = cnt_taihei;
-document.getElementById('bar4').value = 0;
+document.getElementById('bar4').value = cnt_taihei;
 
 
 TestData.order("createData", true)
@@ -77,15 +79,28 @@ TestData.order("createData", true)
         lat: lat[i],
         lng: lng[i]
       };
-
+      if(localStorage.getItem("visit_taihei" + i ) === null){
       marker4[i] = new google.maps.Marker({
-        position: markerLatLng,
-        map: map,
-        visible: false, // 最初は非表示
-        icon: {
-          url: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png'
-        }
+      position: markerLatLng,
+      map: map,
+      visible: false, // 最初は非表示
+
+      icon: {
+      url: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png'
+      }
+      //animation: google.maps.Animation.DROP
       });
+      }else{
+        marker4[i] = new google.maps.Marker({
+      position: markerLatLng,
+      map: map,
+      visible: false, // 最初は非表示
+
+      icon: {
+      url: 'https://maps.google.com/mapfiles/ms/icons/red.png'
+      }
+        });
+      }
 
 
         infoWindow4[i] = new google.maps.InfoWindow({ // 吹き出しの追加
@@ -183,7 +198,8 @@ function stamp_push4(i) {
         var comp = document.getElementById("comp4");
         comp.innerHTML = "C O M P L E T E ！";
       }
-
+      localStorage.setItem("total_taihei", cnt_taihei);
+      localStorage.setItem('visit_taihei' + i,true);
     } else {
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
       alert('遠くてスタンプが押せませんでした');

@@ -18,6 +18,17 @@ var cnt_stamp = 0;
 document.getElementById('cnt_stamp').textContent = cnt_stamp;
 document.getElementById('bar').value = 0;
 
+// localStorage.clear();
+var status = localStorage.getItem('cnt_stamp');
+console.log(status);
+if (status == "null" || status=="undefined") {
+  document.getElementById('cnt_stamp').textContent = cnt_stamp;
+} else {
+  document.getElementById('cnt_stamp').textContent = status;
+  document.getElementById('bar').value = status;
+  cnt_stamp = status;
+}
+
 kabukiData.order("createData", true)
   .fetchAll()
   .then(function(results) {
@@ -52,15 +63,29 @@ kabukiData.order("createData", true)
         lat: lat1[i],
         lng: lng1[i]
       };
+
+          if(localStorage.getItem("visit_kabuki" + i ) === null){
       marker1[i] = new google.maps.Marker({
         position: markerLatLng,
         map: map,
         visible: false, // 最初は非表示
+
         icon: {
           url: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
         }
         //animation: google.maps.Animation.DROP
       });
+          }else{
+            marker1[i] = new google.maps.Marker({
+        position: markerLatLng,
+        map: map,
+        visible: false, // 最初は非表示
+
+        icon: {
+          url: 'https://maps.google.com/mapfiles/ms/icons/green.png'
+        }
+            });
+          }
 
       infoWindow1[i] = new google.maps.InfoWindow({ // 吹き出しの追加
         content: '<div class="map">' + title[i] + '</div>' + '地名　　　　　　' + name[i] + '<br>参考文献　　　　' + bibliography[i] + volume[i] + page[i] + '<br>' + title[i] + text[i] + '<br>' + stampclick1[i] // 吹き出しに表示する内容
@@ -148,13 +173,20 @@ function stamp_push1(i) {
       document.getElementById('bar').value = cnt_stamp;
 
       marker1[i].setIcon({
-                url: 'http://maps.google.co.jp/mapfiles/ms/icons/green.png'
-            });
+        url: 'http://maps.google.co.jp/mapfiles/ms/icons/green.png'
+      });
+
+      var savedate = cnt_stamp;
+        localStorage.setItem('cnt_stamp', savedate);
+        // console.log(savedate);
+
 
       if(cnt_stamp == 23) {
         var comp = document.getElementById("comp");
         comp.innerHTML = "C O M P L E T E ！";
       }
+
+      localStorage.setItem('visit_kabuki' + i,true);
 
     } else {
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
