@@ -164,7 +164,7 @@ function stamp_push5(i) {
 
   function error() {
     //エラーの場合
-    hyouzi.innerHTML = "座標位置を取得できません";
+    ons.notification.toast('座標位置を取得できません', { timeout: 2000, animation: 'ascend' });
   };
   navigator.geolocation.getCurrentPosition(Success, error); //成功と失敗を判断
 

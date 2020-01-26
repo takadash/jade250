@@ -62,14 +62,14 @@ TestData.order("createData", true)
       var infoWindowContent = [];
 
       if(file_name2[i] == ''){
-        infoWindowContent += 
+        infoWindowContent +=
         '<img src= "https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=taihey&file='+ file_name[i] + '.jpg&size=100" onclick="showTemplateDialog2(\'' + file_name[i] + '\')">'
       }
       else{
-        infoWindowContent += 
+        infoWindowContent +=
         '<img src= "https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=taihey&file='+ file_name[i] + '.jpg&size=100" onclick="showTemplateDialog2(\'' + file_name[i] + '\')">' +
         '<br>' +
-        '<img src= "https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=taihey&file='+ file_name2[i] + '.jpg&size=100" onclick="showTemplateDialog2(\'' + file_name2[i] + '\')">'        
+        '<img src= "https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=taihey&file='+ file_name2[i] + '.jpg&size=100" onclick="showTemplateDialog2(\'' + file_name2[i] + '\')">'
       }
 
       //ピンたて
@@ -91,8 +91,8 @@ TestData.order("createData", true)
         infoWindow4[i] = new google.maps.InfoWindow({ // 吹き出しの追加
           // 吹き出しに表示する内容
           maxWidth: 1000,
-          content: 
-          '<div class="map">' + kumi[i]  + '</div>' + '町員　　　　　' + tyo_in[i] + '<br>人足　　　　　' + zinsoku[i] + 
+          content:
+          '<div class="map">' + kumi[i]  + '</div>' + '町員　　　　　' + tyo_in[i] + '<br>人足　　　　　' + zinsoku[i] +
           '<br>中心地(文字配当図)' + center_moji[i] + '<br>中心地(先頭町名)　' + center_town[i] + '<br><br>' + town_name[i] +
           '<br>' + infoWindowContent + '<br>' + stampclick4[i]
         });
@@ -192,7 +192,7 @@ function stamp_push4(i) {
 
   function error() {
     //エラーの場合
-    hyouzi.innerHTML = "座標位置を取得できません";
+    ons.notification.toast('座標位置を取得できません', { timeout: 2000, animation: 'ascend' });
   };
   navigator.geolocation.getCurrentPosition(Success, error); //成功と失敗を判断
 

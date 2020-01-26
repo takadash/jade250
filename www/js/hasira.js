@@ -74,13 +74,13 @@ hasiraData.order("createData", true)
 
       infoWindow6[i] = new google.maps.InfoWindow({ // 吹き出しの追加
         // 吹き出しに表示する内容
-        content: '<div class="map">' + name[i] + '</div>' + '標識の種類　　　　　　' + 
+        content: '<div class="map">' + name[i] + '</div>' + '標識の種類　　　　　　' +
                   type[i] + '<br>所在場所　　　　' + place[i] + '<br>'
                    +'<ons-button onclick="showTemplateDialog_hasira('
                    + '\'' + text[i] + '\'' + '\,'
                    + '\'' + text2[i] + '\'' + '\,'
                    + '\'' + text3[i] + '\'' + '\,'
-                   + '\'' + text4[i] + '\'' + 
+                   + '\'' + text4[i] + '\'' +
                   ',)">本文</ons-button>' +
                   stampclick6[i]
       });
@@ -165,7 +165,7 @@ function stamp_push_hasira(i) {
       if(cnt_stamp6 == 174) {
         var comp = document.getElementById("comp6");
         comp.innerHTML = "C O M P L E T E ！";
-      }      
+      }
 
     } else {
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
@@ -175,7 +175,7 @@ function stamp_push_hasira(i) {
 
   function error() {
     //エラーの場合
-    hyouzi.innerHTML = "座標位置を取得できません";
+    ons.notification.toast('座標位置を取得できません', { timeout: 2000, animation: 'ascend' });
   };
   navigator.geolocation.getCurrentPosition(Success, error); //成功と失敗を判断
 
