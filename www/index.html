@@ -34,6 +34,7 @@
         page.querySelector('#push-button_english').onclick = function() {
           //localStorage_setItem_valueはapp.js内の変数
           localStorage.setItem("isOpen", localStorage_setItem_value);
+          alert("localStorage_setItem_value = " + localStorage_setItem_value);
           document.querySelector('#navigator').pushPage('page2.html');
         };
 
@@ -240,9 +241,10 @@
       <ons-bottom-toolbar class="bottom_toolbar">
 
         <form name="kiyakubox_japanese" action="">
-          <div style="text-align: center;" onclick="kiyakuhyouzi_japanese()">
-            <input type="checkbox" id="label_japanese">
-            <label for="label_japanese">今後表示しない / Do not show again</label>
+          <div style="text-align: center;">
+            <label>
+              <input type="checkbox" onclick="kiyakuhyouzi_japanese()">今後表示しない / Do not show again
+            </label>
           </div>
         </form>
 
@@ -441,9 +443,10 @@
       <ons-bottom-toolbar class="bottom_toolbar">
 
         <form name="kiyakubox_english" action="">
-          <div style="text-align: center;" onclick="kiyakuhyouzi_english()">
-            <input type="checkbox" id="label_english">
-            <label for="label_english">今後表示しない / Do not show again</label>
+          <div style="text-align: center;" >
+            <label >
+              <input type="checkbox" onclick="kiyakuhyouzi_english()">今後表示しない / Do not show again
+            </label>
           </div>
         </form>
         <form name="doui" acton="">
