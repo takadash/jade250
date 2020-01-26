@@ -25,17 +25,26 @@
 
         page.querySelector('#push-button_japanese').onclick = function() {
           //localStorage_setItem_valueはapp.js内の変数
-          localStorage.setItem("isOpen", localStorage_setItem_value);
-          document.querySelector('#navigator').pushPage('page2.html');
+          // document.querySelector('#navigator').pushPage('page2.html');
+          if(cnt_agree_ja % 2 == 1) {
+            localStorage.setItem("isOpen", localStorage_setItem_value);
+            document.querySelector('#navigator').pushPage('page2.html');
+          }else{
+            ons.notification.alert('「同意する」を押してください');
+          }
         };
       }
       else if(page.matches('#en-page')) {
 
         page.querySelector('#push-button_english').onclick = function() {
           //localStorage_setItem_valueはapp.js内の変数
-          localStorage.setItem("isOpen", localStorage_setItem_value);
-          alert("localStorage_setItem_value = " + localStorage_setItem_value);
-          document.querySelector('#navigator').pushPage('page2.html');
+          // alert("localStorage_setItem_value = " + localStorage_setItem_value);
+          if(cnt_agree_en % 2 == 1) {
+            localStorage.setItem("isOpen", localStorage_setItem_value);
+            document.querySelector('#navigator').pushPage('page2.html');
+          }else{
+             ons.notification.alert('Press Accept');
+          } 
         };
 
       }
@@ -243,12 +252,12 @@
         <form name="kiyakubox_japanese" action="">
           <div style="text-align: center;">
             <label>
-              <input type="checkbox" onclick="kiyakuhyouzi_japanese()">今後表示しない / Do not show again
+              <input type="checkbox" onclick="kiyakuhyouzi_japanese()">今後表示しない
             </label>
           </div>
         </form>
 
-        <form name="doui_japanese" acton="">
+        <!-- <form name="doui_japanese" acton="">
           <div class="hidden_box_japanese" style="text-align: center">
             <input type="checkbox" id="label1_japanese">
             <label for="label1_japanese">同意する / Accept</label>
@@ -256,8 +265,14 @@
               <ons-button id="push-button_japanese">START</ons-button>
             </div>
           </div>
-        </form>
-
+        </form> -->
+        <div style="text-align: center;">
+          <label>
+            <input type="checkbox" onclick="agree_ja()">同意する
+          </label>
+          <br><br>
+        <ons-button id='push-button_japanese'>START</ons-button>
+      </div>
       </ons-bottom-toolbar>
 
     </ons-page>
@@ -445,11 +460,11 @@
         <form name="kiyakubox_english" action="">
           <div style="text-align: center;" >
             <label >
-              <input type="checkbox" onclick="kiyakuhyouzi_english()">今後表示しない / Do not show again
+              <input type="checkbox" onclick="kiyakuhyouzi_english()">Do not show again
             </label>
           </div>
         </form>
-        <form name="doui" acton="">
+        <!-- <form name="doui" acton="">
           <div class="hidden_box_english" style="text-align: center">
             <input type="checkbox" id="label1_english">
             <label for="label1_english">同意する / Accept</label>
@@ -457,7 +472,14 @@
               <ons-button id="push-button_english">START</ons-button>
             </div>
           </div>
-        </form>
+        </form> -->
+        <div style="text-align: center;">
+          <label>
+            <input type="checkbox" onclick="agree_en()">Accept
+          </label>
+          <br><br>
+        <ons-button id='push-button_english'>START</ons-button>
+      </div>
       </ons-bottom-toolbar>
     </ons-page>
   </template>

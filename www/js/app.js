@@ -12,11 +12,12 @@ var circle;
 var localStorage_setItem_value = 0;
 var func_cnt_ja = 0;
 var func_cnt_en = 0;
-
+var cnt_agree_ja = 0;
+var cnt_agree_en = 0;
 
 function onload() {
   //前回の値を読み込み
-  localStorage.setItem("isOpen", "0");
+  // localStorage.setItem("isOpen", "0");
   var isOpen2 = localStorage.getItem("isOpen");
   // console.log("log1 " + isOpen2);
   //今後表示しないのチェックボックスが押されていた場合
@@ -30,6 +31,7 @@ function onload() {
 function one() {
   func_cnt_en = 0;
   localStorage_setItem_value = 0;
+  cnt_agree_ja = 0;
   // alert("func_cnt = " + func_cnt_en);
   document.querySelector('#navigator').pushPage("page1.html",{animation:"none"});
   // document.querySelector('#navigator').popPage("en.html",{animation:"none"});
@@ -38,6 +40,7 @@ function one() {
 function two() {
   func_cnt_ja = 0;
   localStorage_setItem_value = 0;
+  cnt_agree_en = 0;
   // alert("func_cnt = " + func_cnt_ja);
   document.querySelector('#navigator').pushPage("en.html",{animation:"none"});
 }
@@ -58,6 +61,15 @@ function kiyakuhyouzi_japanese(){
     localStorage_setItem_value = 0;
     // alert("localStorage_setItem_value = " + localStorage_setItem_value);
   }
+}
+
+function agree_ja() {
+  cnt_agree_ja++;
+  // alert(cnt_agree_ja);
+}
+
+function agree_en() {
+  cnt_agree_en++;
 }
 
 

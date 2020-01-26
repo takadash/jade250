@@ -5,7 +5,7 @@
       if (page.matches('#first-page')) {
 
         page.querySelector('#push-button').onclick = function() {
-          document.querySelector('#navigator').pushPage('page2.html');
+          if(document.agree_ja.agree1.checked)document.querySelector('#navigator').pushPage('page2.html');
         };
 
       } else if (page.matches('#second-page')) {
