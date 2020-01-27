@@ -21,6 +21,7 @@ const cnt_picture = 592;
 const cnt_text = 1128;
 document.getElementById('cnt_edo').textContent = cnt_edo;
 document.getElementById('bar7').value = 0;
+var edo_edo = 0;
 
 var text_id = [];
 var head = [];
@@ -96,11 +97,13 @@ var title_pic = [];
                   var point_id = [];
                   var noData = [];
                   var samePlace = [];
+                  
 
                   for (var i = 0; i < results.length; i++, pinCnt_edo++) {
                     var object = results[i];
                     lat[i] = parseFloat(object.lat);
                     lng[i] = parseFloat(object.lng);
+                    if(lat[i] != -99) edo_edo++;
                     title[i] = object.title;
                     point_id[i] = object.point_id;
 
@@ -201,8 +204,10 @@ var title_pic = [];
                       currentInfoWindow = infoWindow_edo[i];
                     });
                   }
-                  // alert('dd');
+                  // alert(edo_edo);
+                  document.getElementById('cnt_point_edo').textContent = edo_edo;
                   // alert('江戸');
+
                   delete_dom_obj('screenLock');
                 })
                 .catch(function(error) {
@@ -268,9 +273,10 @@ function stamp_push_edo(i) {
         url: 'http://maps.google.co.jp/mapfiles/ms/icons/pink.png'
       });
 
-      if(cnt_edo == 464) {
+
+      if(cnt_edo == edo_edo) {
         var comp = document.getElementById("comp7");
-        comp.innerHTML = "C O M P L E T E ！";
+        comp.innerHTML = "<p style=\"margin-bottom: 0em; margin-top: -1em\">C O M P L E T E ！</p>";
       }
 
     } else {

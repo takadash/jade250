@@ -17,6 +17,7 @@ var cnt1 = 0;
 var cnt_stamp = 0;
 document.getElementById('cnt_stamp').textContent = cnt_stamp;
 document.getElementById('bar').value = 0;
+var kabuki_kabuki = 0;
 
 kabukiData.order("createData", true)
   .fetchAll()
@@ -37,6 +38,7 @@ kabukiData.order("createData", true)
       var object = results[i];
       lat1[i] = object.lat;
       lng1[i] = object.lng;
+      if(lat1[i] != -99) kabuki_kabuki++;
       name[i] = object.name;
       title[i] = object.title;
       text[i] = object.text;
@@ -81,6 +83,7 @@ kabukiData.order("createData", true)
         // pin_choice_sound();
       });
     }
+    document.getElementById('cnt_point_kabuki').textContent = kabuki_kabuki;
     // alert('歌舞伎');
   })
   .catch(function(error) {
@@ -151,9 +154,9 @@ function stamp_push1(i) {
                 url: 'http://maps.google.co.jp/mapfiles/ms/icons/green.png'
             });
 
-      if(cnt_stamp == 23) {
+      if(cnt_stamp == kabuki_kabuki) {
         var comp = document.getElementById("comp");
-        comp.innerHTML = "C O M P L E T E ！";
+        comp.innerHTML = "<p style=\"margin-bottom: 0em; margin-top: -1em\">C O M P L E T E ！</p>";
       }
 
     } else {

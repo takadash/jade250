@@ -16,8 +16,9 @@ var stamplng6 = [];
 var maker_is_displayed = 0;
 var cnt6 = 0;
 var cnt_stamp6 = 0;
- document.getElementById('cnt_stamp6').textContent = cnt_stamp6;
- document.getElementById('bar6').value = 0;
+document.getElementById('cnt_stamp6').textContent = cnt_stamp6;
+document.getElementById('bar6').value = 0;
+var hasira_hasira = 0;
 
 hasiraData.order("createData", true)
   .limit(200)
@@ -41,6 +42,7 @@ hasiraData.order("createData", true)
       var object = results[i];
       lat[i] = parseFloat(object.lat);
       lng[i] = parseFloat(object.lng);
+      if(lat[i] != -99) hasira_hasira++;
       name[i] = object.name;
       text[i] = object.text;
       text2[i] = object.text2;
@@ -99,6 +101,7 @@ hasiraData.order("createData", true)
       });
     }
     // alert('標柱');
+    document.getElementById('cnt_point_hasira').textContent = hasira_hasira;
   })
   .catch(function(error) {
     //全件検索に失敗した場合の処理
@@ -162,9 +165,9 @@ function stamp_push_hasira(i) {
                 url: 'http://maps.google.co.jp/mapfiles/ms/icons/purple.png'
             });
 
-      if(cnt_stamp6 == 174) {
+      if(cnt_stamp6 == hasira_hasira) {
         var comp = document.getElementById("comp6");
-        comp.innerHTML = "C O M P L E T E ！";
+        comp.innerHTML = "<p style=\"margin-bottom: 0em; margin-top: -1em\">C O M P L E T E ！</p>";
       }      
 
     } else {

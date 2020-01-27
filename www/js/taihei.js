@@ -19,6 +19,7 @@ var cnt = 0;
 var cnt_taihei = 0;
 document.getElementById('cnt_taihei').textContent = cnt_taihei;
 document.getElementById('bar4').value = 0;
+var taihei_taihei = 0;
 
 
 TestData.order("createData", true)
@@ -44,6 +45,7 @@ TestData.order("createData", true)
       var object = results[i];
       lat[i] = parseFloat(object.lat);
       lng[i] = parseFloat(object.lng);
+      if(lat[i] != -99) taihei_taihei++;
       kumi[i] = object.kumi;
       town_name[i] = object.town_name;
       center_town[i] = object.center_town;
@@ -115,6 +117,7 @@ TestData.order("createData", true)
         currentInfoWindow = infoWindow4[i];
       });
     }
+    document.getElementById('cnt_point_taihei').textContent = taihei_taihei;
   })
   .catch(function(error) {
     //全件検索に失敗した場合の処理
@@ -179,9 +182,9 @@ function stamp_push4(i) {
                 url: 'http://maps.google.co.jp/mapfiles/ms/icons/red.png'
             });
 
-      if(cnt_taihei == 64) {
+      if(cnt_taihei == taihei_taihei) {
         var comp = document.getElementById("comp4");
-        comp.innerHTML = "C O M P L E T E ！";
+        comp.innerHTML = "<p style=\"margin-bottom: 0em; margin-top: -1em\">C O M P L E T E ！</p>";
       }
 
     } else {

@@ -18,6 +18,7 @@ var cnt2 = 0;
 var cnt_kyoden = 0;
 document.getElementById('cnt_kyoden').textContent = cnt_kyoden;
 document.getElementById('bar2').value= 0;
+var kyoden_kyoden = 0;
 
 kyodenData.order("createData", true)
   .fetchAll()
@@ -38,6 +39,7 @@ kyodenData.order("createData", true)
       var object = results[i];
       lat2[i] = object.lat;
       lng2[i] = object.lng;
+      if(lat2[i] != -99) kyoden_kyoden++;
       name2[i] = object.name;
       title2[i] = object.title;
       text2[i] = object.text;
@@ -80,6 +82,7 @@ kyodenData.order("createData", true)
       });
     }
     // alert('京伝');
+    document.getElementById('cnt_point_kyoden').textContent = kyoden_kyoden;
   })
   .catch(function(error) {
     //全件検索に失敗した場合の処理
@@ -144,10 +147,9 @@ function stamp_push2(i) {
                 url: 'http://maps.google.co.jp/mapfiles/ms/icons/yellow.png'
             });
 
-      if(cnt_kyoden == 64) {
+      if(cnt_kyoden == kyoden_kyoden) {
         var comp = document.getElementById("comp2");
-        comp.innerHTML = "C O M P L E T E ！";
-      }
+        comp.innerHTML = "<p style=\"margin-bottom: 0em; margin-top: -1em\">C O M P L E T E ！</p>";      }
 
     } else {
       alert('遠くてスタンプが押せませんでした');

@@ -19,6 +19,7 @@ var cnt5 = 0;
 var cnt_kiyochika = 0;
 document.getElementById('cnt_kiyochika').textContent = cnt_kiyochika;
 document.getElementById('bar5').value = 0;
+var kiyochika_kiyochika = 0;
 
 kiyochikaData.order("createData", true)
   .fetchAll()
@@ -39,6 +40,7 @@ kiyochikaData.order("createData", true)
 
       lat5[i] = object.lat;
       lng5[i] = object.lng;
+      if(lat5[i] != -99) kiyochika_kiyochika++;
       kiyotitle[i] = object.title;
       city[i] = object.city;
       kiyo_area1[i] = object.area1;
@@ -88,6 +90,7 @@ kiyochikaData.order("createData", true)
       });
     }
     // alert('清親');
+    document.getElementById('cnt_point_kiyochika').textContent = kiyochika_kiyochika;
   })
   .catch(function(error) {
     //全件検索に失敗した場合の処理
@@ -151,9 +154,9 @@ function stamp_push5(i) {
                 url: 'http://maps.google.co.jp/mapfiles/ms/icons/blue.png'
             });
 
-      if(cnt_kiyochika == 56) {
+      if(cnt_kiyochika == kiyochika_kiyochika) {
         var comp = document.getElementById("comp5");
-        comp.innerHTML = "C O M P L E T E ！";
+        comp.innerHTML = "<p style=\"margin-bottom: 0em; margin-top: -1em\">C O M P L E T E ！</p>";
       }
 
     } else {
