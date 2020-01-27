@@ -19,8 +19,10 @@ var pinCnt_edo = 0;
 var cnt_edo = 0;
 const cnt_picture = 592;
 const cnt_text = 1128;
+var total_edo = localStorage.getItem("total_edo");
+if(total_edo) var cnt_edo = 0 + parseFloat(total_edo);
 document.getElementById('cnt_edo').textContent = cnt_edo;
-document.getElementById('bar7').value = 0;
+document.getElementById('bar7').value = cnt_edo;
 var edo_edo = 0;
 
 var text_id = [];
@@ -97,7 +99,7 @@ var title_pic = [];
                   var point_id = [];
                   var noData = [];
                   var samePlace = [];
-                  
+
 
                   for (var i = 0; i < results.length; i++, pinCnt_edo++) {
                     var object = results[i];
@@ -174,14 +176,28 @@ var title_pic = [];
                       lat: lat[i],
                       lng: lng[i]
                     };
-                    marker_edo[i] = new google.maps.Marker({
-                      position: markerLatLng,
-                      map: map,
-                      visible: false, // 最初は非表示
-                      icon: {
-                        url: 'https://maps.google.com/mapfiles/ms/icons/pink-dot.png'
-                      }
-                    });
+                    if(localStorage.getItem("visit_edo" + i ) === null){
+                marker_edo[i] = new google.maps.Marker({
+                  position: markerLatLng,
+                  map: map,
+                  visible: false, // 最初は非表示
+
+                  icon: {
+                    url: 'https://maps.google.com/mapfiles/ms/icons/pink-dot.png'
+                  }
+                  //animation: google.maps.Animation.DROP
+                });
+                    }else{
+                      marker_edo[i] = new google.maps.Marker({
+                  position: markerLatLng,
+                  map: map,
+                  visible: false, // 最初は非表示
+
+                  icon: {
+                    url: 'https://maps.google.com/mapfiles/ms/icons/pink.png'
+                  }
+                      });
+                    }
 
                     infoWindow_edo[i] = new google.maps.InfoWindow({ // 吹き出しの追加
                       content: '<div class="map">' + title[i] +
@@ -278,7 +294,8 @@ function stamp_push_edo(i) {
         var comp = document.getElementById("comp7");
         comp.innerHTML = "<p style=\"margin-bottom: 0em; margin-top: -1em\">C O M P L E T E ！</p>";
       }
-
+localStorage.setItem("total_edo", cnt_edo);
+localStorage.setItem('visit_edo' + i,true);
     } else {
       alert('遠くてスタンプが押せませんでした');
     }
@@ -286,7 +303,7 @@ function stamp_push_edo(i) {
 
   function error() {
     //エラーの場合
-    hyouzi.innerHTML = "座標位置を取得できません";
+    ons.notification.toast('座標位置を取得できません', { timeout: 2000, animation: 'ascend' });
   };
   navigator.geolocation.getCurrentPosition(Success, error); //成功と失敗を判断
 

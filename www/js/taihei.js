@@ -17,8 +17,10 @@ var stamp_lng;
 var maker_is_displayed = 0;
 var cnt = 0;
 var cnt_taihei = 0;
+var total_taihei = localStorage.getItem("total_taihei");
+if(total_taihei) var cnt_taihei = 0 + parseFloat(total_taihei);
 document.getElementById('cnt_taihei').textContent = cnt_taihei;
-document.getElementById('bar4').value = 0;
+document.getElementById('bar4').value = cnt_taihei;
 var taihei_taihei = 0;
 
 
@@ -64,14 +66,14 @@ TestData.order("createData", true)
       var infoWindowContent = [];
 
       if(file_name2[i] == ''){
-        infoWindowContent += 
+        infoWindowContent +=
         '<img src= "https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=taihey&file='+ file_name[i] + '.jpg&size=100" onclick="showTemplateDialog2(\'' + file_name[i] + '\')">'
       }
       else{
-        infoWindowContent += 
+        infoWindowContent +=
         '<img src= "https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=taihey&file='+ file_name[i] + '.jpg&size=100" onclick="showTemplateDialog2(\'' + file_name[i] + '\')">' +
         '<br>' +
-        '<img src= "https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=taihey&file='+ file_name2[i] + '.jpg&size=100" onclick="showTemplateDialog2(\'' + file_name2[i] + '\')">'        
+        '<img src= "https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=taihey&file='+ file_name2[i] + '.jpg&size=100" onclick="showTemplateDialog2(\'' + file_name2[i] + '\')">'
       }
 
       //ピンたて
@@ -79,22 +81,35 @@ TestData.order("createData", true)
         lat: lat[i],
         lng: lng[i]
       };
-
+      if(localStorage.getItem("visit_taihei" + i ) === null){
       marker4[i] = new google.maps.Marker({
-        position: markerLatLng,
-        map: map,
-        visible: false, // 最初は非表示
-        icon: {
-          url: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png'
-        }
+      position: markerLatLng,
+      map: map,
+      visible: false, // 最初は非表示
+
+      icon: {
+      url: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png'
+      }
+      //animation: google.maps.Animation.DROP
       });
+      }else{
+        marker4[i] = new google.maps.Marker({
+      position: markerLatLng,
+      map: map,
+      visible: false, // 最初は非表示
+
+      icon: {
+      url: 'https://maps.google.com/mapfiles/ms/icons/red.png'
+      }
+        });
+      }
 
 
         infoWindow4[i] = new google.maps.InfoWindow({ // 吹き出しの追加
           // 吹き出しに表示する内容
           maxWidth: 1000,
-          content: 
-          '<div class="map">' + kumi[i]  + '</div>' + '町員　　　　　' + tyo_in[i] + '<br>人足　　　　　' + zinsoku[i] + 
+          content:
+          '<div class="map">' + kumi[i]  + '</div>' + '町員　　　　　' + tyo_in[i] + '<br>人足　　　　　' + zinsoku[i] +
           '<br>中心地(文字配当図)' + center_moji[i] + '<br>中心地(先頭町名)　' + center_town[i] + '<br><br>' + town_name[i] +
           '<br>' + infoWindowContent + '<br>' + stampclick4[i]
         });
@@ -186,7 +201,8 @@ function stamp_push4(i) {
         var comp = document.getElementById("comp4");
         comp.innerHTML = "<p style=\"margin-bottom: 0em; margin-top: -1em\">C O M P L E T E ！</p>";
       }
-
+      localStorage.setItem("total_taihei", cnt_taihei);
+      localStorage.setItem('visit_taihei' + i,true);
     } else {
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
       alert('遠くてスタンプが押せませんでした');
@@ -195,7 +211,7 @@ function stamp_push4(i) {
 
   function error() {
     //エラーの場合
-    hyouzi.innerHTML = "座標位置を取得できません";
+    ons.notification.toast('座標位置を取得できません', { timeout: 2000, animation: 'ascend' });
   };
   navigator.geolocation.getCurrentPosition(Success, error); //成功と失敗を判断
 

@@ -10,26 +10,89 @@ var marker_g;
 var circle;
 var circle_cnt = 0;
 
+var localStorage_setItem_value = 0;
+var func_cnt_ja = 0;
+var func_cnt_en = 0;
+var cnt_agree_ja = 0;
+var cnt_agree_en = 0;
+
 function onload() {
   //前回の値を読み込み
-  localStorage.setItem("isOpen", "0");
-  var isOpen = localStorage.getItem("isOpen");
-  //値が保存されていない、もしくはフラグがオフだった場合
-  if (null == isOpen || 0 == isOpen) {
-    //スプラッシュ削除
-    // navigator.splashscreen.hide();
-    //初回起動終了フラグをオンにする。
-    localStorage.setItem("isOpen", "0");
-    console.log("log1" + "%s", isOpen);
-  } else {
-    //初回ではないのでトップを開く
-    //トップのスコープからオンロード取得時にスプラッシュ削除
-    console.log("log2" + "%s", isOpen);
+  // localStorage.setItem("isOpen", "0");
+  var isOpen2 = localStorage.getItem("isOpen");
+  // console.log("log1 " + isOpen2);
+  //今後表示しないのチェックボックスが押されていた場合
+  if (isOpen2 == 1) {
     document.querySelector('#navigator').pushPage("page2.html", {
       animation: "none"
     });
   }
 }
+
+function one() {
+  func_cnt_en = 0;
+  localStorage_setItem_value = 0;
+  cnt_agree_ja = 0;
+  // alert("func_cnt = " + func_cnt_en);
+  document.querySelector('#navigator').pushPage("page1.html",{animation:"none"});
+  // document.querySelector('#navigator').popPage("en.html",{animation:"none"});
+}
+
+function two() {
+  func_cnt_ja = 0;
+  localStorage_setItem_value = 0;
+  cnt_agree_en = 0;
+  // alert("func_cnt = " + func_cnt_ja);
+  document.querySelector('#navigator').pushPage("en.html",{animation:"none"});
+}
+
+
+function kiyakuhyouzi_japanese(){
+  // var checkbox = document.kiyakubox.label0.checked;
+  // var checkbox_japanese = document.getElementById('label_japanese');
+  // alert(checkbox_japanese.checked);
+  // if (checkbox_japanese.checked) localStorage_setItem_value = 1;
+  // else                           localStorage_setItem_value = 0;
+  func_cnt_ja++;
+  if(func_cnt_ja % 2 == 1){
+    localStorage_setItem_value = 1;
+    // alert("localStorage_setItem_value = " + localStorage_setItem_value);
+  }
+  else{
+    localStorage_setItem_value = 0;
+    // alert("localStorage_setItem_value = " + localStorage_setItem_value);
+  }
+}
+
+function agree_ja() {
+  cnt_agree_ja++;
+  // alert(cnt_agree_ja);
+}
+
+function agree_en() {
+  cnt_agree_en++;
+}
+
+
+function kiyakuhyouzi_english(){
+  // var checkbox2 = document.kiyakubox2.label01.checked;
+  // var checkbox_english = document.getElementById('label1_english');
+  // alert(checkbox_english.checked);
+  // if (checkbox_english.checked) localStorage_setItem_value = 1;
+  // else                          localStorage_setItem_value = 0;
+  func_cnt_en++;
+  if(func_cnt_en % 2 == 1){
+    localStorage_setItem_value = 1;
+    // alert("localStorage_setItem_value = " + localStorage_setItem_value);
+  }
+  else{
+    localStorage_setItem_value = 0;
+    // alert("localStorage_setItem_value = " + localStorage_setItem_value);
+  }
+}
+
+
+
 
 //GoogleMapの表示
 function initMap() {

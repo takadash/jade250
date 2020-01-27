@@ -16,8 +16,10 @@ var stamplng2 = [];
 var maker_is_displayed = 0;
 var cnt2 = 0;
 var cnt_kyoden = 0;
+var total_kyoden = localStorage.getItem("total_kyoden");
+if(total_kyoden) var cnt_kyoden = 0 + parseFloat(total_kyoden);
 document.getElementById('cnt_kyoden').textContent = cnt_kyoden;
-document.getElementById('bar2').value= 0;
+document.getElementById('bar2').value= cnt_kyoden;
 var kyoden_kyoden = 0;
 
 kyodenData.order("createData", true)
@@ -55,14 +57,28 @@ kyodenData.order("createData", true)
         lat: lat2[i],
         lng: lng2[i]
       };
-      marker2[i] = new google.maps.Marker({
-        position: markerLatLng,
-        map: map,
-        visible: false, // 最初は非表示
-        icon: {
-          url: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
-        }
-      });
+      if(localStorage.getItem("visit_kyoden" + i ) === null){
+  marker2[i] = new google.maps.Marker({
+    position: markerLatLng,
+    map: map,
+    visible: false, // 最初は非表示
+
+    icon: {
+      url: 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png'
+    }
+    //animation: google.maps.Animation.DROP
+  });
+      }else{
+        marker2[i] = new google.maps.Marker({
+    position: markerLatLng,
+    map: map,
+    visible: false, // 最初は非表示
+
+    icon: {
+      url: 'https://maps.google.com/mapfiles/ms/icons/yellow.png'
+    }
+        });
+      }
 
       infoWindow2[i] = new google.maps.InfoWindow({ // 吹き出しの追加
         content: '<div class="map">' + title2[i] + '</div>' + '地名　　　　　　' + name2[i] + '<br>参考文献　　　　' + bibliography2[i] + volume2[i] + page2[i] + '<br>' + title2[i] + text2[i] + '<br>' + stampclick2[i] // 吹き出しに表示する内容
@@ -149,8 +165,10 @@ function stamp_push2(i) {
 
       if(cnt_kyoden == kyoden_kyoden) {
         var comp = document.getElementById("comp2");
-        comp.innerHTML = "<p style=\"margin-bottom: 0em; margin-top: -1em\">C O M P L E T E ！</p>";      }
-
+        comp.innerHTML = "<p style=\"margin-bottom: 0em; margin-top: -1em\">C O M P L E T E ！</p>";
+      }
+      localStorage.setItem("total_kyoden", cnt_kyoden);
+      localStorage.setItem('visit_kyoden' + i,true);
     } else {
       alert('遠くてスタンプが押せませんでした');
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
@@ -159,7 +177,7 @@ function stamp_push2(i) {
 
   function error() {
     //エラーの場合
-    hyouzi.innerHTML = "座標位置を取得できません";
+    ons.notification.toast('座標位置を取得できません', { timeout: 2000, animation: 'ascend' });
   };
   navigator.geolocation.getCurrentPosition(Success, error); //成功と失敗を判断
 

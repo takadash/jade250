@@ -24,17 +24,31 @@
 
       if (page.matches('#first-page')) {
 
-        page.querySelector('#push-button').onclick = function() {
-          document.querySelector('#navigator').pushPage('page2.html');
+        page.querySelector('#push-button_japanese').onclick = function() {
+          //localStorage_setItem_valueはapp.js内の変数
+          // document.querySelector('#navigator').pushPage('page2.html');
+          if(cnt_agree_ja % 2 == 1) {
+            localStorage.setItem("isOpen", localStorage_setItem_value);
+            document.querySelector('#navigator').pushPage('page2.html');
+          }else{
+            ons.notification.alert('「同意する」を押してください');
+          }
+        };
+      }
+      else if(page.matches('#en-page')) {
+
+        page.querySelector('#push-button_english').onclick = function() {
+          //localStorage_setItem_valueはapp.js内の変数
+          // alert("localStorage_setItem_value = " + localStorage_setItem_value);
+          if(cnt_agree_en % 2 == 1) {
+            localStorage.setItem("isOpen", localStorage_setItem_value);
+            document.querySelector('#navigator').pushPage('page2.html');
+          }else{
+             ons.notification.alert('Press Accept');
+          }
         };
 
       }
-      // else if (page.matches('#first-page')) {
-
-        // page.querySelector('#push-button').onclick = function() {
-        //   document.querySelector('#navigator').pushPage('page2.html');
-        // };
-      // }
     });
 
     if (ons.platform.isIPhoneX()) {
@@ -67,111 +81,405 @@
 
   <template id="page1.html">
     <ons-page id="first-page">
-
       <ons-toolbar>
-        <div class="center">利用規約</div>
+      <!-- <div class="toolbar"> -->
+        <div class="center">
+          <div class="segment" style="width:200px;margin:7px 50px;">
+            <div class="segment__item">
+              <input type="radio" class="segment__input" name="navi-segment-a" onclick="one()" checked>
+              <div class="segment__button" onclick="one()">日本語</div>
+            </div>
+
+            <div class="segment__item">
+              <input type="radio" class="segment__input" name="navi-segment-a" onclick="two()">
+              <div class="segment__button" onclick="two()">English</div>
+            </div>
+          </div>
+        </div>
+      <!-- </div> -->
       </ons-toolbar>
+      <h6 style="text-align: center">ちよダッシュ！アプリプライバシーポリシー</h6>
 
-      <div class="content">
+      <p style="padding-left: 0.5em;">
+        日本大学文理学部（以下，「当大学」といいます。）は，ちよダッシュ！アプリの提供（以下,「本サービス」といいます。）における，ユーザーの個人情報の取扱いについて，以下のとおりプライバシーポリシー（以下，「本ポリシー」といいます。）を定めます。
+      </p>
 
-        <h6 style="text-align: center">Edo/Tokyo Monogatari APP Terms of Use</h6>
+      <li><strong>第1条（個人情報）</strong></li>
+      <p style="padding-left: 0.5em;">
+        「個人情報」とは，「個人情報の保護に関する法律」（以下、「個人情報保護法」といいます。）にいう「個人情報」を指すものとし，生存する個人に関する情報であって，当該情報に含まれる氏名，生年月日，住所，電話番号，連絡先その他の記述等により特定の個人を識別できる情報及び容貌，指紋，声紋にかかるデータ，及び健康保険証の保険者番号などの当該情報単体から特定の個人を識別できる情報（個人識別情報）を指します。
+      </p>
 
-          <li><strong>Terms of Use</strong></li>
-          <p style="margin-left : 10px;">These Terms of Use (the “Terms of Use”) prescribe certain terms and conditions between you (“Users,” or “you”) and Nihon University, College of Humanities and Sciences (“University,” “we,” “us” or “our”) concerning your use of our Edo/Tokyo Monogatari App (the “APP”).  Anyone may use the APP free of charge; however, you agree to be bound by the Terms of Use set forth herein before using the APP.</p>
+      <li><strong>第2条（個人情報の収集方法）</strong></li>
+      <p style="padding-left: 0.5em;">
+        当大学は，ユーザーによる本サービスに関するご連絡・お問い合わせを受ける際に氏名，生年月日，住所，電話番号，メールアドレスなどの個人情報を収集することがあります。
+      </p>
 
-          <li><strong>Article 1 Application</strong></li>
-          <p style="margin-left : 10px;">The Terms of Use shall apply to any and all relationships between Users and University on the use of the APP. University may prescribe and post certain terms and conditions on the use of APP (the “Individual Terms”) in addition to the Terms of Use. Such Individual Terms shall constitute a part of the Terms of Use, irrespective of the name of the terms. In the event of conflict, the Individual Terms shall prevail over the Terms of Use unless otherwise specified under the Individual Terms.</p>
+      <li><strong>第3条（個人情報を収集・利用する目的）</strong></li>
+      <p style="padding-left: 0.5em; margin-bottom: -1.5em;">
+        当大学が個人情報を収集・利用する目的は，以下のとおりです。
+      </p>
+      <ol type="1" style="padding-left: 1em;">
+        <li>本サービスの提供・運営のため</li>
+        <li>ユーザーからのお問い合わせに回答するため（本人確認を行うことを含む）</li>
+        <li>利用規約に違反したユーザーや，不正・不当な目的で本サービスを利用しようとするユーザーの特定をし，ご利用をお断りするため</li>
+        <li>上記の利用目的に付随する目的</li>
+      </ol>
 
-          <li><strong>Article 2 Use of Contents</strong></li>
-          <p style="margin-left : 10px;">You may use our contents on the APP, whose copyright and other intellectual property rights continue to be in existence, for noncommercial use which is intended for research, educational, and cultural purposes only under the CC BY-NC-ND in accordance with the terms of the Creative Commons license.  A content whose copyright does not belong to University will not be include in the CC BY-NC-ND of the Creative Commons license; provide, however, that Users agree not to delete, alter or blur any notice on copyright, trademark, service mark or any other property rights included in or incidental to the APP and/or the contents.</p>
 
-          <li><strong>Article 3 Prohibited Activities</strong></li>
-          <p style="margin-left : 10px;">Users shall not engage in any of the following activities when you use the APP:<br>
+      <li style="margin-bottom: -1em"><strong>第4条（利用目的の変更）</strong></li>
+      <ol type="1" style="padding-left: 1em;">
+       <li>当大学は，利用目的が変更前と関連性を有すると合理的に認められる場合に限り，個人情報の利用目的を変更するものとします。</li>
+       <li>利用目的の変更を行った場合には，変更後の目的について，当大学所定の方法により，ユーザーに通知し，または当大学が運営するＷｅｂサイト上に公表するものとします。</li>
+      </ol>
 
-          (1) Violation of laws and regulations or public policy;<br>
-          (2) Acts relating to criminal offense;<br>
-          (3) Infringement of copyright, trademark or any other intellectual property rights included in the APP, and/or the contents of the APP, etc.;<br>
-          (4) Destruction or obstruction of our, other Users’ or any other third parties’ servers or network facilities;<br>
-          (5) Commercial use of information obtained by the APP;<br>
-          (6) Threatened interference of our provision of the APP;<br>
-          (7) Unauthorized access or any attempt to such access;<br>
-          (8) Collection or accumulation of other Users’ personal information, etc.;<br>
-          (9) Use of the APP with a fraudulent intention;<br>
-          (10)  Acts that cause other Users or any other third parties’ disadvantage, damages or discomfort;<br>
-          (11)  Pretention to be some other User;<br>
-          (12)  Advertisement, solicitation or sales and marketing on the APP which University does not approve;<br>
-          (13)  Direct or indirect payoff to anti-social forces in relation to the provision of the APP; or<br>
-          (14)  Any other activities that we deem as inappropriate.
-          </p>
+      <li style="margin-bottom: -1em"><strong>第5条（個人情報の第三者提供）</strong></li>
+      <ol type="1" style="padding-left: 1em;" >
+        <li>当大学は，次に掲げる場合を除いて，あらかじめユーザーの同意を得ることなく，第三者に個人情報を提供することはありません。ただし，個人情報保護法その他の法令で認められる場合を除きます。</li>
+        <ol style="padding-left: 0em; list-style: none;">
+          <li style="padding-left: 1.25em;">
+            <span style="position: absolute; left: 0; margin: 0; padding-left: 1.5em">(1)</span>
+            人の生命，身体または財産の保護のために必要がある場合であって，本人の同意を得ることが困難であるとき
+          </li>
+          <li style="padding-left: 1.25em;">
+            <span style="position: absolute; left: 0; margin: 0; padding-left: 1.5em">(2)</span>
+            公衆衛生の向上または児童の健全な育成の推進のために特に必要がある場合であって，本人の同意を得ることが困難であるとき
+          </li>
+          <li style="padding-left: 1.25em;">
+            <span style="position: absolute; left: 0; margin: 0; padding-left: 1.5em">(3)</span>
+            国の機関もしくは地方公共団体またはその委託を受けた者が法令の定める事務を遂行することに対して協力する必要がある場合であって，本人の同意を得ることにより当該事務の遂行に支障を及ぼすおそれがあるとき
+          </li>
+          <li style="padding-left: 1.25em;">
+            <span style="position: absolute; left: 0; margin: 0; padding-left: 1.5em">(4)</span>
+            予め次の事項を告知あるいは公表し，かつ当大学が個人情報保護委員会に届出をしたとき
+          </li>
+          <ol style="padding-left: 0em; list-style: none;">
+            <li style="padding-left: 2.5em;">
+              <span style="position: absolute; left: 0; margin: 0; padding-left: 2.75em">①</span>
+              利用目的に第三者への提供を含むこと
+            </li>
+            <li style="padding-left: 2.5em;">
+              <span style="position: absolute; left: 0; margin: 0; padding-left: 2.75em">②</span>
+              第三者に提供される情報の項目
+            </li>
+            <li style="padding-left: 2.5em;">
+              <span style="position: absolute; left: 0; margin: 0; padding-left: 2.75em">③</span>
+              第三者への提供の手段または方法
+            </li>
+            <li style="padding-left: 2.5em;">
+              <span style="position: absolute; left: 0; margin: 0; padding-left: 2.75em">④</span>
+              本人の求めに応じて個人情報の第三者への提供を停止すること
+            </li>
+            <li style="padding-left: 2.5em;">
+              <span style="position: absolute; left: 0; margin: 0; padding-left: 2.75em">⑤</span>
+              本人の求めを受け付ける方法
+            </li>
+          </ol>
+        </ol>
 
-          <li><strong>Article 4 Discontinuance of APP</strong></li>
-          <p style="margin-left : 10px;">University reserves the right to discontinue the provision of all or part of the APP without prior notice to Users in the following cases:
-          <br>
-          (1) When we conduct maintenance and inspection or updating of computer systems relating to the APP;<br>
-          (2) When the provision of the APP becomes difficult due to force majeure such as earthquake, lightning strike, fire, blackout or any other natural disasters;<br>
-          (3) Computers or communication lines, etc. become discontinued due to failure; or<br>
-          (4) When University deem it difficult to provide the APP.<br>
+        <li>前項の定めにかかわらず，次に掲げる場合には，当該情報の提供先は第三者に該当しないものとします。</li>
+        <ol style="padding-left: 0em; list-style: none;">
+          <li style="padding-left: 1.25em;">
+            <span style="position: absolute; left: 0; margin: 0; padding-left: 1.5em">(1)</span>
+            当大学が利用目的の達成に必要な範囲内において個人情報の取扱いの全部または一部を委託する場合
+          </li>
+          <li style="padding-left: 1.25em;">
+            <span style="position: absolute; left: 0; margin: 0; padding-left: 1.5em">(2)</span>
+            合併その他の事由による事業の承継に伴って個人情報が提供される場合
+          </li>
+          <li style="padding-left: 1.25em;">
+            <span style="position: absolute; left: 0; margin: 0; padding-left: 1.5em">(3)</span>
+            個人情報を特定の者との間で共同して利用する場合であって，その旨並びに共同して利用される個人情報の項目，共同して利用する者の範囲，利用する者の利用目的および当該個人情報の管理について責任を有する者の氏名または名称について，あらかじめ本人に通知し，または本人が容易に知り得る状態に置いた場合
+          </li>
+        </ol>
+      </ol>
 
-          University will not be liable to Users or any third parties for any disadvantage or damages caused by discontinuation of provision of the APP.</p>
+      <li style="margin-bottom: -1em"><strong>第6条（個人情報の開示）</strong></li>
+      <ol type="1" style="padding-left: 1em;">
+        <li>当大学は，本人から個人情報の開示を求められたときは，本人に対し，遅滞なくこれを開示します。ただし，開示することにより次のいずれかに該当する場合は，その全部または一部を開示しないこともあり，開示しない決定をした場合には，その旨を遅滞なく通知します。</li>
+        <ol style="padding-left: 0em; list-style: none;">
+          <li style="padding-left: 1.25em;">
+            <span style="position: absolute; left: 0; margin: 0; padding-left: 1.5em">(1)</span>
+            本人または第三者の生命，身体，財産その他の権利利益を害するおそれがある場合
+          </li>
+          <li style="padding-left: 1.25em;">
+            <span style="position: absolute; left: 0; margin: 0; padding-left: 1.5em">(2)</span>
+            当社の業務の適正な実施に著しい支障を及ぼすおそれがある場合
+          </li>
+          <li style="padding-left: 1.25em;">
+            <span style="position: absolute; left: 0; margin: 0; padding-left: 1.5em">(3)</span>
+            その他法令に違反することとなる場合
+          </li>
+        </ol>
+        <li>前項の定めにかかわらず，履歴情報および特性情報などの個人情報以外の情報については，原則として開示いたしません。</li>
+      </ol>
 
-          <li><strong>Article 5 Restriction of Use</strong></li>
-          <p style="margin-left : 10px;">University reserves the right to restrict Users’ from using all or part of the APP without notice if Users fall under one of the following:
-          <br>
-          (1) Violation of any article of the Terms of Use; or<br>
-          (2) Any other cases of use that we deem as inappropriate.<br>
+      <li style="margin-bottom: -1em"><strong>第7条（個人情報の訂正および削除）</strong></li>
+      <ol type="1" style="padding-left: 1em;">
+        <li>ユーザーは，当大学の保有する自己の個人情報が誤った情報である場合には，当大学が定める手続きにより，当大学に対して個人情報の訂正，追加または削除（以下，「訂正等」といいます。）を請求することができます。</li>
+        <li>当大学は，ユーザーから前項の請求を受けてその請求に応じる必要があると判断した場合には，遅滞なく，当該個人情報の訂正等を行うものとします。</li>
+        <li>当大学は，前項の規定に基づき訂正等を行った場合，または訂正等を行わない旨の決定をしたときは遅滞なく，これをユーザーに通知します。</li>
+      </ol>
 
-          University will not be liable to Users for any damages caused by our measures taken under this Article.</p>
+      <li style="margin-bottom: -1em"><strong>第8条（個人情報の利用停止等）</strong></li>
+      <ol type="1" style="padding-left: 1em;">
+        <li>当大学は，本人から，個人情報が，利用目的の範囲を超えて取り扱われているという理由，または不正の手段により取得されたものであるという理由により，その利用の停止または消去（以下，「利用停止等」といいます。）を求められた場合には，遅滞なく必要な調査を行います。</li>
+        <li>前項の調査結果に基づき，その請求に応じる必要があると判断した場合には，遅滞なく，当該個人情報の利用停止等を行います。</li>
+        <li>当大学は，前項の規定に基づき利用停止等を行った場合，または利用停止等を行わない旨の決定をしたときは，遅滞なく，これをユーザーに通知します。</li>
+        <li>前2項にかかわらず，利用停止等に多額の費用を有する場合その他利用停止等を行うことが困難な場合であって，ユーザーの権利利益を保護するために必要なこれに代わるべき措置をとることができる場合は，この代替策を講じるものとします。</li>
+      </ol>
 
-          <li><strong>Article 6 Disclaimer of Warranties and Indemnification</strong></li>
-          <p style="margin-left : 10px;">University does not warrant irrespective of explicitly or implicitly that the APP is free from factual or legal defects (including reliability, accuracy, completeness, effectiveness, fitness for a particular purpose, any defect relating to security, free from errors and bugs, and no infringement).
-          The APP shall be used at your own responsibility, and University will not be liable to Users for any following damages caused out of or relating to the APP:
-          <br>
-          (1) Any damages caused by the use of the contents on the APP or by non-availability of such contents;<br>
-          (2) Any damages caused by Users’ accident due to negligence where Users used the APP during your driving or walking, or your concentration on screens;<br>
-          (3) Any damages caused by addition, alteration, modification, deletion, or discontinuation of the information uploaded on the APP;<br>
-          (4) Any damages caused by the use of various information obtained from other websites to which the APP places links;<br>
-          (5) Any damages caused by software/hardware failure, computer virus pollution, loss or damage of data, etc. during the use of the APP;<br>
-          (6) Any damages caused by any troubles among Users or between Users and other third parties; or<br>
-          (7) Any damages caused by discontinuation of provision of all or part of the APP.</p>
+      <li style="margin-bottom: -1em"><strong>第9条（プライバシーポリシーの変更）</strong></li>
+      <ol type="1" style="padding-left: 1em;">
+        <li>本ポリシーの内容は，法令その他本ポリシーに別段の定めのある事項を除いて，ユーザーに通知することなく，変更することができるものとします。</li>
+        <li>当大学が別途定める場合を除いて，変更後のプライバシーポリシーは，本ウェブサイトに掲載したときから効力を生じるものとします。</li>
+      </ol>
 
-          <li><strong>Article 7 Change of the APP, etc.</strong></li>
-          <p style="margin-left : 10px;">University reserves the right to change or modify the content of the APP, or discontinue the provision of all or part of the APP without notice to Users and will not be liable to Users for any damages caused by such change/modification or discontinuation.</p>
+      <li><strong>第10条（アクセス解析ツールについて）</strong></li>
+      <p style="padding-left: 0.5em;">
+        本サービスでは，Googleによるアクセス解析ツールGoogle Analyticsを利用しています。このGoogle Analytics は，トラフィックデータの収集のためにCookieを使用しています。このトラフィックデータは匿名で収集されており，個人を特定するものではありません。Cookieを無効にすることでこの機能を拒否することができます。
+      </p>
 
-          <li><strong>Article 8 Display of Map Information</strong></li>
-          <p style="margin-left : 10px;">The points used in the APP merely display the area of station poles or scenic objects and do not display the points themselves. This map system is provided by way of our use of commercial map information distribution services.  Therefore, if there is any change of names of places, etc., the display of the new names of places will be reflected in accordance with and coincided with such renewal of the above map information distribution services.</p>
-
-          <li><strong>Article 9 Amendment of the Terms of Use</strong></li>
-          <p style="margin-left : 10px;">University may amend the Terms of Use at any time without notice to Users when we deem it necessary.  Your commencement of use of the APP after such amendment shall be deemed to constitute your consent to the amended Terms of Use.</p>
-
-          <li><strong>Article 10 Handling of Personal Information</strong></li>
-          <p style="margin-left : 10px;">University will treat Users’ personal information properly in accordance with “Edo/Tokyo Monogatari APP Privacy Policy” separately prescribed.</p>
-
-          <li><strong>Article 11 Contact</strong></li>
-          <p style="margin-left : 10px;">Users may contact University on the use of the APP at contact information posted on our website as appropriate; provided, however, that University have a discretion whether we will get back to such contact.</p>
-
-          <li><strong>Article 12 No Assignment of Rights and Obligations</strong></li>
-          <p style="margin-left : 10px;">Users may not assign or provide as collateral your contractual status or all or part of your rights and/or obligations under the Terms of Use to any third party without our prior written approval.</p>
-
-          <li><strong>Article 13 Governing Law/Jurisdiction</strong></li>
-          <p style="margin-left : 10px;">The interpretation of the Terms of Use shall be governed by the laws of Japan.
-          If any dispute should arise out of or relating to the APP, you consent to the exclusive jurisdiction of courts which exercise jurisdiction over the location of University headquarters.</p>
-
-          <li><strong>Article 14 Implementation Date</strong></li>
-          <p style="margin-left : 10px;">The implementation date of the Terms of Use shall be XX/XX/2019.</p>
-          <br>
-          <p style="text-align: right">
-          Enacted on XX/XX/2019<br>
-          Nihon University, College of Humanities and Sciences</p>
-          <br><br><br>
-      </div>
+      <li><strong>第11条（お問い合わせ窓口）</strong></li>
+      <p style="padding-left: 0.5em; margin-bottom: 8em">
+        本ポリシーに関するお問い合わせは，下記問い合わせ先へ行うものとします。<br>
+        問い合わせ先：日本大学文理学部<br>
+        電話：03(5317)9677<br>
+        アドレス：nu.chs.edo.tokyo@gmail.com<br><br>
+        以上
+      </p>
 
       <ons-bottom-toolbar class="bottom_toolbar">
-       <div class="hidden_box" style="text-align: center">
-          <label for="label1">同意する</label>
-          <input type="checkbox" id="label1" />
-          <div class="hidden_show">
-            <ons-button id="push-button">START</ons-button>
+
+        <form name="kiyakubox_japanese" action="">
+          <div style="text-align: center;">
+            <label>
+              <input type="checkbox" onclick="kiyakuhyouzi_japanese()">今後表示しない
+            </label>
           </div>
+        </form>
+
+        <!-- <form name="doui_japanese" acton="">
+          <div class="hidden_box_japanese" style="text-align: center">
+            <input type="checkbox" id="label1_japanese">
+            <label for="label1_japanese">同意する / Accept</label>
+            <div class="hidden_show_japanese">
+              <ons-button id="push-button_japanese">START</ons-button>
+            </div>
+          </div>
+        </form> -->
+        <div style="text-align: center;">
+          <label>
+            <input type="checkbox" onclick="agree_ja()">同意する
+          </label>
+          <br><br>
+        <ons-button id='push-button_japanese'>START</ons-button>
+      </div>
+      </ons-bottom-toolbar>
+    </ons-page>
+  </template>
+
+  <template id="en.html">
+    <ons-page id="en-page">
+
+      <ons-toolbar>
+      <!-- <div class="toolbar"> -->
+        <div class="center">
+          <div class="segment" style="width:200px;margin:7px 50px;">
+            <div class="segment__item">
+              <input type="radio" class="segment__input" name="navi-segment-a" onclick="one()">
+              <div class="segment__button" onclick="one()">日本語</div>
+            </div>
+
+            <div class="segment__item">
+              <input type="radio" class="segment__input" name="navi-segment-a" onclick="two()" checked>
+              <div class="segment__button" onclick="two()">English</div>
+            </div>
+          </div>
+        </div>
+  <!-- </div> -->
+      </ons-toolbar>
+
+      <h6 style="text-align: center">Chiyo Dash! APP Privacy Policy</h6>
+
+      <p style="padding-left: 0.5em;">
+        Nihon University, College of Humanities and Sciences (“University,” “we,” “us” or “our”) hereby prescribe certain terms with respect to the handling of Users’ personal information on the provision of Chiyo Dash! APP (the “Services”) as follows (the “Privacy Policy”):
+      </p>
+
+      <li><strong>Article 1 Personal Information</strong></li>
+      <p style="padding-left: 0.5em;">
+        “Personal Information” shall mean personal information about a living individual, specified under the Japanese Act on the Protection of Personal Information (Act No. 57 of May 30, 2003, referred to as the “Act”), which can identify the specific individual by name, date of birth, address, telephone number, contact information or any other matters that are contained in such information, and can identify by the specific pieces of information including looks, fingerprints, voice pattern data or insurance number such as health insurance certificate (the “Individual Identification Information”).
+      </p>
+
+      <li><strong>Article 2 Collection of Personal Information</strong></li>
+      <p style="padding-left: 0.5em;">
+        University may collect Personal Information such as name, date of birth, address, telephone number, email address, etc. when Users contact us with respect to the Services.
+      </p>
+
+      <li><strong>Article 3 Purposes of Use and Collection of Personal Information</strong></li>
+      <p style="padding-left: 0.5em; margin-bottom: -1.5em;">
+        The purposes of our collecting and using Personal Information are the following:
+      </p>
+      <ol type="1" style="padding-left: 1em;">
+        <li>To provide and administer the Services;</li>
+        <li>To respond to Users’ inquiries (including for proof of identity); </li>
+        <li>To identify a User and decline the use by such User who violates the Terms of Use or attempts to use the Services for illegal or unfair purposes; or</li>
+        <li>Any other purposes incidental to the purposes referred to in any of the foregoing items.</li>
+      </ol>
+
+
+      <li style="margin-bottom: -1em"><strong>Article 4 Change of Purposes of Use</strong></li>
+      <ol type="1" style="padding-left: 1em;">
+        <li>We may change the purposes of use of Personal Information only when such purposes are reasonably deemed to be relevant to the present purposes.</li>
+        <li>We will notify Users of the change of purposes in the prescribed manner or announce the change of the purposes on our website when we change the purposes of use.</li>
+      </ol>
+
+      <li style="margin-bottom: -1em"><strong>Article 5 Provision of Personal Information to Third Parties</strong></li>
+      <ol type="1" style="padding-left: 1em;" >
+        <li>We will not provide Personal Information to any third party without prior consent from Users except for the following cases, provide, however, that this will not apply to certain cases where the Act or other laws and regulations permit our provision:</li>
+        <ol style="padding-left: 0em; list-style: none;">
+          <li style="padding-left: 1.25em;">
+            <span style="position: absolute; left: 0; margin: 0; padding-left: 1.5em">(1)</span>
+            In the case where urgently required for the protection of the life, body or property of an individual and where it is difficult to obtain the consent from the person;
+          </li>
+          <li style="padding-left: 1.25em;">
+            <span style="position: absolute; left: 0; margin: 0; padding-left: 1.5em">(2)</span>
+            In the case where it is especially necessary for improving public health or promoting the sound growth of children and when it is difficult to obtain the consent from the person;
+          </li>
+          <li style="padding-left: 1.25em;">
+            <span style="position: absolute; left: 0; margin: 0; padding-left: 1.5em">(3)</span>
+            In the case where it is necessary for cooperating with a state organ, a local government, or a contractor entrusted by either of the former two in executing the affairs prescribed by laws and regulations and where obtaining the consent from the person is likely to impede the execution of the affairs concerned; or
+          </li>
+          <li style="padding-left: 1.25em;">
+            <span style="position: absolute; left: 0; margin: 0; padding-left: 1.5em">(4)</span>
+            When we make an announcement of the following items in advance and we file a report with the Personal Information Protection Committee:
+          </li>
+          <ol style="padding-left: 0em; list-style: none;">
+            <li style="padding-left: 2.5em;">
+              <span style="position: absolute; left: 0; margin: 0; padding-left: 2.75em">i)</span>
+              That the purpose of use will include the provision to a third party;
+            </li>
+            <li style="padding-left: 2.5em;">
+              <span style="position: absolute; left: 0; margin: 0; padding-left: 2.75em">ii)</span>
+              The items of information to be provided to a third party;
+            </li>
+            <li style="padding-left: 2.5em;">
+              <span style="position: absolute; left: 0; margin: 0; padding-left: 2.75em">iii)</span>
+              The means or method of provision to a third party;
+            </li>
+            <li style="padding-left: 2.5em;">
+              <span style="position: absolute; left: 0; margin: 0; padding-left: 2.75em">iv)</span>
+              That we will cease the provision of Personal Information to a third party in pursuant to the request from the person; and
+            </li>
+            <li style="padding-left: 2.5em;">
+              <span style="position: absolute; left: 0; margin: 0; padding-left: 2.75em">v)</span>
+              The method of receiving the request from the person.
+            </li>
+          </ol>
+        </ol>
+
+        <li>Notwithstanding the provision of the preceding paragraph, the following parties shall not fall under the category of third parties:</li>
+        <ol style="padding-left: 0em; list-style: none;">
+          <li style="padding-left: 1.25em;">
+            <span style="position: absolute; left: 0; margin: 0; padding-left: 1.5em">(1)</span>
+            In the case where we entrust all or part of handling Personal Information with a third party within the scope necessary to achieve the purposes of use;
+          </li>
+          <li style="padding-left: 1.25em;">
+            <span style="position: absolute; left: 0; margin: 0; padding-left: 1.5em">(2)</span>
+            In the case where Personal Information is provided with the succession of business due to mergers or other grounds; or
+          </li>
+          <li style="padding-left: 1.25em;">
+            <span style="position: absolute; left: 0; margin: 0; padding-left: 1.5em">(3)</span>
+            In the case where we use Personal Information jointly with certain party, when the person is notified in advance the fact of joint use, items of Person Information to be jointly used, the scope of joint users, the purpose of use of a joint user and a name of a person or organization responsible for management of the relevant Personal Information, or put the person in a readily accessible condition for the person.
+          </li>
+        </ol>
+      </ol>
+
+      <li style="margin-bottom: -1em"><strong>Article 6 Disclosure of Personal Information</strong></li>
+      <ol type="1" style="padding-left: 1em;">
+        <li>University will disclose the relevant Personal Information without delay to the person when he or she requests us to disclose his or her own Personal Information, provided, however, in cases where disclosing such information falls under any of the following, a whole or part thereof may not be disclosed and we will notify the person of such decision of non-disclosure without delay:</li>
+        <ol style="padding-left: 0em; list-style: none;">
+          <li style="padding-left: 1.25em;">
+            <span style="position: absolute; left: 0; margin: 0; padding-left: 1.5em">(1)</span>
+            In the case where there is a possibility of harming the person or a third party's life, body, assets or other rights and interests;
+          </li>
+          <li style="padding-left: 1.25em;">
+            <span style="position: absolute; left: 0; margin: 0; padding-left: 1.5em">(2)</span>
+            In the case where there is a possibility of interfering seriously with our fair implementation of business; or
+          </li>
+          <li style="padding-left: 1.25em;">
+            <span style="position: absolute; left: 0; margin: 0; padding-left: 1.5em">(3)</span>
+            In the case of violating other laws or regulations.
+          </li>
+        </ol>
+        <li>Notwithstanding the provision of the preceding paragraph, we will not in principle disclose any other information than Personal Information, including history information and characteristic information.</li>
+      </ol>
+
+      <li style="margin-bottom: -1em"><strong>Article 7 Correction and Deletion of Personal Information</strong></li>
+      <ol type="1" style="padding-left: 1em;">
+        <li>Users may demand in accordance with the procedures prescribed by University that we correct, add or delete the relevant Personal Information when your own Personal Information that we handle is erroneous.
+        </li>
+        <li>University will correct, add or delete erroneous Personal Information without delay when we deem it necessary to respond to the demand upon receipt thereof.
+        </li>
+        <li>University will notify Users without delay of our decision to correct, add or delete pursuant to the preceding paragraphor not to correct, add or delete the relevant Personal Information.
+        </li>
+      </ol>
+
+      <li style="margin-bottom: -1em"><strong>Article 8 Suspension of Use of Personal Information, etc.</strong></li>
+      <ol type="1" style="padding-left: 1em;">
+        <li>If we are requested to suspend the use or delete the relevant Personal Information due to the reason where such Personal Information is handled beyond the scope of the purposes of use or to the reason where such Personal Information has been obtained by unlawful means, University will without delay do a necessary investigation.
+        </li>
+        <li>When we deem it necessary to respond to the demand on the basis of the result of the investigation under the preceding paragraph, we will suspend the use or delete the relevant Personal Information.
+        </li>
+        <li>University will notify Users without delay of our decision to suspend the use or delete pursuant to the preceding paragraph or not to suspend the use or delete the relevant Personal Information.
+        </li>
+        <li>Notwithstanding the preceding two paragraphs, we may take alternative measures when it will cost us considerable expense or it is difficult to suspend the use or delete the relevant Personal Information and when we could take necessary and alternative measures in order for us to protect Users’ rights and interests.
+        </li>
+      </ol>
+
+      <li style="margin-bottom: -1em"><strong>Article 9 Amendment of the Privacy Policy</strong></li>
+      <ol type="1" style="padding-left: 1em;">
+        <li>University may amend the Privacy Policy without notice to Users unless otherwise specified under the laws and regulations and/or the Privacy Policy.</li>
+        <li>Unless otherwise separately specified by University, the amended Privacy Policy will become effective immediately when the amendment is posted on our website. </li>
+      </ol>
+
+      <li><strong>Article 10 Access Analytics Tools</strong></li>
+      <p style="padding-left: 0.5em;">
+        The services utilize “Google Analytics” which is one of access analytics tools provided Google.  Google Analytics uses cookies in order to collect traffic data. The traffic data is collected anonymously and is not intended to identify an individual.  You may reject this function by nullifying cookies.
+      </p>
+
+      <li><strong>Article 11 Contact </strong></li>
+      <p style="padding-left: 0.5em; margin-bottom: 8em">
+        Users will contact University on the Privacy Policy at the contact information below:<br>
+        Nihon University, College of Humanities and Sciences <br>
+        Telephone: 03-5317-9677<br>
+        Email: nu.chs.edo.tokyo@gmail.com<br><br>
+      </p>
+
+      <ons-bottom-toolbar class="bottom_toolbar">
+
+        <form name="kiyakubox_english" action="">
+          <div style="text-align: center;" >
+            <label >
+              <input type="checkbox" onclick="kiyakuhyouzi_english()">Do not show again
+            </label>
+          </div>
+        </form>
+        <!-- <form name="doui" acton="">
+          <div class="hidden_box_english" style="text-align: center">
+            <input type="checkbox" id="label1_english">
+            <label for="label1_english">同意する / Accept</label>
+            <div class="hidden_show_english">
+              <ons-button id="push-button_english">START</ons-button>
+            </div>
+          </div>
+        </form> -->
+        <div style="text-align: center;">
+          <label>
+            <input type="checkbox" onclick="agree_en()">Accept
+          </label>
+          <br><br>
+        <ons-button id='push-button_english'>START</ons-button>
+      </div>
       </ons-bottom-toolbar>
     </ons-page>
   </template>
@@ -353,6 +661,7 @@
       </ons-toast>
 
           <script async defer src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap">
+
           </script>
         </ons-page>
       </template>
