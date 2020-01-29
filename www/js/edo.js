@@ -319,6 +319,7 @@ function edo() {
     // チェックボックスがチェックされていればマーカ表示
     for (var i = 0; i < pinCnt_edo; i++) {
       marker_edo[i].setVisible(true);
+      marker_edo[i].setAnimation(google.maps.Animation.DROP);
     }
 
   } else {

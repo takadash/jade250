@@ -209,6 +209,7 @@ function hasira() {
     //alert('true');
     for (var i = 0; i < cnt6; i++) {
       marker6[i].setVisible(true);
+      marker6[i].setAnimation(google.maps.Animation.DROP);
     }
 
   } else {
