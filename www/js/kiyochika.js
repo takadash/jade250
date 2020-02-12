@@ -157,7 +157,7 @@ function stamp_push5(i) {
     //結果
     var now_success = getDistance(now_lat, now_lng, stamp_lat, stamp_lng);
 
-    if (true) {
+    if (now_success == true) {
       //hyouzi.innerHTML('<img src="human_pictures/human_red.png">');
       hyouzi.style.display = "none";
 

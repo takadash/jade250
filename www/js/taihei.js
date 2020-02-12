@@ -183,7 +183,7 @@ function stamp_push4(i) {
     //結果
     var now_success = getDistance(now_lat, now_lng, stamp_lat, stamp_lng);
 
-    if (true) {
+    if (now_success == true) {
       hyouzi.style.display = "none";
       //console.log("cnt_stamp1");
 
