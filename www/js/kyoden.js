@@ -170,7 +170,8 @@ function stamp_push2(i) {
       localStorage.setItem("total_kyoden", cnt_kyoden);
       localStorage.setItem('visit_kyoden' + i,true);
     } else {
-      alert('遠くてスタンプが押せませんでした');
+      // alert('遠くてスタンプが押せませんでした');
+      ons.notification.toast('遠くてスタンプが押せませんでした', { timeout: 2000, animation: 'ascend' });
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
     }
   };

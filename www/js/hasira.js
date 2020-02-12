@@ -183,7 +183,8 @@ function stamp_push_hasira(i) {
       localStorage.setItem('visit_hasira' + i,true);
     } else {
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
-      alert('遠くてスタンプが押せませんでした');
+      // alert('遠くてスタンプが押せませんでした');
+      ons.notification.toast('遠くてスタンプが押せませんでした', { timeout: 2000, animation: 'ascend' });
     }
   };
 

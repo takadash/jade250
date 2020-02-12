@@ -297,7 +297,8 @@ function stamp_push_edo(i) {
 localStorage.setItem("total_edo", cnt_edo);
 localStorage.setItem('visit_edo' + i,true);
     } else {
-      alert('遠くてスタンプが押せませんでした');
+      // alert('遠くてスタンプが押せませんでした');
+      ons.notification.toast('遠くてスタンプが押せませんでした', { timeout: 2000, animation: 'ascend' });
     }
   };
 

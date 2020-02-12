@@ -193,7 +193,8 @@ function stamp_push1(i) {
 
     } else {
       //hyouzi.insertAdjacentHTML('afterbegin', '<b>遠いよ</b>');
-      alert('遠くてスタンプが押せませんでした');
+      // alert('遠くてスタンプが押せませんでした');
+      ons.notification.toast('遠くてスタンプが押せませんでした', { timeout: 2000, animation: 'ascend' });
       //スタンプ獲得失敗音
       // stamp_failed_sound();
     }
