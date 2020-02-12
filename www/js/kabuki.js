@@ -171,7 +171,7 @@ function stamp_push1(i) {
       cnt_stamp++;
       //スタンプ獲得音
       // get_stamp_sound();
-      alert(cnt_stamp);
+      // alert(cnt_stamp);
       document.getElementById('cnt_stamp').textContent = cnt_stamp;
       document.getElementById('bar').value = cnt_stamp;
 
