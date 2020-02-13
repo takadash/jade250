@@ -9,6 +9,7 @@ var stampclick = [];
 var marker_g;
 var circle;
 var circle_cnt = 0;
+var setCircle;
 
 var localStorage_setItem_value = 0;
 var func_cnt_ja = 0;
@@ -428,8 +429,12 @@ function getMyPlace() {
 		var j = 10, k = 1;
 		var rMin = 150, rMax = 300;
     var cnt = 0;
-		setInterval(function() {
+
+    if(setCircle) clearInterval(setCircle);
+
+		setCircle = setInterval(function() {
 				var radius = circle.getRadius();
+        // console.log(radius);
 				if (radius > rMax) {
 					// start();
 					sleep(600);
@@ -450,31 +455,31 @@ function getMyPlace() {
 					circle.setRadius(radius + 0.3);
           // k -= 0.03;
           cnt++;
-          // console.log(cnt);
+          // console.log('A');
           // circle.setOptions( option ) ;
 				}else if(radius < 100){
 					circle.setRadius(radius + 14);
           // k -= 0.14;
           cnt++;
-          // console.log(cnt);
+          // console.log('B');
           // circle.setOptions( option ) ;
 				}else if(radius < 220){
 					circle.setRadius(radius + 12);
           // k -= 0.12;
           cnt++;
-          // console.log(cnt);
+          // console.log('C');
           // circle.setOptions( option ) ;
 				}else if(radius < 250){
 					circle.setRadius(radius + 8);
           // k -= 0.08;
           cnt++;
-          // console.log(cnt);
+          // console.log('D');
           // circle.setOptions( option ) ;
 				}else if(radius < 280){
 					circle.setRadius(radius + 6);
           // k -= 0.04;
           cnt++;
-          // console.log(cnt);
+          // console.log('E');
           // circle.setOptions( option ) ;
         }else{
           circle.setRadius(radius + 4);
@@ -697,7 +702,7 @@ function showTemplateDialog_kiyaku_en(){
         kiyaku_english();
       });
   }
-} 
+}
 
 //ダイアログ非表示
 function hideDialog_kiyaku(id) {
