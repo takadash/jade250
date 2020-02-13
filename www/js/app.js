@@ -349,8 +349,9 @@ async function start() {
 
 
 // 現在位置プログラム
+var num_latlng = 0;
 function getMyPlace() {
-  circle_cnt++;
+  // circle_cnt++;
 
   var output = document.getElementById("result");
 
@@ -361,11 +362,21 @@ function getMyPlace() {
 
 
   function success(position) {
-    var latitude  = position.coords.latitude;//緯度
-    var longitude = position.coords.longitude;//経度
+    // var latitude  = position.coords.latitude;//緯度
+    // var longitude = position.coords.longitude;//経度
     // var latitude = 35.693944
     // var longitude = 139.753611
     //output.innerHTML = '<p>緯度 ' + latitude + '° <br>経度 ' + longitude + '°</p>';
+
+    if(num_latlng % 2 == 0){
+    var latitude  = position.coords.latitude;//緯度
+    var longitude = position.coords.longitude;//経度
+  }
+  else{
+    var latitude = 35.693944
+    var longitude = 139.753611
+  }
+  num_latlng++;
 
     // 位置情報
     var latlng = new google.maps.LatLng(latitude, longitude);
@@ -402,16 +413,16 @@ function getMyPlace() {
 		//
     // circle.bindTo("center", marker_g, "position");
 
-		var circle = new google.maps.Circle({
-				center: latlng,
-				radius: 0,
-				strokeColor: "rgba(101, 165, 224, 0.73)",
-				strokeOpacity: 1,
-				strokeWeight: 10,
-				fillColor: "rgba(101, 165, 224, 0.73)",
-				fillOpacity: 1
+		circle = new google.maps.Circle({
+			center: latlng,
+			radius: 0,
+			strokeColor: "rgba(101, 165, 224, 0.73)",
+			strokeOpacity: 1,
+			strokeWeight: 10,
+			fillColor: "rgba(101, 165, 224, 0.73)",
+			fillOpacity: 1
 		});
-    if(circle_cnt == 1)
+    // if(circle_cnt == 1)
 		circle.setMap(map);
 
 		var j = 10, k = 1;
