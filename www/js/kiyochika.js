@@ -71,6 +71,15 @@ kiyochikaData.order("createData", true)
         }
         //animation: google.maps.Animation.DROP
       });
+
+      infoWindow5[i] = new google.maps.InfoWindow({ // 吹き出しの追加
+        maxWidth: 1000,
+        // 吹き出しに表示する内容
+        content:
+        '<div class="map">' + kiyotitle[i] + '</div>' + '地域　　　　　　' + city[i] + kiyo_area1[i] + ' ' + kiyo_area2[i] +
+        '<br>景物　　　　　　' + obj[i] + '<br>' + stampclick[i] + '<br>' +
+        '<img src= "https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=kiyochika&file='+ file_url[i] + '.jpg&size=100" onclick="showTemplateDialog(\'' + file_url[i] + '\')">'
+      });
           }else{
             marker5[i] = new google.maps.Marker({
         position: markerLatLng,
@@ -81,16 +90,16 @@ kiyochikaData.order("createData", true)
           url: 'https://maps.google.com/mapfiles/ms/icons/blue.png'
         }
             });
-          }
 
-      infoWindow5[i] = new google.maps.InfoWindow({ // 吹き出しの追加
-        maxWidth: 1000,
-        // 吹き出しに表示する内容
-        content:
-        '<div class="map">' + kiyotitle[i] + '</div>' + '地域　　　　　　' + city[i] + kiyo_area1[i] + ' ' + kiyo_area2[i] +
-        '<br>景物　　　　　　' + obj[i] + '<br>' + stampclick[i] + '<br>' +
-        '<img src= "https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=kiyochika&file='+ file_url[i] + '.jpg&size=100" onclick="showTemplateDialog(\'' + file_url[i] + '\')">'
-      });
+            infoWindow5[i] = new google.maps.InfoWindow({ // 吹き出しの追加
+              maxWidth: 1000,
+              // 吹き出しに表示する内容
+              content:
+              '<div class="map">' + kiyotitle[i] + '</div>' + '地域　　　　　　' + city[i] + kiyo_area1[i] + ' ' + kiyo_area2[i] +
+              '<br>景物　　　　　　' + obj[i] + '<br>' + '<img src="human_pictures/human_red.png">' + '<br>' +
+              '<img src= "https://dep.chs.nihon-u.ac.jp/japanese_lang/nichigo-nichibun/web-edo-tokyo/pic.php?type=kiyochika&file='+ file_url[i] + '.jpg&size=100" onclick="showTemplateDialog(\'' + file_url[i] + '\')">'
+            });
+          }
 
       markerEvent5(i); // マーカーにクリックイベントを追加
 

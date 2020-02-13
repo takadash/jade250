@@ -72,6 +72,19 @@ hasiraData.order("createData", true)
     }
     //animation: google.maps.Animation.DROP
   });
+
+  infoWindow6[i] = new google.maps.InfoWindow({ // 吹き出しの追加
+    // 吹き出しに表示する内容
+    content: '<div class="map">' + name[i] + '</div>' + '標識の種類　　　　　　' +
+              type[i] + '<br>所在場所　　　　' + place[i] + '<br>'
+               +'<ons-button onclick="showTemplateDialog_hasira('
+               + '\'' + text[i] + '\'' + '\,'
+               + '\'' + text2[i] + '\'' + '\,'
+               + '\'' + text3[i] + '\'' + '\,'
+               + '\'' + text4[i] + '\'' +
+              ',)">本文</ons-button>' +
+              stampclick6[i]
+  });
       }else{
         marker6[i] = new google.maps.Marker({
     position: markerLatLng,
@@ -82,20 +95,22 @@ hasiraData.order("createData", true)
       url: 'https://maps.google.com/mapfiles/ms/icons/purple.png'
     }
         });
+
+        // stampclick6[i] = document.getElementById("btn").insertAdjacentHTML('afterbegin', '<img src="human_pictures/human_red.png">');
+        infoWindow6[i] = new google.maps.InfoWindow({ // 吹き出しの追加
+          // 吹き出しに表示する内容
+          content: '<div class="map">' + name[i] + '</div>' + '標識の種類　　　　　　' +
+                    type[i] + '<br>所在場所　　　　' + place[i] + '<br>'
+                     +'<ons-button onclick="showTemplateDialog_hasira('
+                     + '\'' + text[i] + '\'' + '\,'
+                     + '\'' + text2[i] + '\'' + '\,'
+                     + '\'' + text3[i] + '\'' + '\,'
+                     + '\'' + text4[i] + '\'' +
+                    ',)">本文</ons-button>' + '<br>' +
+                    '<img src="human_pictures/human_red.png">'
+        });
       }
 
-      infoWindow6[i] = new google.maps.InfoWindow({ // 吹き出しの追加
-        // 吹き出しに表示する内容
-        content: '<div class="map">' + name[i] + '</div>' + '標識の種類　　　　　　' +
-                  type[i] + '<br>所在場所　　　　' + place[i] + '<br>'
-                   +'<ons-button onclick="showTemplateDialog_hasira('
-                   + '\'' + text[i] + '\'' + '\,'
-                   + '\'' + text2[i] + '\'' + '\,'
-                   + '\'' + text3[i] + '\'' + '\,'
-                   + '\'' + text4[i] + '\'' +
-                  ',)">本文</ons-button>' +
-                  stampclick6[i]
-      });
       markerEvent1(i); // マーカーにクリックイベントを追加
 
     }
@@ -162,7 +177,7 @@ function stamp_push_hasira(i) {
     //結果
     var now_success = getDistance(now_lat, now_lng, stamp_lat, stamp_lng);
 
-    if (now_success == true) {
+    if (true) {
       //hyouzi.innerHTML('<img src="human_pictures/human_red.png">');
       hyouzi.style.display = "none";
 

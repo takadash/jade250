@@ -92,6 +92,15 @@ TestData.order("createData", true)
       }
       //animation: google.maps.Animation.DROP
       });
+
+      infoWindow4[i] = new google.maps.InfoWindow({ // 吹き出しの追加
+        // 吹き出しに表示する内容
+        maxWidth: 1000,
+        content:
+        '<div class="map">' + kumi[i]  + '</div>' + '町員　　　　　' + tyo_in[i] + '<br>人足　　　　　' + zinsoku[i] +
+        '<br>中心地(文字配当図)' + center_moji[i] + '<br>中心地(先頭町名)　' + center_town[i] + '<br><br>' + town_name[i] +
+        '<br>' + infoWindowContent + '<br>' + stampclick4[i]
+      });
       }else{
         marker4[i] = new google.maps.Marker({
       position: markerLatLng,
@@ -102,17 +111,15 @@ TestData.order("createData", true)
       url: 'https://maps.google.com/mapfiles/ms/icons/red.png'
       }
         });
-      }
-
-
         infoWindow4[i] = new google.maps.InfoWindow({ // 吹き出しの追加
           // 吹き出しに表示する内容
           maxWidth: 1000,
           content:
           '<div class="map">' + kumi[i]  + '</div>' + '町員　　　　　' + tyo_in[i] + '<br>人足　　　　　' + zinsoku[i] +
           '<br>中心地(文字配当図)' + center_moji[i] + '<br>中心地(先頭町名)　' + center_town[i] + '<br><br>' + town_name[i] +
-          '<br>' + infoWindowContent + '<br>' + stampclick4[i]
+          '<br>' + infoWindowContent + '<br>' + '<img src="human_pictures/human_red.png">'
         });
+      }
 
       markerEvent4(i); // マーカーにクリックイベントを追加
     }

@@ -187,6 +187,13 @@ var title_pic = [];
                   }
                   //animation: google.maps.Animation.DROP
                 });
+
+                infoWindow_edo[i] = new google.maps.InfoWindow({ // 吹き出しの追加
+                  content: '<div class="map">' + title[i] +
+                    '<br>' + infoWindowContent + '</div>' +
+                    '<br>' + stampclick_edo[i]
+                });
+
                     }else{
                       marker_edo[i] = new google.maps.Marker({
                   position: markerLatLng,
@@ -197,13 +204,15 @@ var title_pic = [];
                     url: 'https://maps.google.com/mapfiles/ms/icons/pink.png'
                   }
                       });
+
+                      infoWindow_edo[i] = new google.maps.InfoWindow({ // 吹き出しの追加
+                        content: '<div class="map">' + title[i] +
+                          '<br>' + infoWindowContent + '</div>' +
+                          '<br>' + stampclick_edo[i] + '<br>' + '<img src="human_pictures/human_red.png">'
+                      });
                     }
 
-                    infoWindow_edo[i] = new google.maps.InfoWindow({ // 吹き出しの追加
-                      content: '<div class="map">' + title[i] +
-                        '<br>' + infoWindowContent + '</div>' +
-                        '<br>' + stampclick_edo[i]
-                    });
+
 
                     // console.log('ok,'+ i);
                     markerEvent_edo(i); // マーカーにクリックイベントを追加

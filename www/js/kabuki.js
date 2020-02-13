@@ -76,6 +76,10 @@ kabukiData.order("createData", true)
           url: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
         }
         //animation: google.maps.Animation.DROP
+
+        infoWindow1[i] = new google.maps.InfoWindow({ // 吹き出しの追加
+          content: '<div class="map">' + title[i] + '</div>' + '地名　　　　　　' + name[i] + '<br>参考文献　　　　' + bibliography[i] + volume[i] + page[i] + '<br>' + title[i] + text[i] + '<br>' + stampclick1[i] // 吹き出しに表示する内容
+        });
       });
           }else{
             marker1[i] = new google.maps.Marker({
@@ -87,11 +91,13 @@ kabukiData.order("createData", true)
           url: 'https://maps.google.com/mapfiles/ms/icons/green.png'
         }
             });
+
+            infoWindow1[i] = new google.maps.InfoWindow({ // 吹き出しの追加
+              content: '<div class="map">' + title[i] + '</div>' + '地名　　　　　　' + name[i] + '<br>参考文献　　　　' + bibliography[i] + volume[i] + page[i] + '<br>' + title[i] + text[i] + '<br>'
+               + '<img src="human_pictures/human_red.png">' // 吹き出しに表示する内容
+            });
           }
 
-      infoWindow1[i] = new google.maps.InfoWindow({ // 吹き出しの追加
-        content: '<div class="map">' + title[i] + '</div>' + '地名　　　　　　' + name[i] + '<br>参考文献　　　　' + bibliography[i] + volume[i] + page[i] + '<br>' + title[i] + text[i] + '<br>' + stampclick1[i] // 吹き出しに表示する内容
-      });
       markerEvent1(i); // マーカーにクリックイベントを追加
 
     }
