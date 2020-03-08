@@ -363,21 +363,22 @@ function getMyPlace() {
 
 
   function success(position) {
-    // var latitude  = position.coords.latitude;//緯度
-    // var longitude = position.coords.longitude;//経度
+    var latitude  = position.coords.latitude;//緯度
+    var longitude = position.coords.longitude;//経度
     // var latitude = 35.693944
     // var longitude = 139.753611
     //output.innerHTML = '<p>緯度 ' + latitude + '° <br>経度 ' + longitude + '°</p>';
 
-    if(num_latlng % 2 == 0){
-    var latitude  = position.coords.latitude;//緯度
-    var longitude = position.coords.longitude;//経度
-  }
-  else{
-    var latitude = 35.693944
-    var longitude = 139.753611
-  }
-  num_latlng++;
+    //デバッグ用
+  //   if(num_latlng % 2 == 0){
+  //   var latitude  = position.coords.latitude;//緯度
+  //   var longitude = position.coords.longitude;//経度
+  // }
+  // else{
+  //   var latitude = 35.693944
+  //   var longitude = 139.753611
+  // }
+  // num_latlng++;
 
     // 位置情報
     var latlng = new google.maps.LatLng(latitude, longitude);
